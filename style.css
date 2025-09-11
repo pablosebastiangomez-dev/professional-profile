@@ -9,6 +9,12 @@ body {
   overflow: hidden;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .nombre {
   font-family: 'Montserrat', Arial, sans-serif;
   font-size: 3rem;
@@ -20,9 +26,25 @@ body {
   animation: aparecer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.subtitulo {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 1.25rem;
+  color: #bbb;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: fadein 1s ease-in forwards;
+  animation-delay: 1.2s;
+}
+
 @keyframes aparecer {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadein {
+  to {
+    opacity: 1;
   }
 }
