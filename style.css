@@ -14,25 +14,24 @@ body {
 
 .background-svg {
   position: fixed;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
-  height: 100vh;
+  height: 280px;
   z-index: 0;
   pointer-events: none;
   display: flex;
-  align-items: flex-end;
   justify-content: center;
-  filter: blur(18px);      /* 50% desenfoque aproximado */
+  filter: blur(18px);      /* Desenfoque fuerte */
   opacity: 0.7;            /* 70% transparencia */
   transition: filter 0.3s, opacity 0.3s;
 }
 .background-svg svg {
-  width: 100vw;
-  height: 100vh;
+  width: 900px;
+  height: 280px;
   display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  margin: 0 auto;
 }
 
 .center-glass {
@@ -40,8 +39,8 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: min(90vw, 420px);
-  min-height: 300px;
+  width: min(98vw, 800px);
+  min-height: 320px;
   height: auto;
   background: rgba(20, 22, 30, 0.78);
   backdrop-filter: blur(9px);
@@ -61,7 +60,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: min(90vw, 420px);
+  width: min(98vw, 800px);
   max-width: 100vw;
   text-align: center;
   pointer-events: none;
@@ -69,7 +68,7 @@ body {
 
 .nombre {
   font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 3rem;
+  font-size: 3.2rem;
   color: #fff;
   font-weight: bold;
   letter-spacing: 2px;
@@ -81,7 +80,7 @@ body {
 
 .subtitulo {
   font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #bce4fd;
   margin-top: 1rem;
   opacity: 0;
@@ -104,7 +103,7 @@ body {
 /* Iconos de datos */
 .iconos-datos {
   display: flex;
-  gap: 1.2rem;
+  gap: 1.8rem;
   margin-top: 2.2rem;
   opacity: 0;
   animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -114,8 +113,8 @@ body {
   pointer-events: none;
 }
 .icono {
-  width: 44px;
-  height: 44px;
+  width: 54px;
+  height: 54px;
   filter: drop-shadow(0 2px 6px #0006);
   transform: scale(0.7) rotate(-8deg);
   opacity: 0.8;
