@@ -68,7 +68,7 @@ body {
 
 .nombre {
   font-family: 'Montserrat', Arial, sans-serif;
-  font-size: clamp(1.2rem, 6vw, 3.2rem); /* Responsive, adaptable */
+  font-size: clamp(1.1rem, 6vw, 3.2rem); /* ¡clave! */
   color: #fff;
   font-weight: bold;
   letter-spacing: 2px;
@@ -76,10 +76,11 @@ body {
   transform: translateY(-100px);
   animation: aparecer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   margin-top: 2.2rem;
-  /* white-space: nowrap;  <--- Quitado para permitir salto de línea */
-  overflow-wrap: anywhere;
+  white-space: normal;           /* Permite saltos de línea */
+  overflow-wrap: break-word;     /* Permite cortar palabras largas */
   word-break: break-word;
   max-width: 92vw;
+  text-align: center;
 }
 
 .subtitulo {
