@@ -19,11 +19,20 @@ body {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  filter: blur(18px);      /* 50% desenfoque aproximado */
+  opacity: 0.7;            /* 70% transparencia */
+  transition: filter 0.3s, opacity 0.3s;
 }
 .background-svg svg {
   width: 100vw;
   height: 100vh;
   display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .center-glass {
