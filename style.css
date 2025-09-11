@@ -22,7 +22,7 @@ body {
   z-index: 0;
   pointer-events: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* Empuja el SVG a la derecha */
   filter: blur(18px);      /* Desenfoque fuerte */
   opacity: 0.7;            /* 70% transparencia */
   transition: filter 0.3s, opacity 0.3s;
@@ -31,7 +31,7 @@ body {
   width: 900px;
   height: 280px;
   display: block;
-  margin: 0 auto;
+  margin-right: 6vw; /* Más a la derecha */
 }
 
 .center-glass {
@@ -76,6 +76,10 @@ body {
   transform: translateY(-100px);
   animation: aparecer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   margin-top: 2.2rem;
+  white-space: nowrap;           /* Siempre en una sola línea */
+  overflow-x: auto;              /* Scroll horizontal si es necesario */
+  text-overflow: ellipsis;
+  max-width: 90vw;
 }
 
 .subtitulo {
