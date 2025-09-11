@@ -22,18 +22,19 @@ body {
   z-index: 0;
   pointer-events: none;
   display: flex;
-  justify-content: flex-end; /* Empuja el SVG a la derecha */
-  filter: blur(18px);      /* Desenfoque fuerte */
-  opacity: 0.7;            /* 70% transparencia */
+  justify-content: flex-end;
+  filter: blur(18px);
+  opacity: 0.7;
   transition: filter 0.3s, opacity 0.3s;
 }
 .background-svg svg {
   width: 900px;
   height: 280px;
   display: block;
-  margin-right: 6vw; /* Más a la derecha */
+  margin-right: 6vw;
 }
 
+/* Panel central vidriado */
 .center-glass {
   position: absolute;
   left: 50%;
@@ -76,10 +77,10 @@ body {
   transform: translateY(-100px);
   animation: aparecer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   margin-top: 2.2rem;
-  white-space: nowrap;           /* Siempre en una sola línea */
-  overflow-x: auto;              /* Scroll horizontal si es necesario */
+  white-space: nowrap;
+  overflow-x: auto;
   text-overflow: ellipsis;
-  max-width: 90vw;
+  max-width: 92vw;
 }
 
 .subtitulo {
@@ -92,6 +93,7 @@ body {
   animation-delay: 1.2s;
 }
 
+/* Animaciones */
 @keyframes aparecer {
   to {
     opacity: 1;
@@ -185,4 +187,44 @@ body {
 @keyframes dots-fade {
   0%, 100% { opacity: 0.13; }
   50% { opacity: 0.35; }
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  .center-glass {
+    width: 98vw;
+    min-height: 220px;
+    border-radius: 1.2rem;
+    padding: 0;
+  }
+  .container {
+    width: 98vw;
+    min-height: 220px;
+    padding: 0 1.5vw;
+  }
+  .nombre {
+    font-size: 1.35rem;
+    margin-top: 1.1rem;
+    max-width: 98vw;
+  }
+  .subtitulo {
+    font-size: 1rem;
+    margin-top: 0.6rem;
+  }
+  .iconos-datos {
+    gap: 1rem;
+    margin-top: 1.1rem;
+  }
+  .icono {
+    width: 32px;
+    height: 32px;
+  }
+  .background-svg {
+    height: 120px;
+  }
+  .background-svg svg {
+    width: 100vw !important;
+    height: 120px !important;
+    margin-right: 2vw;
+  }
 }
