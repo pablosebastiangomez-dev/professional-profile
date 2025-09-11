@@ -7,13 +7,61 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background-pattern"></div>
+  <div class="background-svg">
+    <!-- Fondo interactivo de gráficos y líneas -->
+    <svg width="100vw" height="100vh" viewBox="0 0 900 600" fill="none">
+      <!-- Gráfico de barras animado -->
+      <rect class="bar bar1" x="100" y="350" width="30" height="200" rx="4"/>
+      <rect class="bar bar2" x="170" y="270" width="30" height="280" rx="4"/>
+      <rect class="bar bar3" x="240" y="320" width="30" height="230" rx="4"/>
+      <rect class="bar bar4" x="310" y="210" width="30" height="340" rx="4"/>
+      <!-- Línea de datos animada -->
+      <polyline class="dataline" points="120,420 185,290 255,350 325,240" stroke-width="4" fill="none"/>
+      <!-- Nodos -->
+      <circle class="node" cx="120" cy="420" r="9"/>
+      <circle class="node" cx="185" cy="290" r="9"/>
+      <circle class="node" cx="255" cy="350" r="9"/>
+      <circle class="node" cx="325" cy="240" r="9"/>
+      <!-- Fondo de puntos -->
+      <g class="dots">
+        <circle cx="700" cy="120" r="2"/>
+        <circle cx="800" cy="200" r="2"/>
+        <circle cx="850" cy="100" r="2"/>
+        <circle cx="750" cy="250" r="2"/>
+        <circle cx="720" cy="300" r="2"/>
+        <circle cx="830" cy="350" r="2"/>
+      </g>
+    </svg>
+  </div>
   <div class="container">
     <div class="nombre">
       Pablo Sebastián Gómez
     </div>
     <div class="subtitulo">
       Analista de Datos
+    </div>
+    <div class="iconos-datos">
+      <!-- Iconos SVG de datos -->
+      <svg class="icono" viewBox="0 0 40 40">
+        <!-- Base de datos -->
+        <ellipse cx="20" cy="12" rx="12" ry="6" fill="#36e2ec" opacity="0.7"/>
+        <rect x="8" y="12" width="24" height="16" rx="12" fill="#36e2ec" opacity="0.3"/>
+        <ellipse cx="20" cy="28" rx="12" ry="6" fill="#36e2ec" opacity="0.7"/>
+      </svg>
+      <svg class="icono" viewBox="0 0 40 40">
+        <!-- Gráfico de barras -->
+        <rect x="8" y="22" width="5" height="10" rx="2" fill="#e8ff5e" />
+        <rect x="17" y="16" width="5" height="16" rx="2" fill="#e8ff5e" />
+        <rect x="26" y="10" width="5" height="22" rx="2" fill="#e8ff5e" />
+      </svg>
+      <svg class="icono" viewBox="0 0 40 40">
+        <!-- Gráfico de líneas -->
+        <polyline points="8,32 16,24 24,30 32,12" fill="none" stroke="#e67be7" stroke-width="3" stroke-linecap="round" />
+        <circle cx="8" cy="32" r="2" fill="#e67be7" />
+        <circle cx="16" cy="24" r="2" fill="#e67be7" />
+        <circle cx="24" cy="30" r="2" fill="#e67be7" />
+        <circle cx="32" cy="12" r="2" fill="#e67be7" />
+      </svg>
     </div>
   </div>
 </body>
