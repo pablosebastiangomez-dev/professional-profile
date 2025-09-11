@@ -34,7 +34,6 @@ body {
   margin-right: 6vw;
 }
 
-/* Panel central vidriado */
 .center-glass {
   position: absolute;
   left: 50%;
@@ -69,7 +68,7 @@ body {
 
 .nombre {
   font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 3.2rem;
+  font-size: clamp(1.2rem, 6vw, 3.2rem); /* Responsive, adaptable */
   color: #fff;
   font-weight: bold;
   letter-spacing: 2px;
@@ -77,15 +76,15 @@ body {
   transform: translateY(-100px);
   animation: aparecer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   margin-top: 2.2rem;
-  white-space: nowrap;
-  overflow-x: auto;
-  text-overflow: ellipsis;
+  /* white-space: nowrap;  <--- Quitado para permitir salto de línea */
+  overflow-wrap: anywhere;
+  word-break: break-word;
   max-width: 92vw;
 }
 
 .subtitulo {
   font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3.8vw, 1.5rem);
   color: #bce4fd;
   margin-top: 1rem;
   opacity: 0;
@@ -93,7 +92,6 @@ body {
   animation-delay: 1.2s;
 }
 
-/* Animaciones */
 @keyframes aparecer {
   to {
     opacity: 1;
@@ -106,7 +104,6 @@ body {
   }
 }
 
-/* Iconos de datos */
 .iconos-datos {
   display: flex;
   gap: 1.8rem;
@@ -119,8 +116,8 @@ body {
   pointer-events: none;
 }
 .icono {
-  width: 54px;
-  height: 54px;
+  width: clamp(28px, 9vw, 54px);
+  height: clamp(28px, 9vw, 54px);
   filter: drop-shadow(0 2px 6px #0006);
   transform: scale(0.7) rotate(-8deg);
   opacity: 0.8;
@@ -189,42 +186,29 @@ body {
   50% { opacity: 0.35; }
 }
 
-/* Responsive para móviles */
+/* Responsive extra para móviles pequeños */
 @media (max-width: 600px) {
   .center-glass {
     width: 98vw;
-    min-height: 220px;
+    min-height: 180px;
     border-radius: 1.2rem;
     padding: 0;
   }
   .container {
     width: 98vw;
-    min-height: 220px;
+    min-height: 180px;
     padding: 0 1.5vw;
   }
-  .nombre {
-    font-size: 1.35rem;
-    margin-top: 1.1rem;
-    max-width: 98vw;
-  }
-  .subtitulo {
-    font-size: 1rem;
-    margin-top: 0.6rem;
-  }
   .iconos-datos {
-    gap: 1rem;
+    gap: 0.7rem;
     margin-top: 1.1rem;
-  }
-  .icono {
-    width: 32px;
-    height: 32px;
   }
   .background-svg {
-    height: 120px;
+    height: 100px;
   }
   .background-svg svg {
     width: 100vw !important;
-    height: 120px !important;
+    height: 100px !important;
     margin-right: 2vw;
   }
 }
