@@ -213,3 +213,95 @@ body {
     margin-right: 2vw;
   }
 }
+/* ===== ESTILOS ADAPTADOS PARA EL PANEL DE CRIPTOMONEDAS ===== */
+#crypto-container {
+    width: 95%;
+    max-width: 700px;
+    margin-top: 2.5rem; /* Espacio respecto a los iconos */
+    font-family: 'Montserrat', sans-serif;
+    color: #f0f0f0;
+    opacity: 0; /* Empieza oculto para la animación */
+    animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 2.8s; /* Aparece después de los iconos */
+    pointer-events: auto; /* Permite interactuar con la tabla */
+}
+
+.table-wrapper {
+    overflow-x: auto; /* Permite scroll horizontal en móviles */
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+}
+
+/* Estilo para la barra de scroll */
+.table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(54, 226, 236, 0.4);
+    border-radius: 10px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: clamp(0.75rem, 2vw, 0.9rem); /* Tamaño de fuente responsivo */
+}
+
+#crypto-table th, 
+#crypto-table td {
+    padding: 14px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+}
+
+#crypto-table thead th {
+    font-weight: bold;
+    color: #36e2ec;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#crypto-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.coin-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.coin-name img {
+    border-radius: 50%;
+}
+
+.coin-name .symbol {
+    color: #8a9bb3;
+    font-size: 0.9em;
+}
+
+.color-green {
+    color: #4dfd94;
+    font-weight: bold;
+}
+
+.color-red {
+    color: #ff5b5b;
+    font-weight: bold;
+}
+
+/* ===== AJUSTES RESPONSIVOS PARA EL PANEL ===== */
+@media (max-width: 600px) {
+    #crypto-container {
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+    #crypto-table th, 
+    #crypto-table td {
+        padding: 10px 8px;
+    }
+}
