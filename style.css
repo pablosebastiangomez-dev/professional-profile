@@ -40,8 +40,8 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   width: min(98vw, 800px);
-  min-height: 320px;
-  height: auto;
+  /* Aumentamos la altura para dar espacio */
+  height: min(90vh, 700px); 
   background: rgba(20, 22, 30, 0.78);
   backdrop-filter: blur(9px);
   border-radius: 2.5rem;
@@ -52,16 +52,21 @@ body {
 
 .container {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  /* Hacemos que ocupe todo el panel de cristal */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  transform: translate(-50%, -50%);
+  padding: 3rem 1rem; /* Añadimos padding para que no se pegue a los bordes */
+  box-sizing: border-box;
+
+  /* La magia de Flexbox */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: min(98vw, 800px);
-  max-width: 100vw;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  align-items: center; /* Centra todo horizontalmente */
+  justify-content: space-between; /* ¡CLAVE! Empuja el contenido a los extremos (arriba y abajo) */
+  
   text-align: center;
   pointer-events: none;
 }
