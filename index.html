@@ -1,60 +1,115 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pablo Sebastián Gómez</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pablo Sebastián Gómez</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background-svg">
-    <svg width="100vw" height="280" viewBox="0 0 900 280" fill="none">
-      <rect class="bar bar1" x="220" y="130" width="30" height="120" rx="4"/>
-      <rect class="bar bar2" x="290" y="150" width="30" height="100" rx="4"/>
-      <rect class="bar bar3" x="360" y="120" width="30" height="130" rx="4"/>
-      <rect class="bar bar4" x="430" y="160" width="30" height="90" rx="4"/>
-      <polyline class="dataline" points="240,200 305,180 375,230 445,170" stroke-width="4" fill="none"/>
-      <circle class="node" cx="240" cy="200" r="9"/>
-      <circle class="node" cx="305" cy="180" r="9"/>
-      <circle class="node" cx="375" cy="230" r="9"/>
-      <circle class="node" cx="445" cy="170" r="9"/>
-      <g class="dots">
-        <circle cx="820" cy="220" r="2"/>
-        <circle cx="870" cy="200" r="2"/>
-        <circle cx="880" cy="260" r="2"/>
-        <circle cx="800" cy="250" r="2"/>
-        <circle cx="720" cy="270" r="2"/>
-        <circle cx="830" cy="230" r="2"/>
-      </g>
-    </svg>
-  </div>
-  <div class="center-glass"></div>
-  <div class="container">
-    <div class="nombre">
-      Pablo Sebastián Gómez
+    <div class="background-svg">
+        <svg width="100vw" height="280" viewBox="0 0 900 280" fill="none">
+         <rect class="bar bar1" x="220" y="130" width="30" height="120" rx="4"/>
+         <rect class="bar bar2" x="290" y="150" width="30" height="100" rx="4"/>
+         <rect class="bar bar3" x="360" y="120" width="30" height="130" rx="4"/>
+         <rect class="bar bar4" x="430" y="160" width="30" height="90" rx="4"/>
+         <polyline class="dataline" points="240,200 305,180 375,230 445,170" stroke-width="4" fill="none"/>
+         <circle class="node" cx="240" cy="200" r="9"/>
+         <circle class="node" cx="305" cy="180" r="9"/>
+         <circle class="node" cx="375" cy="230" r="9"/>
+         <circle class="node" cx="445" cy="170" r="9"/>
+         <g class="dots">
+           <circle cx="820" cy="220" r="2"/>
+           <circle cx="870" cy="200" r="2"/>
+           <circle cx="880" cy="260" r="2"/>
+           <circle cx="800" cy="250" r="2"/>
+           <circle cx="720" cy="270" r="2"/>
+           <circle cx="830" cy="230" r="2"/>
+         </g>
+       </svg>
     </div>
-    <div class="subtitulo">
-      Analista de Datos
+
+    <div class="center-glass"></div>
+
+    <div class="container">
+        <div class="nombre">
+            Pablo Sebastián Gómez
+        </div>
+        <div class="subtitulo">
+            Analista de Datos
+        </div>
+        <div class="iconos-datos">
+            <svg class="icono" viewBox="0 0 40 40"><ellipse cx="20" cy="12" rx="12" ry="6" fill="#36e2ec" opacity="0.7"/><rect x="8" y="12" width="24" height="16" rx="12" fill="#36e2ec" opacity="0.3"/><ellipse cx="20" cy="28" rx="12" ry="6" fill="#36e2ec" opacity="0.7"/></svg>
+            <svg class="icono" viewBox="0 0 40 40"><rect x="8" y="22" width="5" height="10" rx="2" fill="#e8ff5e" /><rect x="17" y="16" width="5" height="16" rx="2" fill="#e8ff5e" /><rect x="26" y="10" width="5" height="22" rx="2" fill="#e8ff5e" /></svg>
+            <svg class="icono" viewBox="0 0 40 40"><polyline points="8,32 16,24 24,30 32,12" fill="none" stroke="#e67be7" stroke-width="3" stroke-linecap="round" /><circle cx="8" cy="32" r="2" fill="#e67be7" /><circle cx="16" cy="24" r="2" fill="#e67be7" /><circle cx="24" cy="30" r="2" fill="#e67be7" /><circle cx="32" cy="12" r="2" fill="#e67be7" /></svg>
+        </div>
+
+        <div id="crypto-container">
+            <div class="table-wrapper">
+                <table id="crypto-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Moneda</th>
+                            <th>Precio (USD)</th>
+                            <th>24h %</th>
+                            <th>Cap. de Mercado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="iconos-datos">
-      <svg class="icono" viewBox="0 0 40 40">
-        <ellipse cx="20" cy="12" rx="12" ry="6" fill="#36e2ec" opacity="0.7"/>
-        <rect x="8" y="12" width="24" height="16" rx="12" fill="#36e2ec" opacity="0.3"/>
-        <ellipse cx="20" cy="28" rx="12" ry="6" fill="#36e2ec" opacity="0.7"/>
-      </svg>
-      <svg class="icono" viewBox="0 0 40 40">
-        <rect x="8" y="22" width="5" height="10" rx="2" fill="#e8ff5e" />
-        <rect x="17" y="16" width="5" height="16" rx="2" fill="#e8ff5e" />
-        <rect x="26" y="10" width="5" height="22" rx="2" fill="#e8ff5e" />
-      </svg>
-      <svg class="icono" viewBox="0 0 40 40">
-        <polyline points="8,32 16,24 24,30 32,12" fill="none" stroke="#e67be7" stroke-width="3" stroke-linecap="round" />
-        <circle cx="8" cy="32" r="2" fill="#e67be7" />
-        <circle cx="16" cy="24" r="2" fill="#e67be7" />
-        <circle cx="24" cy="30" r="2" fill="#e67be7" />
-        <circle cx="32" cy="12" r="2" fill="#e67be7" />
-      </svg>
-    </div>
-  </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cryptoTableBody = document.querySelector('#crypto-table tbody');
+            const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
+
+            const formatCurrency = (number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 6 }).format(number);
+            const formatMarketCap = (number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 2 }).format(number);
+
+            async function fetchCryptoData() {
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const coins = await response.json();
+                    displayCryptoData(coins);
+                } catch (error) {
+                    console.error("No se pudieron obtener los datos de las criptomonedas:", error);
+                    cryptoTableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No se pudieron cargar los datos.</td></tr>`;
+                }
+            }
+
+            function displayCryptoData(coins) {
+                cryptoTableBody.innerHTML = '';
+                coins.forEach((coin, index) => {
+                    const priceChange = coin.price_change_percentage_24h;
+                    const changeColorClass = priceChange >= 0 ? 'color-green' : 'color-red';
+                    const row = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td class="coin-name">
+                                <img src="${coin.image}" alt="${coin.name} logo" width="24" height="24">
+                                <span>${coin.name} <span class="symbol">${coin.symbol.toUpperCase()}</span></span>
+                            </td>
+                            <td>${formatCurrency(coin.current_price)}</td>
+                            <td class="${changeColorClass}">${priceChange.toFixed(2)}%</td>
+                            <td>${formatMarketCap(coin.market_cap)}</td>
+                        </tr>
+                    `;
+                    cryptoTableBody.innerHTML += row;
+                });
+            }
+            fetchCryptoData();
+        });
+    </script>
 </body>
 </html>
