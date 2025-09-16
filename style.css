@@ -12,6 +12,13 @@ body {
   min-width: 100vw;
 }
 
+.info-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .background-svg {
   position: fixed;
   left: 0;
@@ -222,13 +229,13 @@ body {
 #crypto-container {
     width: 95%;
     max-width: 700px;
-    margin-top: 2.5rem; /* Espacio respecto a los iconos */
+    margin-top: 0; /* Asegúrate de que esto sea 0 o no exista */
     font-family: 'Montserrat', sans-serif;
     color: #f0f0f0;
-    opacity: 0; /* Empieza oculto para la animación */
+    opacity: 0; 
     animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 2.8s; /* Aparece después de los iconos */
-    pointer-events: auto; /* Permite interactuar con la tabla */
+    animation-delay: 2.8s;
+    pointer-events: auto;
 }
 
 .table-wrapper {
