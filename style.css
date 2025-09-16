@@ -41,40 +41,43 @@ body {
   margin-right: 6vw;
 }
 
-.center-glass {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(98vw, 800px);
-  
-  /* --- CAMBIOS CLAVE --- */
-  height: auto; /* La altura ahora es automática */
-  max-height: 90vh; /* Pero nunca superará el 90% de la altura de la pantalla */
-  overflow-y: auto; /* Si el contenido total se desborda, aparece un scroll general */
-  /* -------------------- */
 
-  background: rgba(20, 22, 30, 0.78);
-  backdrop-filter: blur(9px);
-  border-radius: 2.5rem;
-  box-shadow: 0 2px 32px 0 #0007;
-  z-index: 1;
-  pointer-events: none;
+.center-glass {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(98vw, 800px);
+    height: auto; 
+    max-height: 90vh;
+    overflow-y: auto; /* El scroll del panel principal */
+    background: rgba(20, 22, 30, 0.78);
+    backdrop-filter: blur(9px);
+    border-radius: 2.5rem;
+    box-shadow: 0 2px 32px 0 #0007;
+    z-index: 1;
+    
+    /* --- CAMBIO CLAVE --- */
+    pointer-events: auto; /* Permite hacer clic y scroll en el panel */
 }
 
 .container {
-  position: relative; /* Cambiamos de absolute a relative */
-  width: 100%;
-  height: auto; /* La altura es automática */
-  z-index: 2;
-  padding: 3rem 1rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Alinea todo hacia arriba */
-  text-align: center;
-  pointer-events: none;
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    padding: 3rem 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    
+    /* --- CAMBIO CLAVE --- */
+    gap: 2.5rem; /* Añade un espacio uniforme entre tu info y la tabla */
+
+    text-align: center;
+    /* Ya no necesitamos pointer-events aquí */
 }
 
 .nombre {
@@ -235,6 +238,17 @@ body {
     animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: 2.8s;
     pointer-events: auto;
+}
+
+.center-glass::-webkit-scrollbar {
+    width: 8px;
+}
+.center-glass::-webkit-scrollbar-thumb {
+    background-color: rgba(54, 226, 236, 0.5);
+    border-radius: 10px;
+}
+.center-glass::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .table-wrapper {
