@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,17 +28,27 @@
     <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
   </section>
 
-  <!-- Sección Portfolio -->
+  <!-- Portfolio con pestañas -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
-    <p>Algunos ejemplos de mi trabajo en dashboards y análisis de datos:</p>
+    <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-    <div class="dashboards-wrapper">
-      <!-- Aquí colocás tus gráficos o iframes -->
+    <!-- Botones de pestañas -->
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
+      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
+    </div>
+
+    <!-- Contenido Criptomonedas -->
+    <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
         <iframe src="tu-dashboard-crypto.html"></iframe>
       </div>
+    </div>
+
+    <!-- Contenido Acciones -->
+    <div id="stocks" class="tab-content">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
         <iframe src="tu-dashboard-sp500.html"></iframe>
@@ -54,8 +65,23 @@
     </p>
   </footer>
 
+  <!-- Script para tabs -->
+  <script>
+    function openTab(evt, tabId) {
+      // Oculta todos los contenidos
+      const contents = document.querySelectorAll(".tab-content");
+      contents.forEach(c => c.classList.remove("active"));
+
+      // Desactiva todos los botones
+      const buttons = document.querySelectorAll(".tab-button");
+      buttons.forEach(b => b.classList.remove("active"));
+
+      // Activa el tab seleccionado
+      document.getElementById(tabId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
+
 </body>
 </html>
-
-
 
