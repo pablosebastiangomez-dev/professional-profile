@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const cryptoTableBody = document.querySelector('#crypto-table tbody');
     const stocksTableBody = document.querySelector('#stocks-table tbody');
 
+
+if (cryptoTableBody) fetchCryptoData();
+if (stocksTableBody) fetchStocksData(); // opcional: podrías dejarlo solo si estás en el dashboard de S&P 500
+
+    
     /* Tabs */
 
     let stocksLoaded = false;
