@@ -1,47 +1,38 @@
+/* =================================================================== */
+/* ESTILOS GENERALES Y LAYOUT                     */
+/* =================================================================== */
 
 body {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  background: #0b101a;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  min-height: 100vh;
-  min-width: 100vw;
-}
-
-.info-principal {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #0b101a;
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
+    position: relative;
 }
 
 .background-svg {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 280px;
-  z-index: 0;
-  pointer-events: none;
-  display: flex;
-  justify-content: flex-end;
-  filter: blur(18px);
-  opacity: 0.7;
-  transition: filter 0.3s, opacity 0.3s;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 280px;
+    z-index: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: flex-end;
+    filter: blur(18px);
+    opacity: 0.7;
+    transition: filter 0.3s, opacity 0.3s;
 }
 .background-svg svg {
-  width: 900px;
-  height: 280px;
-  display: block;
-  margin-right: 6vw;
+    width: 900px;
+    height: 280px;
+    display: block;
+    margin-right: 6vw;
 }
-
 
 .center-glass {
     position: absolute;
@@ -51,15 +42,13 @@ body {
     width: min(98vw, 800px);
     height: auto; 
     max-height: 90vh;
-    overflow-y: auto; /* El scroll del panel principal */
+    overflow-y: auto;
     background: rgba(20, 22, 30, 0.78);
     backdrop-filter: blur(9px);
     border-radius: 2.5rem;
     box-shadow: 0 2px 32px 0 #0007;
     z-index: 1;
-    
-    /* --- CAMBIO CLAVE --- */
-    pointer-events: auto; /* Permite hacer clic y scroll en el panel */
+    pointer-events: auto;
 }
 
 .container {
@@ -73,60 +62,204 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    
-    /* --- CAMBIO CLAVE --- */
-    gap: 2.5rem; /* Añade un espacio uniforme entre tu info y la tabla */
-
+    gap: 2.5rem;
     text-align: center;
-    /* Ya no necesitamos pointer-events aquí */
 }
 
-/* ===== ESTILOS PARA EL PANEL DE ACCIONES ===== */
-#stocks-container {
-    width: 95%;
-    max-width: 700px;
-    font-family: 'Montserrat', sans-serif;
-    color: #f0f0f0;
+/* =================================================================== */
+/* ESTILOS DE INFO PRINCIPAL                      */
+/* =================================================================== */
+
+.info-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.nombre {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(1.1rem, 6vw, 3.2rem);
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(-100px);
+    animation: aparecer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    margin-top: 2.2rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 92vw;
+    text-align: center;
+}
+
+.subtitulo {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(1rem, 3.8vw, 1.5rem);
+    color: #bce4fd;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadein 1s ease-in forwards;
+    animation-delay: 1.2s;
+}
+
+.iconos-datos {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 2.2rem;
+    opacity: 0;
+    animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 2.2s;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none;
+}
+.icono {
+    width: clamp(28px, 9vw, 54px);
+    height: clamp(28px, 9vw, 54px);
+    filter: drop-shadow(0 2px 6px #0006);
+    transform: scale(0.7) rotate(-8deg);
+    opacity: 0.8;
+    transition: transform 0.25s, opacity 0.2s;
     pointer-events: auto;
 }
-
-#stocks-container h2 {
-    text-align: center;
-    margin-top: 0;
-    font-weight: 400;
-    font-size: 1.4em;
-    color: #36e2ec; /* Color azul de tu paleta */
-    margin-bottom: 20px;
+.icono:hover {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
 }
 
-/* Reutilizamos los estilos de la tabla para consistencia */
-#stocks-table {
+/* =================================================================== */
+/* ESTILOS DEL SISTEMA DE PESTAÑAS (TABS)              */
+/* =================================================================== */
+
+.dashboards-wrapper {
+    width: 95%;
+    max-width: 700px;
+    pointer-events: auto;
+    opacity: 0;
+    animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 2.8s;
+}
+
+.dashboard-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: -1px;
+}
+
+.tab-link {
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #999;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-link:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.tab-link.active {
+    color: #e8ff5e;
+    background-color: transparent; 
+    border-bottom-color: transparent; 
+}
+
+.dashboard-content {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 8px 8px 8px;
+    padding: 20px;
+}
+
+.dashboard-panel {
+    display: none; 
+}
+
+.dashboard-panel.active {
+    display: block;
+    animation: fadeIn 0.5s; 
+}
+
+/* =================================================================== */
+/* ESTILOS DE TABLAS (Unificados)                   */
+/* =================================================================== */
+
+.table-wrapper {
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    max-height: 45vh;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+#crypto-table, #stocks-table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
     font-size: clamp(0.75rem, 2vw, 0.9rem);
 }
 
-#stocks-table th, 
-#stocks-table td {
+#crypto-table th, #crypto-table td,
+#stocks-table th, #stocks-table td {
     padding: 14px 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     white-space: nowrap;
 }
 
+#crypto-table thead th {
+    color: #36e2ec;
+}
 #stocks-table thead th {
+    color: #e8ff5e;
+}
+
+#crypto-table thead th, #stocks-table thead th {
     font-weight: bold;
-    color: #e8ff5e; /* Color amarillo de tu paleta */
     font-size: 0.8em;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
+#crypto-table tbody tr:last-child td,
 #stocks-table tbody tr:last-child td {
     border-bottom: none;
 }
 
+.coin-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.coin-name img {
+    border-radius: 50%;
+}
+.coin-name .symbol {
+    color: #8a9bb3;
+    font-size: 0.9em;
+}
+
 .stock-name {
+    font-weight: bold;
+}
+
+.color-green {
+    color: #4dfd94;
+    font-weight: bold;
+}
+.color-red {
+    color: #ff5b5b;
     font-weight: bold;
 }
 
@@ -136,268 +269,90 @@ body {
     font-style: italic;
     color: #999;
 }
-
 .error-text {
     color: #ff5b5b;
 }
 
-.nombre {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: clamp(1.1rem, 6vw, 3.2rem); /* ¡clave! */
-  color: #fff;
-  font-weight: bold;
-  letter-spacing: 2px;
-  opacity: 0;
-  transform: translateY(-100px);
-  animation: aparecer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  margin-top: 2.2rem;
-  white-space: normal;           /* Permite saltos de línea */
-  overflow-wrap: break-word;     /* Permite cortar palabras largas */
-  word-break: break-word;
-  max-width: 92vw;
-  text-align: center;
+/* =================================================================== */
+/* ESTILOS RESPONSIVE                         */
+/* =================================================================== */
+
+@media (max-width: 600px) {
+    .center-glass {
+        width: 98vw;
+        min-height: 180px;
+        border-radius: 1.2rem;
+        padding: 0;
+    }
+    .container {
+        width: 98vw;
+        min-height: 180px;
+        padding: 0 1.5vw;
+    }
+    .iconos-datos {
+        gap: 0.7rem;
+        margin-top: 1.1rem;
+    }
+    .background-svg {
+        height: 100px;
+    }
+    .background-svg svg {
+        width: 100vw !important;
+        height: 100px !important;
+        margin-right: 2vw;
+    }
+    #crypto-table th, #crypto-table td,
+    #stocks-table th, #stocks-table td {
+        padding: 10px 8px;
+    }
 }
 
-.subtitulo {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: clamp(1rem, 3.8vw, 1.5rem);
-  color: #bce4fd;
-  margin-top: 1rem;
-  opacity: 0;
-  animation: fadein 1s ease-in forwards;
-  animation-delay: 1.2s;
-}
+/* =================================================================== */
+/* ANIMACIONES Y OTROS                           */
+/* =================================================================== */
 
 @keyframes aparecer {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    to { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadein {
-  to {
-    opacity: 1;
-  }
+    to { opacity: 1; }
+}
+@keyframes bars-up {
+    to { transform: scaleY(1); }
+}
+@keyframes dataline-draw {
+    to { stroke-dashoffset: 0; }
+}
+@keyframes node-pop {
+    to { opacity: 1; r: 9; }
+}
+@keyframes dots-fade {
+    0%, 100% { opacity: 0.13; }
+    50% { opacity: 0.35; }
 }
 
-.iconos-datos {
-  display: flex;
-  gap: 1.8rem;
-  margin-top: 2.2rem;
-  opacity: 0;
-  animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 2.2s;
-  justify-content: center;
-  width: 100%;
-  pointer-events: none;
-}
-.icono {
-  width: clamp(28px, 9vw, 54px);
-  height: clamp(28px, 9vw, 54px);
-  filter: drop-shadow(0 2px 6px #0006);
-  transform: scale(0.7) rotate(-8deg);
-  opacity: 0.8;
-  transition: transform 0.25s, opacity 0.2s;
-  pointer-events: auto;
-}
-.icono:hover {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
-}
-
-/* Fondo SVG animado */
-.bar {
-  fill: #36e2ec;
-  opacity: 0.18;
-  transform: scaleY(0.2);
-  transform-origin: bottom;
-  animation: bars-up 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
+.bar { fill: #36e2ec; opacity: 0.18; transform: scaleY(0.2); transform-origin: bottom; animation: bars-up 2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .bar1 { animation-delay: 0.3s; }
 .bar2 { animation-delay: 0.5s; }
 .bar3 { animation-delay: 0.7s; }
 .bar4 { animation-delay: 0.9s; }
-
-@keyframes bars-up {
-  to { transform: scaleY(1); }
-}
-
-.dataline {
-  stroke: #e8ff5e;
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: dataline-draw 2s 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-@keyframes dataline-draw {
-  to { stroke-dashoffset: 0; }
-}
-
-.node {
-  fill: #e67be7;
-  opacity: 0;
-  animation: node-pop 0.6s ease-out forwards;
-}
+.dataline { stroke: #e8ff5e; stroke-dasharray: 400; stroke-dashoffset: 400; animation: dataline-draw 2s 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.node { fill: #e67be7; opacity: 0; animation: node-pop 0.6s ease-out forwards; }
 .node:nth-of-type(1) { animation-delay: 2.2s; }
 .node:nth-of-type(2) { animation-delay: 2.4s; }
 .node:nth-of-type(3) { animation-delay: 2.6s; }
 .node:nth-of-type(4) { animation-delay: 2.8s; }
-
-@keyframes node-pop {
-  to { opacity: 1; r: 9; }
-}
-
-.dots circle {
-  fill: #fff;
-  opacity: 0.13;
-  animation: dots-fade 1.8s alternate infinite;
-}
+.dots circle { fill: #fff; opacity: 0.13; animation: dots-fade 1.8s alternate infinite; }
 .dots circle:nth-child(2) { animation-delay: 0.8s; }
 .dots circle:nth-child(3) { animation-delay: 1.1s; }
 .dots circle:nth-child(4) { animation-delay: 1.5s; }
 .dots circle:nth-child(5) { animation-delay: 1.8s; }
 .dots circle:nth-child(6) { animation-delay: 2.2s; }
 
-@keyframes dots-fade {
-  0%, 100% { opacity: 0.13; }
-  50% { opacity: 0.35; }
-}
+.center-glass::-webkit-scrollbar { width: 8px; }
+.center-glass::-webkit-scrollbar-thumb { background-color: rgba(54, 226, 236, 0.5); border-radius: 10px; }
+.center-glass::-webkit-scrollbar-track { background-color: rgba(255, 255, 255, 0.05); }
 
-/* Responsive extra para móviles pequeños */
-@media (max-width: 600px) {
-  .center-glass {
-    width: 98vw;
-    min-height: 180px;
-    border-radius: 1.2rem;
-    padding: 0;
-  }
-  .container {
-    width: 98vw;
-    min-height: 180px;
-    padding: 0 1.5vw;
-  }
-  .iconos-datos {
-    gap: 0.7rem;
-    margin-top: 1.1rem;
-  }
-  .background-svg {
-    height: 100px;
-  }
-  .background-svg svg {
-    width: 100vw !important;
-    height: 100px !important;
-    margin-right: 2vw;
-  }
-}
-/* ===== ESTILOS ADAPTADOS PARA EL PANEL DE CRIPTOMONEDAS ===== */
-#crypto-container {
-    width: 95%;
-    max-width: 700px;
-    margin-top: 0; /* Asegúrate de que esto sea 0 o no exista */
-    font-family: 'Montserrat', sans-serif;
-    color: #f0f0f0;
-    opacity: 0; 
-    animation: fadein 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 2.8s;
-    pointer-events: auto;
-}
-
-.center-glass::-webkit-scrollbar {
-    width: 8px;
-}
-.center-glass::-webkit-scrollbar-thumb {
-    background-color: rgba(54, 226, 236, 0.5);
-    border-radius: 10px;
-}
-.center-glass::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.table-wrapper {
-    overflow-x: auto; 
-    -webkit-overflow-scrolling: touch;
-
-    /* --- ¡AQUÍ ESTÁ LA MAGIA DEL SCROLL! --- */
-    overflow-y: auto; /* Activamos el scroll vertical */
-    max-height: 45vh; /* La tabla puede crecer hasta un 45% de la altura de la pantalla, luego aparece el scroll */
-    /* ------------------------------------- */
-
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil */
-    border-radius: 10px; /* Esquinas redondeadas */
-    padding: 0 10px; /* Un poco de espacio interno */
-}
-
-/* Estilo para la barra de scroll */
-.table-wrapper::-webkit-scrollbar {
-    height: 6px;
-}
-.table-wrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(54, 226, 236, 0.4);
-    border-radius: 10px;
-}
-.table-wrapper::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-#crypto-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: clamp(0.75rem, 2vw, 0.9rem); /* Tamaño de fuente responsivo */
-}
-
-#crypto-table th, 
-#crypto-table td {
-    padding: 14px 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    white-space: nowrap;
-}
-
-#crypto-table thead th {
-    font-weight: bold;
-    color: #36e2ec;
-    font-size: 0.8em;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-#crypto-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.coin-name {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.coin-name img {
-    border-radius: 50%;
-}
-
-.coin-name .symbol {
-    color: #8a9bb3;
-    font-size: 0.9em;
-}
-
-.color-green {
-    color: #4dfd94;
-    font-weight: bold;
-}
-
-.color-red {
-    color: #ff5b5b;
-    font-weight: bold;
-}
-
-/* ===== AJUSTES RESPONSIVOS PARA EL PANEL ===== */
-@media (max-width: 600px) {
-    #crypto-container {
-        width: 100%;
-        margin-top: 1.5rem;
-    }
-    #crypto-table th, 
-    #crypto-table td {
-        padding: 10px 8px;
-    }
-}
+.table-wrapper::-webkit-scrollbar { height: 6px; }
+.table-wrapper::-webkit-scrollbar-thumb { background-color: rgba(54, 226, 236, 0.4); border-radius: 10px; }
+.table-wrapper::-webkit-scrollbar-track { background-color: rgba(255, 255, 255, 0.05); }
