@@ -2,6 +2,7 @@
 /* ESTILOS GENERALES Y LAYOUT                     */
 /* =================================================================== */
 
+
 body {
     margin: 0;
     height: 100vh;
@@ -12,6 +13,9 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+
+    /* --- AÑADE ESTA LÍNEA --- */
+    color: #f0f0f0; /* Color de texto base para toda la página */
 }
 
 .background-svg {
