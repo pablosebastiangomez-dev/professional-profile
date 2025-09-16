@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stocksTableBody = document.querySelector('#stocks-table tbody');
 
     /* Tabs */
-    const tabs = document.querySelectorAll('.tab-link');
-    const panels = document.querySelectorAll('.dashboard-panel');
+
     let stocksLoaded = false;
 
     tabs.forEach(tab => {
