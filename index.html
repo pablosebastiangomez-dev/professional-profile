@@ -1,87 +1,61 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pablo Sebastián Gómez - Analista de Datos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Pablo Sebastián Gómez - Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ================== HERO ================== -->
+  <!-- Hero / Presentación -->
   <header class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
     <div class="social-links">
-      <a href="mailto:aspablogomez@gmail.com">📧 Email</a>
-      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez/" target="_blank">🔗 LinkedIn</a>
-      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">💻 GitHub</a>
+      <a href="mailto:aspablogomez@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
+      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </div>
   </header>
 
-  <!-- ================== SOBRE MÍ ================== -->
-  <section class="about">
+  <!-- Sección Sobre mí -->
+  <section id="about">
     <h3>Sobre mí</h3>
-    <p>
-      Soy Analista de Datos con pasión por la tecnología, el análisis financiero y las visualizaciones interactivas. 
-      Trabajo con Python, SQL y herramientas de BI para generar insights que mejoren la toma de decisiones.
-    </p>
+    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
   </section>
 
-  <!-- ================== PORTFOLIO ================== -->
+  <!-- Sección Portfolio -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
-    <p>Algunos ejemplos de visualizaciones interactivas en tiempo real:</p>
+    <p>Algunos ejemplos de mi trabajo en dashboards y análisis de datos:</p>
 
     <div class="dashboards-wrapper">
-      <div class="dashboard-tabs">
-        <button class="tab-link active" data-tab="crypto">🪙 Criptomonedas</button>
-        <button class="tab-link" data-tab="stocks">📈 Acciones S&P 500</button>
+      <!-- Aquí colocás tus gráficos o iframes -->
+      <div class="dashboard-card">
+        <h4>Criptomonedas en tiempo real</h4>
+        <iframe src="tu-dashboard-crypto.html"></iframe>
       </div>
-      <div class="dashboard-content">
-        <div id="crypto" class="dashboard-panel active">
-          <div class="table-wrapper">
-            <table id="crypto-table">
-              <thead>
-                <tr>
-                  <th>#</th><th>Moneda</th><th>Precio (USD)</th><th>24h %</th><th>Cap. de Mercado</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-        <div id="stocks" class="dashboard-panel">
-          <div class="table-wrapper">
-            <table id="stocks-table">
-              <thead>
-                <tr>
-                  <th>Empresa</th><th>Símbolo</th><th>Precio (USD)</th><th>Cambio (24h)</th><th>Volumen</th>
-                </tr>
-              </thead>
-              <tbody><tr><td colspan="5" class="loading-text">Cargando datos de acciones... ⏳</td></tr></tbody>
-            </table>
-          </div>
-        </div>
+      <div class="dashboard-card">
+        <h4>S&P 500 - Análisis bursátil</h4>
+        <iframe src="tu-dashboard-sp500.html"></iframe>
       </div>
     </div>
   </section>
 
-  <!-- ================== FOOTER ================== -->
+  <!-- Contacto -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
-      <a href="mailto:aspablogomez@gmail.com">📧 Contacto</a> | 
-      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez/" target="_blank">🔗 LinkedIn</a>
+      <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
     </p>
   </footer>
 
-  <!-- ================== JS ================== -->
-  <script src="script.js"></script>
 </body>
 </html>
+
+
 
