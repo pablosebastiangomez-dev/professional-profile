@@ -81,6 +81,66 @@ body {
     /* Ya no necesitamos pointer-events aquí */
 }
 
+/* ===== ESTILOS PARA EL PANEL DE ACCIONES ===== */
+#stocks-container {
+    width: 95%;
+    max-width: 700px;
+    font-family: 'Montserrat', sans-serif;
+    color: #f0f0f0;
+    pointer-events: auto;
+}
+
+#stocks-container h2 {
+    text-align: center;
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 1.4em;
+    color: #36e2ec; /* Color azul de tu paleta */
+    margin-bottom: 20px;
+}
+
+/* Reutilizamos los estilos de la tabla para consistencia */
+#stocks-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+}
+
+#stocks-table th, 
+#stocks-table td {
+    padding: 14px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+}
+
+#stocks-table thead th {
+    font-weight: bold;
+    color: #e8ff5e; /* Color amarillo de tu paleta */
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#stocks-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.stock-name {
+    font-weight: bold;
+}
+
+.loading-text, .error-text {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #999;
+}
+
+.error-text {
+    color: #ff5b5b;
+}
+
 .nombre {
   font-family: 'Montserrat', Arial, sans-serif;
   font-size: clamp(1.1rem, 6vw, 3.2rem); /* ¡clave! */
