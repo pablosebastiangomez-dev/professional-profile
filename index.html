@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -37,6 +35,7 @@
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
+      <button class="tab-button" onclick="openTab(event, 'others')">📊 Otros proyectos</button>
     </div>
 
     <!-- Contenido Criptomonedas -->
@@ -52,6 +51,16 @@
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
         <iframe src="tu-dashboard-sp500.html"></iframe>
+      </div>
+    </div>
+
+    <!-- Contenido Otros proyectos -->
+    <div id="others" class="tab-content">
+      <div class="dashboard-card">
+        <h4>Otros proyectos de análisis</h4>
+        <p>Aquí podés agregar nuevos dashboards o proyectos destacados.</p>
+        <!-- Ejemplo de iframe extra -->
+        <iframe src="tu-dashboard-extra.html"></iframe>
       </div>
     </div>
   </section>
@@ -84,4 +93,5 @@
 
 </body>
 </html>
+
 
