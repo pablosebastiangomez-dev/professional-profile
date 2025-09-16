@@ -128,3 +128,29 @@ footer a:hover {
   color: #e67be7;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: #f0f0f0;
+}
+th, td {
+  padding: 10px;
+  border: 1px solid #333;
+  text-align: left;
+}
+th {
+  background-color: #1e2a38;
+}
+.color-green {
+  color: #28d98b;
+}
+.color-red {
+  color: #ff5f5f;
+}
+.coin-name img {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+
