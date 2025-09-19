@@ -8,15 +8,15 @@
 html, body {
   height: 100%;
   font-family: "Segoe UI", Roboto, sans-serif;
-  background-color: #fafafa; /* fondo claro muy suave */
-  color: #333333;
+  background-color: #1a202c; /* gris muy oscuro */
+  color: #e2e8f0;            /* gris claro */
   line-height: 1.5;
 }
 
 /* === Hero / Presentación === */
 .hero {
   background-color: #2d3748; /* gris oscuro */
-  color: #f7fafc;           /* blanco humo */
+  color: #f7fafc;
   text-align: center;
   padding: 60px 20px;
 }
@@ -24,6 +24,7 @@ html, body {
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  color: #f7fafc;
 }
 
 .hero h2 {
@@ -35,19 +36,19 @@ html, body {
 .hero p {
   max-width: 600px;
   margin: auto;
-  color: #e2e8f0; /* gris claro */
+  color: #cbd5e0; /* gris claro */
 }
 
 /* === Links sociales en hero === */
 .social-links a {
   margin: 0 10px;
-  color: #63b3ed; /* azul suave */
+  color: #63b3ed; /* azul claro */
   text-decoration: none;
   font-weight: 500;
 }
 
 .social-links a:hover {
-  color: #4299e1;
+  color: #90cdf4; /* azul más suave al pasar */
 }
 
 /* === Sección Sobre mí === */
@@ -61,7 +62,7 @@ html, body {
   text-align: center;
   font-size: 1.6rem;
   margin-bottom: 15px;
-  color: #2d3748;
+  color: #edf2f7;
 }
 
 /* === Tabs === */
@@ -75,31 +76,33 @@ html, body {
 
 .tab-button {
   padding: 10px 20px;
-  border: 1px solid #cbd5e0; /* borde gris claro */
-  background-color: #edf2f7;   /* fondo gris claro */
-  color: #4a5568;             /* gris oscuro moderado */
+  border: 1px solid #4a5568; /* gris medio */
+  background-color: #2d3748; /* gris oscuro */
+  color: #cbd5e0;
   cursor: pointer;
   border-radius: 6px 6px 0px 0px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .tab-button.active {
-  background-color: #63b3ed;  /* azul suave */
+  background-color: #3182ce; /* azul fuerte */
   color: #ffffff;
-  border-bottom-color: #63b3ed;
+  border-bottom-color: #3182ce;
 }
 
 .tab-button:hover:not(.active) {
-  background-color: #e2e8f0;
+  background-color: #4a5568;
+  color: #edf2f7;
 }
 
 /* === Contenido de pestañas === */
 .tab-content {
   display: none;
-  background-color: #ffffff;
+  background-color: #2d3748; /* fondo oscuro para contenido */
   padding: 20px;
-  border: 1px solid #cbd5e0;
+  border: 1px solid #4a5568;
   border-top: none;
+  border-radius: 0 0 6px 6px;
 }
 
 .tab-content.active {
@@ -109,20 +112,22 @@ html, body {
 /* === iframe dentro de cada pestaña === */
 .tab-content iframe {
   width: 100%;
-  height: 500px; /* o el valor que te funcione bien */
+  height: 70vh;
   border: none;
   border-radius: 4px;
+  background: #1a202c;
 }
 
 /* === Bloque de código ABAP === */
 pre {
-  background-color: #2d3748;
+  background-color: #1a202c;
   color: #e2e8f0;
   padding: 15px;
   border-radius: 8px;
   overflow-x: auto;
   font-size: 0.9rem;
   font-family: "Courier New", monospace;
+  border: 1px solid #4a5568;
 }
 
 /* === Footer === */
@@ -140,6 +145,7 @@ footer a {
 }
 
 footer a:hover {
-  color: #4299e1;
+  color: #90cdf4;
 }
+
 
