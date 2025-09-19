@@ -8,70 +8,75 @@
 </head>
 <body>
 
-  <div class="page-wrapper">
-    <!-- Hero -->
-    <header class="hero">
-      <h1>Pablo Sebastián Gómez</h1>
-      <h2>Analista de Datos</h2>
-      <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
-      <div class="social-links">
-        <a href="mailto:aspablogomez@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
-        <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
-      </div>
-    </header>
+  <!-- Hero / Presentación -->
+  <header class="hero">
+    <h1>Pablo Sebastián Gómez</h1>
+    <h2>Analista de Datos</h2>
+    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
+    <div class="social-links">
+      <a href="mailto:aspablogomez@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
+      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
+    </div>
+  </header>
 
-    <!-- About -->
-    <section id="about">
-      <h3>Sobre mí</h3>
-      <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
-    </section>
+  <!-- Sección Sobre mí -->
+  <section id="about">
+    <h3>Sobre mí</h3>
+    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
+  </section>
 
-    <!-- Tabs -->
-    <section id="portfolio" class="flex-grow">
-      <h3>Proyectos de Datos</h3>
-      <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
+  <!-- Portfolio con pestañas -->
+  <section id="portfolio">
+    <h3>Proyectos de Datos</h3>
+    <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-      <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
-        <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-        <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
-      </div>
+    <!-- Botones de pestañas -->
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
+      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
+      <button class="tab-button" onclick="openTab(event, 'extra')">📊 Otros proyectos</button>
+    </div>
 
-      <div class="tab-content active" id="crypto">
-        <div class="dashboard-card">
-          <iframe src="dashboard-crypto.html"></iframe>
-        </div>
-      </div>
+    <!-- Contenido Criptomonedas -->
+    <div id="crypto" class="tab-content active">
+      <iframe src="dashboard-crypto.html"></iframe>
+    </div>
 
-      <div class="tab-content" id="stocks">
-        <div class="dashboard-card">
-          <iframe src="dashboard-sp500.html"></iframe>
-        </div>
-      </div>
+    <!-- Contenido Acciones -->
+    <div id="stocks" class="tab-content">
+      <iframe src="dashboard-sp500.html"></iframe>
+    </div>
 
-      <div class="tab-content" id="abap">
-        <div class="dashboard-card">
-          <p>Ejemplo en ABAP que consume la API pública de CoinGecko y lista las 5 principales criptomonedas.</p>
-          <a href="proyectos/abap-crypto/README.md" target="_blank">📄 Ver proyecto en GitHub</a>
-          <iframe src="dashboard-extra.html"></iframe>
-        </div>
-      </div>
-    </section>
-  </div>
+    <!-- Contenido Otros proyectos -->
+    <div id="extra" class="tab-content">
+      <iframe src="dashboard-extra.html"></iframe>
+    </div>
 
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
       <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
-      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a> |
+      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </p>
   </footer>
 
+  <!-- Script para tabs -->
   <script>
     function openTab(evt, tabId) {
-      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-      document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
+      // Oculta todos los contenidos
+      const contents = document.querySelectorAll(".tab-content");
+      contents.forEach(c => c.classList.remove("active"));
+
+      // Desactiva todos los botones
+      const buttons = document.querySelectorAll(".tab-button");
+      buttons.forEach(b => b.classList.remove("active"));
+
+      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
