@@ -59,10 +59,24 @@
       <div class="dashboard-card">
         <h4>ABAP + Criptomonedas</h4>
         <p>Ejemplo en ABAP que consume la API pública de CoinGecko.</p>
-        <iframe 
-          src="https://raw.githubusercontent.com/pablosebastiangomez-dev/Perfil_profesional/main/proyectos/abap-crypto/zcrypto_api.abap" 
-          style="width:100%; height:70vh; border:none;">
-        </iframe>
+
+        <pre><code>
+REPORT zcrypto_api.
+
+DATA: lv_url TYPE string VALUE 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false',
+      lv_response TYPE string.
+
+CALL METHOD cl_http_client=>create_by_url
+  EXPORTING url = lv_url
+  IMPORTING client = DATA(lo_client).
+
+lo_client->send( ).
+lo_client->receive( ).
+
+lv_response = lo_client->response->get_cdata( ).
+WRITE lv_response.
+        </code></pre>
+
         <p><a href="https://github.com/pablosebastiangomez-dev/Perfil_profesional/tree/main/proyectos/abap-crypto" target="_blank">📄 Ver proyecto en GitHub</a></p>
       </div>
     </div>
@@ -97,6 +111,7 @@
 
 </body>
 </html>
+
 
 
 
