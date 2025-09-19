@@ -88,69 +88,10 @@ h1, h2, h3, h4, h5 {
 
 /* === Dashboard card === */
 .dashboard-card {
-  padding: 20px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  background: rgba(255,255,255,0.03);
-}
-
-/* === Grid de otros proyectos === */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-.project-card {
-  padding: 15px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  background: rgba(255,255,255,0.05);
-  transition: transform 0.2s;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: #36e2ec;
-}
-
-/* === Footer === */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #777;
-}
-footer a {
-  color: #36e2ec;
-  text-decoration: none;
-}
-footer a:hover {
-  color: #e67be7;
-}
-
-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  color: #f0f0f0;
-}
-th, td {
-  padding: 10px;
-  border: 1px solid #333;
-  text-align: left;
-}
-th {
-  background-color: #1e2a38;
-}
-.color-green {
-  color: #28d98b;
-}
-.color-red {
-  color: #ff5f5f;
-}
-.coin-name img {
-  vertical-align: middle;
-  margin-right: 6px;
-}
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  b
 
 
