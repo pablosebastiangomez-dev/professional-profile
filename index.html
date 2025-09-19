@@ -9,7 +9,7 @@
 <body>
 
   <div class="page-wrapper">
-    <!-- Hero / Presentación -->
+    <!-- Hero -->
     <header class="hero">
       <h1>Pablo Sebastián Gómez</h1>
       <h2>Analista de Datos</h2>
@@ -21,13 +21,13 @@
       </div>
     </header>
 
-    <!-- Sección Sobre mí -->
+    <!-- About -->
     <section id="about">
       <h3>Sobre mí</h3>
       <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
     </section>
 
-    <!-- Portfolio con pestañas -->
+    <!-- Tabs -->
     <section id="portfolio" class="flex-grow">
       <h3>Proyectos de Datos</h3>
       <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
@@ -38,23 +38,20 @@
         <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
       </div>
 
-      <div id="crypto" class="tab-content active">
+      <div class="tab-content active" id="crypto">
         <div class="dashboard-card">
-          <h4>Criptomonedas en tiempo real</h4>
           <iframe src="dashboard-crypto.html"></iframe>
         </div>
       </div>
 
-      <div id="stocks" class="tab-content">
+      <div class="tab-content" id="stocks">
         <div class="dashboard-card">
-          <h4>S&P 500 - Análisis bursátil</h4>
           <iframe src="dashboard-sp500.html"></iframe>
         </div>
       </div>
 
-      <div id="abap" class="tab-content">
+      <div class="tab-content" id="abap">
         <div class="dashboard-card">
-          <h4>ABAP + Criptomonedas</h4>
           <p>Ejemplo en ABAP que consume la API pública de CoinGecko y lista las 5 principales criptomonedas.</p>
           <a href="proyectos/abap-crypto/README.md" target="_blank">📄 Ver proyecto en GitHub</a>
           <iframe src="dashboard-extra.html"></iframe>
@@ -82,5 +79,6 @@
 
 </body>
 </html>
+
 
 
