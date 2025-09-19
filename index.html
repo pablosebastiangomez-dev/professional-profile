@@ -35,14 +35,14 @@
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'others')">📊 Otros proyectos</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
     <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
-        <iframe src="dashboard-crypto.html" width="100%" height="400" style="border:none;"></iframe>
+        <iframe src="tu-dashboard-crypto.html"></iframe>
       </div>
     </div>
 
@@ -50,17 +50,19 @@
     <div id="stocks" class="tab-content">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
-        <iframe src="dashboard-sp500.html" width="100%" height="400" style="border:none;"></iframe>
+        <iframe src="tu-dashboard-sp500.html"></iframe>
       </div>
     </div>
 
-    <!-- Contenido Otros proyectos -->
-    <div id="others" class="tab-content">
+    <!-- Contenido ABAP -->
+    <div id="abap" class="tab-content">
       <div class="dashboard-card">
-        <h4>Otros proyectos de análisis</h4>
-        <iframe src="dashboard-extra.html" width="100%" height="400" style="border:none;"></iframe>
+        <h4>ABAP + Criptomonedas</h4>
+        <p>Ejemplo en ABAP que consume la API pública de CoinGecko y lista las 5 principales criptomonedas.</p>
+        <a href="proyectos/abap/readme.md" target="_blank">📄 Ver proyecto en GitHub</a>
       </div>
     </div>
+
   </section>
 
   <!-- Contacto -->
@@ -89,7 +91,6 @@
     }
   </script>
 
-<script src="script.js"></script>
-  
 </body>
 </html>
+
