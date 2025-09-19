@@ -35,33 +35,46 @@
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'extra')">📊 Otros proyectos</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
     <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
-      <iframe src="dashboard-crypto.html"></iframe>
+      <div class="dashboard-card">
+        <h4>Criptomonedas en tiempo real</h4>
+        <iframe src="dashboard-crypto.html"></iframe>
+      </div>
     </div>
 
     <!-- Contenido Acciones -->
     <div id="stocks" class="tab-content">
-      <iframe src="dashboard-sp500.html"></iframe>
+      <div class="dashboard-card">
+        <h4>S&P 500 - Análisis bursátil</h4>
+        <iframe src="dashboard-sp500.html"></iframe>
+      </div>
     </div>
 
-    <!-- Contenido Otros proyectos -->
-    <div id="extra" class="tab-content">
-      <iframe src="dashboard-extra.html"></iframe>
+    <!-- Contenido ABAP -->
+    <div id="abap" class="tab-content">
+      <div class="dashboard-card">
+        <h4>ABAP + Criptomonedas</h4>
+        <p>Ejemplo en ABAP que consume la API pública de CoinGecko.</p>
+        <iframe 
+          src="https://raw.githubusercontent.com/pablosebastiangomez-dev/Perfil_profesional/main/proyectos/abap-crypto/zcrypto_api.abap" 
+          style="width:100%; height:70vh; border:none;">
+        </iframe>
+        <p><a href="https://github.com/pablosebastiangomez-dev/Perfil_profesional/tree/main/proyectos/abap-crypto" target="_blank">📄 Ver proyecto en GitHub</a></p>
+      </div>
     </div>
 
   </section>
 
-  <!-- Footer -->
+  <!-- Contacto -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
       <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
-      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a> |
-      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
     </p>
   </footer>
 
@@ -84,4 +97,5 @@
 
 </body>
 </html>
+
 
