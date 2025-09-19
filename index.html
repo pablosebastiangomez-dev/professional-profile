@@ -15,7 +15,7 @@
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
     <div class="social-links">
       <a href="mailto:aspablogomez@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
       <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </div>
   </header>
@@ -35,87 +35,53 @@
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'extra')">✨ Proyecto Extra</button>
-      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto ABAP</button>
+      <button class="tab-button" onclick="openTab(event, 'extra')">📊 Otros proyectos</button>
     </div>
 
     <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
-      <div class="dashboard-card">
-        <h4>Criptomonedas en tiempo real</h4>
-        <iframe src="dashboard-crypto.html"></iframe>
-      </div>
+      <iframe src="dashboard-crypto.html"></iframe>
     </div>
 
     <!-- Contenido Acciones -->
     <div id="stocks" class="tab-content">
-      <div class="dashboard-card">
-        <h4>S&P 500 - Análisis bursátil</h4>
-        <iframe src="dashboard-sp500.html"></iframe>
-      </div>
+      <iframe src="dashboard-sp500.html"></iframe>
     </div>
 
-    <!-- Contenido Extra -->
+    <!-- Contenido Otros proyectos -->
     <div id="extra" class="tab-content">
-      <div class="dashboard-card">
-        <h4>Proyecto Extra</h4>
-        <iframe src="dashboard-extra.html"></iframe>
-      </div>
-    </div>
-
-    <!-- Contenido ABAP -->
-    <div id="abap" class="tab-content">
-      <div class="dashboard-card abap-card">
-        <h4>Proyecto ABAP + Criptomonedas</h4>
-        <p>Ejemplo en ABAP que consume la API pública de CoinGecko y lista las principales criptomonedas.</p>
-        <pre><code id="abap-code">Cargando código ABAP...</code></pre>
-        <a href="proyectos/abap-crypto/readme.md" target="_blank">📄 Ver proyecto completo en GitHub</a>
-      </div>
+      <iframe src="dashboard-extra.html"></iframe>
     </div>
 
   </section>
 
-  <!-- Contacto -->
+  <!-- Footer -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
       <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
-      <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">🔗 LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a> |
+      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </p>
   </footer>
 
-  <!-- Script para tabs y carga ABAP -->
+  <!-- Script para tabs -->
   <script>
     function openTab(evt, tabId) {
+      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
 
+      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
+      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
-
-    // Cargar el archivo ABAP como texto
-    document.addEventListener('DOMContentLoaded', () => {
-      fetch('proyectos/abap-crypto/zcrypto_api.abap')
-        .then(response => {
-          if (!response.ok) throw new Error('Archivo ABAP no encontrado');
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('abap-code').textContent = data;
-        })
-        .catch(error => {
-          document.getElementById('abap-code').textContent = 'Error cargando el archivo ABAP';
-          console.error(error);
-        });
-    });
   </script>
 
 </body>
 </html>
-
-
 
