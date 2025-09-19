@@ -1,24 +1,24 @@
-/* === Reset === */
+/* === Reset básico === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
   font-family: "Segoe UI", Roboto, sans-serif;
+  background-color: #fafafa; /* fondo claro muy suave */
+  color: #333333;
+  line-height: 1.5;
 }
 
-/* === General === */
-body {
-  background-color: #f8f9fa; /* gris muy claro */
-  color: #333;
-  line-height: 1.6;
-}
-
-/* === Header / Hero === */
+/* === Hero / Presentación === */
 .hero {
-  background: #1f2937; /* gris azulado oscuro */
-  color: #f9fafb;
+  background-color: #2d3748; /* gris oscuro */
+  color: #f7fafc;           /* blanco humo */
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 60px 20px;
 }
 
 .hero h1 {
@@ -27,137 +27,119 @@ body {
 }
 
 .hero h2 {
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  color: #a0aec0; /* gris medio */
   margin-bottom: 1rem;
-  color: #9ca3af;
 }
 
 .hero p {
   max-width: 600px;
-  margin: 0 auto 1rem auto;
-  font-size: 1rem;
+  margin: auto;
+  color: #e2e8f0; /* gris claro */
 }
 
+/* === Links sociales en hero === */
 .social-links a {
-  margin: 0 0.6rem;
+  margin: 0 10px;
+  color: #63b3ed; /* azul suave */
   text-decoration: none;
-  color: #3b82f6; /* azul sobrio */
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .social-links a:hover {
-  text-decoration: underline;
+  color: #4299e1;
 }
 
-/* === Secciones === */
-section {
-  padding: 2.5rem 1rem;
-  max-width: 900px;
+/* === Sección Sobre mí === */
+#about {
+  padding: 40px 20px;
+  max-width: 800px;
   margin: auto;
 }
 
-section h3 {
+#about h3 {
   text-align: center;
   font-size: 1.6rem;
-  margin-bottom: 1.2rem;
-  color: #1f2937;
+  margin-bottom: 15px;
+  color: #2d3748;
 }
 
 /* === Tabs === */
 .tabs {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin: 30px 0 15px 0;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .tab-button {
-  background: #e5e7eb;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  margin: 0.3rem;
+  padding: 10px 20px;
+  border: 1px solid #cbd5e0; /* borde gris claro */
+  background-color: #edf2f7;   /* fondo gris claro */
+  color: #4a5568;             /* gris oscuro moderado */
   cursor: pointer;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  transition: background 0.3s;
-}
-
-.tab-button:hover {
-  background: #d1d5db;
+  border-radius: 6px 6px 0px 0px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .tab-button.active {
-  background: #3b82f6;
-  color: #fff;
+  background-color: #63b3ed;  /* azul suave */
+  color: #ffffff;
+  border-bottom-color: #63b3ed;
 }
 
-/* === Contenido de Tabs === */
+.tab-button:hover:not(.active) {
+  background-color: #e2e8f0;
+}
+
+/* === Contenido de pestañas === */
 .tab-content {
   display: none;
-  animation: fadeIn 0.4s ease-in-out;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #cbd5e0;
+  border-top: none;
 }
 
 .tab-content.active {
   display: block;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* === Dashboard Cards === */
-.dashboard-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-  margin-bottom: 2rem;
-}
-
-.dashboard-card h4 {
-  margin-bottom: 1rem;
-  color: #1f2937;
-}
-
-iframe {
+/* === iframe dentro de cada pestaña === */
+.tab-content iframe {
   width: 100%;
-  height: 500px;
+  height: 500px; /* o el valor que te funcione bien */
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 /* === Bloque de código ABAP === */
 pre {
-  background: #1e293b; /* gris azulado oscuro */
-  color: #f9fafb;
-  padding: 1rem;
+  background-color: #2d3748;
+  color: #e2e8f0;
+  padding: 15px;
   border-radius: 8px;
   overflow-x: auto;
   font-size: 0.9rem;
-}
-
-code {
-  font-family: "Fira Code", "Courier New", monospace;
+  font-family: "Courier New", monospace;
 }
 
 /* === Footer === */
 footer {
-  background: #1f2937;
-  color: #f9fafb;
+  background-color: #2d3748;
+  color: #f7fafc;
   text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
+  padding: 20px;
+  margin-top: 30px;
 }
 
 footer a {
-  color: #3b82f6;
+  color: #63b3ed;
   text-decoration: none;
 }
 
 footer a:hover {
-  text-decoration: underline;
+  color: #4299e1;
 }
 
