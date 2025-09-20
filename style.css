@@ -1,25 +1,11 @@
-/* === Reset & base === */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* === Base === */
 body {
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
   background: #1f1f1f;
   color: #f0f0f0;
   line-height: 1.6;
-  padding-top: 70px; /* espacio para navbar fija */
-}
-
-/* === Scroll suave === */
-html {
-  scroll-behavior: smooth;
-}
-
-section {
-  scroll-margin-top: 80px;
+  padding-top: 70px;
 }
 
 /* === Navbar === */
@@ -28,34 +14,24 @@ section {
   top: 0;
   left: 0;
   width: 100%;
+  background: #1f1f1f;
   padding: 15px 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(31, 31, 31, 0.5);
-  transition: background 0.3s, box-shadow 0.3s;
   z-index: 1000;
 }
 
-.navbar.scrolled {
-  background: #1f1f1f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.navbar nav ul {
+.navbar ul {
   list-style: none;
   display: flex;
   gap: 25px;
 }
 
-.navbar nav ul li a {
-  text-decoration: none;
+.navbar ul li a {
   color: #ddd;
+  text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
 }
 
-.navbar nav ul li a:hover {
+.navbar ul li a:hover {
   color: #4682b4;
 }
 
@@ -73,8 +49,7 @@ section {
 
 .hero h2 {
   font-size: 1.5rem;
-  color: #ffffff;
-  margin-bottom: 15px;
+  color: #fff;
 }
 
 .hero p {
@@ -87,7 +62,6 @@ section {
   margin: 0 10px;
   text-decoration: none;
   color: #4682b4;
-  font-weight: bold;
 }
 
 .social-links a:hover {
@@ -98,8 +72,8 @@ section {
 .tabs {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
   gap: 10px;
+  margin: 20px 0;
 }
 
 .tab-button {
@@ -107,18 +81,11 @@ section {
   border-radius: 10px 10px 0 0;
   background: rgba(255, 255, 255, 0.08);
   color: #ccc;
-  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 .tab-button.active {
   background: #2a2a2a;
-  color: #fff;
-}
-
-.tab-button:hover {
-  background: rgba(70, 130, 180, 0.2);
   color: #fff;
 }
 
@@ -134,32 +101,24 @@ section {
   display: block;
 }
 
-/* Dashboard Cards */
+/* Dashboard */
 .dashboard-card {
   background: #2a2a2a;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.dashboard-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-  border-color: #4682b4;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .dashboard-card iframe {
   width: 100%;
   height: 80vh;
   border: none;
-  display: block;
-  background: #2a2a2a;
   border-radius: 10px;
+  background: #2a2a2a;
 }
 
-/* === Sobre mí === */
+/* Sobre mí */
 #about {
   padding: 40px 20px;
   max-width: 800px;
@@ -168,7 +127,7 @@ section {
   border-radius: 8px;
 }
 
-/* === Footer === */
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
@@ -184,4 +143,3 @@ footer a {
 footer a:hover {
   color: #5fa8d3;
 }
-
