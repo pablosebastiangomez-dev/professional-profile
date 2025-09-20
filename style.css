@@ -20,8 +20,9 @@ h1, h2, h3, h4, h5 {
 
 .hero h1 {
   font-size: 2.5rem;
-  color: #6fc3df;
+  color: #b22222; /* rojo oscuro para el nombre */
 }
+
 .hero h2 {
   font-size: 1.5rem;
   color: #cfd186;
