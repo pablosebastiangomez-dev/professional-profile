@@ -1,63 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>S&P 500 Dashboard</title>
-<style>
-  body { font-family: sans-serif; background: #141c2b; color: #f0f0f0; margin: 0; padding: 10px; }
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  th, td { padding: 8px; border: 1px solid #333; text-align: left; }
-  th { background-color: #1e2a38; }
-  .color-green { color: #28d98b; }
-  .color-red { color: #ff5f5f; }
-</style>
-</head>
-<body>
-
-<h4>S&P 500 - Ejemplo Estático</h4>
-<table id="stocks-table">
-  <thead>
-    <tr><th>Empresa</th><th>Símbolo</th><th>Precio (USD)</th><th>Cambio (%)</th><th>Volumen</th></tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<script>
 fetch('stocks.json')
   .then(res => res.json())
   .then(data => {
-    const tbody = document.querySelector('#stocks-table tbody');
+    // Ordenar de mayor a menor por marketCap
+    data.sort((a,b) => b.marketCap - a.marketCap);
+
+    const tbody = document.getElementById('stocks-table');
     tbody.innerHTML = '';
-    data.forEach(stock => {
-      const changeClass = stock.changePercent >= 0 ? 'color-green' : 'color-red';
+    data.forEach((stock, i) => {
+      const changeClass = stock.change >= 0 ? 'color-green' : 'color-red';
       tbody.innerHTML += `
         <tr>
+          <td>${i+1}</td>
           <td>${stock.name}</td>
           <td>${stock.symbol}</td>
-          <td>$${stock.price.toFixed(2)}</td>
-          <td class="${changeClass}">${stock.changePercent.toFixed(2)}%</td>
-          <td>${stock.volume.toLocaleString()}</td>
+          <td>${stock.price ? '$'+stock.price.toFixed(2) : '-'}</td>
+          <td class="${changeClass}">${stock.change ? stock.change.toFixed(2)+'%' : '-'}</td>
+          <td>${stock.volume ? stock.volume : '-'}</td>
         </tr>
       `;
     });
-  })
-  .catch(err => {
-    document.querySelector('#stocks-table tbody').innerHTML = '<tr><td colspan="5">No se pudieron cargar los datos.</td></tr>';
-    console.error(err);
   });
-</script>
 
-
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #11141d;
-  color: #e0e0e0;
-}
-</style>
-
-  
-</body>
-</html>
