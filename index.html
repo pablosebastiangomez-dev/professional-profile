@@ -3,30 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO -->
-  <title>Pablo Sebastián Gómez – Analista de Datos</title>
-  <meta name="description" content="Portfolio de Pablo Sebastián Gómez. Analista de Datos con experiencia en visualización, dashboards e integración de datos.">
-  <meta name="keywords" content="Analista de Datos, Data Analytics, Criptomonedas, Portfolio, Dashboard, Python, SQL, Visualización de datos">
+  <title>Pablo Sebastián Gómez - Portfolio</title>
+  <meta name="description" content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
   <meta name="author" content="Pablo Sebastián Gómez">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Portfolio – Pablo Sebastián Gómez">
-  <meta property="og:description" content="Analista de Datos. Portfolio profesional con dashboards y proyectos en criptomonedas y mercados financieros.">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Pablo Sebastián Gómez - Portfolio">
+  <meta property="og:description" content="Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pablosebastiangomez-dev.github.io/professional-profile/">
-  <meta property="og:image" content="https://pablosebastiangomez-dev.github.io/professional-profile/img/preview.png">
+  <meta property="og:image" content="https://pablosebastiangomez-dev.github.io/professional-profile/images/preview.png">
 
-  <!-- Twitter Card -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Portfolio – Pablo Sebastián Gómez">
-  <meta name="twitter:description" content="Analista de Datos. Portfolio profesional con dashboards y proyectos en criptomonedas y mercados financieros.">
-  <meta name="twitter:image" content="https://pablosebastiangomez-dev.github.io/professional-profile/img/preview.png">
+  <meta name="twitter:title" content="Pablo Sebastián Gómez - Portfolio">
+  <meta name="twitter:description" content="Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.">
+  <meta name="twitter:image" content="https://pablosebastiangomez-dev.github.io/professional-profile/images/preview.png">
 
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <!-- Hero / Presentación -->
@@ -45,6 +40,9 @@
   <section id="about">
     <h3>Sobre mí</h3>
     <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
+
+    <!-- Imagen preview -->
+    <img src="images/preview.png" alt="Vista previa del portfolio" style="max-width:100%; border-radius:10px; margin-top:20px;">
   </section>
 
   <!-- Portfolio con pestañas -->
@@ -78,11 +76,10 @@
     <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
       <div class="dashboard-card">
-        <h4>ABAP + Criptomonedas</h4>
-        <p>En preparación...</p>
+        <h4>Proyecto ABAP</h4>
+        <p>Este proyecto se encuentra en preparación. Pronto compartiré un ejemplo práctico en ABAP con integración de datos financieros.</p>
       </div>
     </div>
-
   </section>
 
   <!-- Contacto -->
@@ -97,12 +94,15 @@
   <!-- Script para tabs -->
   <script>
     function openTab(evt, tabId) {
+      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
 
+      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
+      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
@@ -110,5 +110,4 @@
 
 </body>
 </html>
-
 
