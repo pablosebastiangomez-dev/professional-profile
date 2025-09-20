@@ -1,7 +1,7 @@
 // ==========================
 // CONFIGURACIÓN
 // ==========================
-const API_KEY = "TU_API_KEY_ALPHA"; // 🔑 poné acá tu clave de Alpha Vantage
+const API_KEY = "1UOK46NY9578FX4Y"; // 🔑 poné acá tu clave de Alpha Vantage
 
 // 8 acciones top por capitalización del S&P500
 const stockSymbols = [
