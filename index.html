@@ -15,7 +15,7 @@
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
     <div class="social-links">
       <a href="mailto:aspablogomez@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
       <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </div>
   </header>
@@ -23,53 +23,43 @@
   <!-- Sección Sobre mí -->
   <section id="about">
     <h3>Sobre mí</h3>
-    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
+    <p>Soy un profesional orientado al análisis de datos, especializado en visualización y automatización para apoyar la toma de decisiones.</p>
   </section>
 
   <!-- Portfolio con pestañas -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
-    <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
     <!-- Botones de pestañas -->
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto ABAP</button>
     </div>
 
     <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
-      <div class="dashboard-card">
-        <h4>Criptomonedas en tiempo real</h4>
-        <iframe src="dashboard-crypto.html"></iframe>
-      </div>
+      <iframe src="dashboard-crypto.html"></iframe>
     </div>
 
     <!-- Contenido Acciones -->
     <div id="stocks" class="tab-content">
-      <div class="dashboard-card">
-        <h4>S&P 500 - Análisis bursátil</h4>
-        <iframe src="dashboard-sp500.html"></iframe>
-      </div>
+      <iframe src="dashboard-sp500.html"></iframe>
     </div>
 
     <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
-      <div class="dashboard-card">
-        <h4>ABAP + Criptomonedas</h4>
-        <iframe src="proyectos/abap-crypto/dashboard-abap.html"></iframe>
-      </div>
+      <iframe src="proyectos/abap-crypto/dashboard-abap.html"></iframe>
     </div>
 
   </section>
 
-  <!-- Contacto -->
+  <!-- Footer -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
       <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
-      <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">🔗 LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
     </p>
   </footer>
 
@@ -78,10 +68,8 @@
     function openTab(evt, tabId) {
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
-
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
-
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
@@ -89,6 +77,7 @@
 
 </body>
 </html>
+
 
 
 
