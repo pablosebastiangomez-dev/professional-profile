@@ -1,114 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pablo Sebastián Gómez - Portfolio</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pablo Sebastián Gómez - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Hero -->
-<header class="hero">
-  <h1>Pablo Sebastián Gómez</h1>
-  <h2>Analista de Datos</h2>
-  <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero y criptomonedas.</p>
-  <div class="social-links">
-    <a href="mailto:aspablogomez@gmail.com">Email</a>
-    <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
-    <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
-  </div>
-</header>
+  <!-- Hero / Presentación -->
+  <header class="hero">
+    <h1>Pablo Sebastián Gómez</h1>
+    <h2>Analista de Datos</h2>
+    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y proyectos en ABAP.</p>
+    <div class="social-links">
+      <a href="mailto:aspablogomez@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
+      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
+    </div>
+  </header>
 
-<!-- Sobre mí -->
-<section id="about">
-  <h3>Sobre mí</h3>
-  <p>Soy un profesional orientado al análisis de datos, especializado en herramientas de visualización y automatización.</p>
-</section>
+  <!-- Sobre mí -->
+  <section id="about">
+    <h3>Sobre mí</h3>
+    <p>Soy un profesional orientado al análisis de datos, especializado en visualización y automatización para apoyar la toma de decisiones. Combino estadística, programación y comunicación clara.</p>
+  </section>
 
-<!-- Portfolio Tabs -->
-<section id="portfolio">
-  <h3>Proyectos de Datos</h3>
+  <!-- Portfolio con pestañas -->
+  <section id="portfolio">
+    <h3>Proyectos de Datos</h3>
+    <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-button active" onclick="openTab(event,'crypto')">💰 Criptomonedas</button>
-    <button class="tab-button" onclick="openTab(event,'stocks')">📈 Acciones</button>
-    <button class="tab-button" onclick="openTab(event,'abap')">🟦 Proyecto ABAP</button>
-  </div>
+    <!-- Botones de pestañas -->
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
+      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
+    </div>
 
-  <!-- Contenido Cripto -->
-  <div id="crypto" class="tab-content active">
-    <iframe src="dashboard-crypto.html"></iframe>
-  </div>
+    <!-- Contenido Criptomonedas -->
+    <div id="crypto" class="tab-content active">
+      <div class="dashboard-card">
+        <h4>Criptomonedas en tiempo real</h4>
+        <iframe src="dashboard-crypto.html"></iframe>
+      </div>
+    </div>
 
-  <!-- Contenido Acciones -->
-  <div id="stocks" class="tab-content">
-    <table id="stocks-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nombre</th>
-          <th>Símbolo</th>
-          <th>Precio</th>
-          <th>Variación</th>
-          <th>Volumen</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <!-- Contenido Acciones -->
+    <div id="stocks" class="tab-content">
+      <div class="dashboard-card">
+        <h4>S&P 500 - Análisis bursátil</h4>
+        <iframe src="dashboard-sp500.html"></iframe>
+      </div>
+    </div>
 
-  <!-- Contenido ABAP -->
-  <div id="abap" class="tab-content">
-    <iframe src="dashboard-abap.html"></iframe>
-  </div>
+    <!-- Contenido ABAP -->
+    <div id="abap" class="tab-content">
+      <div class="dashboard-card">
+        <h4>Proyecto ABAP</h4>
+        <p>Ejemplo en ABAP que consume la API pública de CoinGecko y lista las principales criptomonedas.</p>
+        <iframe src="dashboard-abap.html"></iframe>
+      </div>
+    </div>
 
-</section>
+  </section>
 
-<!-- Footer -->
-<footer>
-  <p>© 2025 - Pablo Sebastián Gómez</p>
-  <p>
-    <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
-    <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
-  </p>
-</footer>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 - Pablo Sebastián Gómez</p>
+    <p>
+      <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
+    </p>
+  </footer>
 
-<script src="script.js"></script>
-<script>
-/* Tabs */
-function openTab(evt, tabId) {
-  const contents = document.querySelectorAll(".tab-content");
-  contents.forEach(c => c.classList.remove("active"));
-  const buttons = document.querySelectorAll(".tab-button");
-  buttons.forEach(b => b.classList.remove("active"));
+  <!-- Script para pestañas -->
+  <script>
+    function openTab(evt, tabId) {
+      const contents = document.querySelectorAll(".tab-content");
+      contents.forEach(c => c.classList.remove("active"));
 
-  document.getElementById(tabId).classList.add("active");
-  evt.currentTarget.classList.add("active");
-}
+      const buttons = document.querySelectorAll(".tab-button");
+      buttons.forEach(b => b.classList.remove("active"));
 
-/* Cargar acciones desde JSON */
-fetch('stocks.json')
-.then(res => res.json())
-.then(data => {
-  const tbody = document.querySelector('#stocks-table tbody');
-  tbody.innerHTML = '';
-  data.forEach((stock,i)=>{
-    const changeClass = stock.change >=0 ? 'color-green':'color-red';
-    tbody.innerHTML += `
-      <tr>
-        <td>${i+1}</td>
-        <td>${stock.name}</td>
-        <td>${stock.symbol}</td>
-        <td>${stock.price ? '$'+stock.price.toFixed(2):'-'}</td>
-        <td class="${changeClass}">${stock.change ? stock.change.toFixed(2)+'%':'-'}</td>
-        <td>${stock.volume?stock.volume:'-'}</td>
-      </tr>
-    `;
-  });
-});
-</script>
+      document.getElementById(tabId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
 
 </body>
 </html>
