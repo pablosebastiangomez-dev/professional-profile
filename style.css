@@ -1,160 +1,220 @@
-/* === Reset & Base === */
+/* === FUENTES Y VARIABLES GLOBALES === */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+:root {
+  --bg-dark: #121212;
+  --bg-light: #1e1e1e;
+  --bg-card: #2a2a2a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b3b3b3;
+  --accent-color: #4682b4; /* Azul acero */
+  --accent-hover: #5fa8d3;
+  --color-green: #28a745;
+  --color-red: #dc3545;
+  --border-color: #333;
+}
+
+/* === RESET Y BASE === */
 body {
   margin: 0;
-  padding-top: 70px;
+  padding-top: 60px; /* Espacio para la navbar fija */
   font-family: 'Montserrat', sans-serif;
-  background: #1f1f1f;
-  color: #f0f0f0;
-  line-height: 1.6;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 16px;
 }
 
-h1, h2, h3, h4, h5 {
-  margin: 0 0 10px;
+h1, h2, h3, h4 {
+  margin: 0 0 1rem;
+  font-weight: 700;
 }
 
-/* === Navbar === */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === NAVBAR === */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 15px 40px;
-  display: flex;
-  align-items: center;
   z-index: 1000;
-  background: rgba(31, 31, 31, 0.5);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.navbar.scrolled {
-  background: #1f1f1f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.3s ease;
 }
 
 .navbar nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar nav ul li a {
-  text-decoration: none;
-  color: #ddd;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.navbar nav ul li a:hover {
-  color: #4682b4;
-}
-
-/* === Hero === */
+/* === HERO === */
 .hero {
   text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+  padding: 80px 20px;
+  background-color: var(--bg-light);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  color: #b22222;
+  font-size: 3rem;
+  color: var(--accent-color);
 }
 
 .hero h2 {
-  font-size: 1.5rem;
-  color: #ffffff;
+  font-size: 1.8rem;
+  color: var(--text-primary);
   margin-bottom: 15px;
 }
 
 .hero p {
   max-width: 600px;
   margin: 0 auto 20px;
-  color: #bbb;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 }
 
-/* === Portfolio === */
+/* === PORTFOLIO Y DASHBOARDS === */
 #portfolio {
-  padding: 40px 20px;
-  background-color: #2a2a2a;
+  background-color: var(--bg-dark);
 }
 
 #portfolio h3 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
 }
 
-#portfolio p {
-  color: #ccc;
+.dashboards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
 }
 
-/* === Criptomonedas === */
-#crypto {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #f4f4f9;
-  border-radius: 8px;
+.dashboard-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-#crypto-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+.dashboard-card h4 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
 }
 
-#crypto-table th,
-#crypto-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.dashboard-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
 }
 
-#crypto-table th {
-  background-color: #007bff;
-  color: white;
-}
-
-.color-green {
-  color: #28a745;
-}
-
-.color-red {
-  color: #dc3545;
-}
-
-#crypto-table img {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-}
-
-/* === Dashboard Criptomonedas === */
 .dashboard-container {
   width: 100%;
-  max-width: 100%;
-  padding: 20px 0;
+  height: 60vh;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .dashboard-iframe {
   width: 100%;
-  height: 80vh; /* Ajusta la altura si es necesario */
+  height: 100%;
   border: none;
-  background: #2a2a2a;
-  border-radius: 10px;
 }
 
-/* === Footer === */
+/* === ESTILOS PARA LOS DASHBOARDS (DENTRO DEL IFRAME) === */
+.dashboard-body {
+    background-color: var(--bg-card);
+    padding: 0;
+    padding-top: 0; /* Reset para body dentro de iframe */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-primary);
+}
+
+table th, table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+table thead th {
+  background-color: #333;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+table tbody tr:hover {
+  background-color: #3a3a3a;
+}
+
+.coin-name, .stock-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-name img {
+  width: 24px;
+  height: 24px;
+}
+
+.symbol {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+}
+
+.color-green { color: var(--color-green); }
+.color-red { color: var(--color-red); }
+
+.loading, .error {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* === ABOUT ME & FOOTER === */
+#about {
+    background-color: var(--bg-light);
+    text-align: center;
+}
+
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
   font-size: 0.9rem;
-  color: #aaa;
-}
-
-footer a {
-  color: #4682b4;
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: #5fa8d3;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
 }
