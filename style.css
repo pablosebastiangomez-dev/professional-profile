@@ -12,17 +12,22 @@ body {
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  background: #1f1f1f;
+  background: rgba(31, 31, 31, 0.8);
   padding: 15px 40px;
   z-index: 1000;
+  transition: background 0.3s;
+}
+
+.navbar.scrolled {
+  background: #1f1f1f;
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
   gap: 25px;
+  justify-content: center;
 }
 
 .navbar ul li a {
@@ -89,7 +94,6 @@ body {
   color: #fff;
 }
 
-/* Contenido Tabs */
 .tab-content {
   display: none;
   background: #2a2a2a;
