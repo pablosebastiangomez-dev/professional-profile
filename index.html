@@ -38,12 +38,14 @@
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
 
+    <!-- Tabs -->
     <div class="tabs">
-      <button class="tab-button active" onclick="openTab('crypto')">💰 Criptomonedas</button>
-      <button class="tab-button" onclick="openTab('stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab('abap')">🟦 Proyecto en ABAP</button>
+      <button class="tab-button active" data-tab="crypto">💰 Criptomonedas</button>
+      <button class="tab-button" data-tab="stocks">📈 Acciones</button>
+      <button class="tab-button" data-tab="abap">🟦 Proyecto en ABAP</button>
     </div>
 
+    <!-- Contenido Tabs -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
@@ -83,19 +85,38 @@
     </footer>
   </section>
 
+  <!-- Scripts -->
   <script>
-    function openTab(tabId) {
-      const contents = document.querySelectorAll(".tab-content");
-      contents.forEach(c => c.classList.remove("active"));
-      const buttons = document.querySelectorAll(".tab-button");
-      buttons.forEach(b => b.classList.remove("active"));
+    // Tabs funcionales
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-      document.getElementById(tabId).classList.add("active");
-      const index = Array.from(document.querySelectorAll(".tab-content")).indexOf(document.getElementById(tabId));
-      buttons[index].classList.add("active");
-    }
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+
+        // Activar tab
+        tabContents.forEach(tc => {
+          tc.classList.remove('active');
+        });
+        document.getElementById(target).classList.add('active');
+
+        // Activar botón
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
 
 </body>
 </html>
-
