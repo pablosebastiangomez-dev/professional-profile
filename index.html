@@ -23,12 +23,13 @@
   <!-- Sección Sobre mí -->
   <section id="about">
     <h3>Sobre mí</h3>
-    <p>Soy un profesional orientado al análisis de datos, especializado en visualización y automatización para apoyar la toma de decisiones.</p>
+    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
   </section>
 
   <!-- Portfolio con pestañas -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
+    <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
     <!-- Botones de pestañas -->
     <div class="tabs">
@@ -49,12 +50,12 @@
 
     <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
-      <iframe src="proyectos/abap-crypto/dashboard-abap.html"></iframe>
+      <iframe src="dashboard-abap.html"></iframe>
     </div>
 
   </section>
 
-  <!-- Footer -->
+  <!-- Contacto -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
@@ -66,10 +67,15 @@
   <!-- Script para tabs -->
   <script>
     function openTab(evt, tabId) {
+      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
+
+      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
+
+      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
@@ -77,6 +83,7 @@
 
 </body>
 </html>
+
 
 
 
