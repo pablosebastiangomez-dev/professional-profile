@@ -33,9 +33,9 @@
 
     <!-- Botones de pestañas -->
     <div class="tabs">
-      <button class="tab-button active" data-tab="crypto">💰 Criptomonedas</button>
-      <button class="tab-button" data-tab="stocks">📈 Acciones</button>
-      <button class="tab-button" data-tab="abap">🟦 Proyecto ABAP</button>
+      <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
+      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto ABAP</button>
     </div>
 
     <!-- Contenido Criptomonedas -->
@@ -82,26 +82,22 @@ WRITE: / 'Ejemplo ABAP para consumir API de criptomonedas:', lv_url.
 
   <!-- Script para tabs -->
   <script>
-    const tabButtons = document.querySelectorAll(".tab-button");
-    const tabContents = document.querySelectorAll(".tab-content");
+    function openTab(evt, tabId) {
+      // Oculta todos los contenidos
+      const contents = document.querySelectorAll(".tab-content");
+      contents.forEach(c => c.classList.remove("active"));
 
-    tabButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const tab = button.getAttribute("data-tab");
+      // Desactiva todos los botones
+      const buttons = document.querySelectorAll(".tab-button");
+      buttons.forEach(b => b.classList.remove("active"));
 
-        tabButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-
-        tabContents.forEach(content => {
-          content.classList.remove("active");
-          if (content.id === tab) {
-            content.classList.add("active");
-          }
-        });
-      });
-    });
+      // Activa el tab seleccionado
+      document.getElementById(tabId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
   </script>
 
 </body>
 </html>
+
 
