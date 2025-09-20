@@ -40,17 +40,23 @@
 
   <!-- Contenido Criptomonedas -->
   <div id="crypto" class="tab-content active">
-    <iframe src="dashboard-crypto.html"></iframe>
+    <div class="dashboard-card">
+      <iframe src="dashboard-crypto.html"></iframe>
+    </div>
   </div>
 
   <!-- Contenido Acciones -->
   <div id="stocks" class="tab-content">
-    <iframe src="dashboard-sp500.html"></iframe>
+    <div class="dashboard-card">
+      <iframe src="dashboard-sp500.html"></iframe>
+    </div>
   </div>
 
   <!-- Contenido ABAP -->
   <div id="abap" class="tab-content">
-    <iframe src="dashboard-abap.html"></iframe>
+    <div class="dashboard-card">
+      <iframe src="dashboard-abap.html"></iframe>
+    </div>
   </div>
 
 </section>
@@ -64,7 +70,6 @@
   </p>
 </footer>
 
-<!-- Script para tabs -->
 <script>
 function openTab(evt, tabId) {
   const contents = document.querySelectorAll(".tab-content");
@@ -79,5 +84,6 @@ function openTab(evt, tabId) {
 
 </body>
 </html>
+
 
 
