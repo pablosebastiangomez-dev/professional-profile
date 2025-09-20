@@ -218,3 +218,17 @@ footer {
   color: var(--text-secondary);
   border-top: 1px solid var(--border-color);
 }
+
+/* === EFECTO DE ACTUALIZACIÓN (FLASH) === */
+@keyframes row-flash {
+  0% {
+    background-color: #5a5a5a; /* Un gris un poco más claro */
+  }
+  100% {
+    background-color: transparent; /* Vuelve al color original de la fila */
+  }
+}
+
+.flash {
+  animation: row-flash 1s ease-out;
+}
