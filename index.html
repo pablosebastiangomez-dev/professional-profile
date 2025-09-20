@@ -8,12 +8,16 @@
   <meta name="description" content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
   <meta name="author" content="Pablo Sebastián Gómez">
   
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="manifest" href="img/site.webmanifest">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Navbar -->
   <header class="navbar">
     <nav>
       <ul>
@@ -25,95 +29,51 @@
     </nav>
   </header>
 
-  <!-- Hero -->
   <section id="hero" class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
   </section>
 
-  <!-- Portfolio / Dashboards -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
-    <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
-
-    <!-- Criptomonedas -->
-    <section id="crypto">
-      <h3>Criptomonedas en tiempo real</h3>
-      <table id="crypto-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Cambio 24h</th>
-            <th>Market Cap</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Los datos se cargarán aquí dinámicamente -->
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Dashboard Criptomonedas -->
-    <section id="dashboard-crypto">
-      <h3>Dashboard Criptomonedas</h3>
-      <div class="dashboard-container">
-        <iframe src="dashboard-crypto.html" class="dashboard-iframe"></iframe>
+    <p>Explorá mis dashboards interactivos en diferentes áreas de análisis:</p>
+    
+    <div class="dashboards-grid">
+      
+      <div class="dashboard-card">
+        <h4>Dashboard de Criptomonedas</h4>
+        <p>Seguimiento en tiempo real de las principales criptomonedas, ordenadas por capitalización de mercado.</p>
+        <div class="dashboard-container">
+          <iframe src="dashboard-crypto.html" class="dashboard-iframe"></iframe>
+        </div>
       </div>
-    </section>
 
+      <div class="dashboard-card">
+        <h4>Top Acciones S&P 500</h4>
+        <p>Cotizaciones de las empresas más importantes del S&P 500, con datos actualizados del mercado.</p>
+        <div class="dashboard-container">
+          <iframe src="dashboard-sp500.html" class="dashboard-iframe"></iframe>
+        </div>
+      </div>
+
+    </div>
   </section>
 
-  <!-- Footer -->
-  <section id="contact">
-    <footer>
-      <p>© 2025 - Pablo Sebastián Gómez</p>
-      <p>
-        <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
-        <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">🔗 LinkedIn</a>
-      </p>
-    </footer>
-  </section>
+  <section id="about">
+      <h3>Sobre Mí</h3>
+      <p>Aquí puedes agregar una descripción más detallada sobre tu experiencia, habilidades y pasiones. ¡Haz que tu perfil destaque!</p>
+      </section>
 
-  <!-- Script para cargar datos de criptomonedas -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const cryptoApiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=false';
-      const cryptoTableBody = document.querySelector('#crypto-table tbody');
+  <footer id="contact">
+    <p>© 2025 - Pablo Sebastián Gómez</p>
+    <p>
+      <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
+      <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">🔗 LinkedIn</a>
+    </p>
+  </footer>
 
-      async function fetchCryptoData() {
-        try {
-          const response = await fetch(cryptoApiUrl);
-          const coins = await response.json();
-          displayCryptoData(coins);
-        } catch (error) {
-          cryptoTableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No se pudieron cargar los datos.</td></tr>`;
-        }
-      }
-
-      function displayCryptoData(coins) {
-        let html = '';
-        coins.forEach((coin, index) => {
-          const priceChange = coin.price_change_percentage_24h;
-          const changeColorClass = priceChange >= 0 ? 'color-green' : 'color-red';
-          html += `
-            <tr>
-              <td>${index + 1}</td>
-              <td><img src="${coin.image}" alt="${coin.name} logo">${coin.name} (${coin.symbol.toUpperCase()})</td>
-              <td>$${coin.current_price.toLocaleString()}</td>
-              <td class="${changeColorClass}">${priceChange.toFixed(2)}%</td>
-              <td>$${coin.market_cap.toLocaleString()}</td>
-            </tr>
-          `;
-        });
-        cryptoTableBody.innerHTML = html;
-      }
-
-      fetchCryptoData();
-    });
-  </script>
+  <script src="main.js"></script>
 
 </body>
 
