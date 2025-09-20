@@ -61,19 +61,19 @@ h1, h2, h3, h4, h5 {
 .tab-button {
   padding: 10px 20px;
   border: none;
-  background: #2a2a2a;
-  color: #4682b4; /* azul sobrio */
+  background: rgba(255,255,255,0.1);
+  color: #999;
   cursor: pointer;
   border-radius: 8px 8px 0 0;
   font-weight: bold;
   transition: all 0.3s;
 }
 .tab-button.active {
-  background: #1f1f1f;
+  background: #2a2a2a;
   color: #ffffff;
 }
 .tab-button:hover {
-  color: #5fa8d3;
+  color: #fff;
 }
 
 /* === Contenido Tabs === */
@@ -165,4 +165,3 @@ th {
   vertical-align: middle;
   margin-right: 6px;
 }
-
