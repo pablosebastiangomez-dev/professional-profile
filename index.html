@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,65 +7,55 @@
   <meta name="description" content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
   <meta name="author" content="Pablo Sebastián Gómez">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Pablo Sebastián Gómez - Portfolio">
-  <meta property="og:description" content="Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://pablosebastiangomez-dev.github.io/professional-profile/">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pablo Sebastián Gómez - Portfolio">
-  <meta name="twitter:description" content="Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.">
-
   <!-- Favicons -->
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48x48.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="manifest" href="img/site.webmanifest">
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-  <!-- Hero / Presentación -->
-  <header class="hero">
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#portfolio">Proyectos</a></li>
+        <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
     <div class="social-links">
       <a href="mailto:aspablogomez@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">LinkedIn</a>
       <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </div>
-  </header>
-
-  <!-- Sección Sobre mí -->
-  <section id="about">
-    <h3>Sobre mí</h3>
-    <p>
-      Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y
-      automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.
-    </p>
   </section>
 
-  <!-- Portfolio con pestañas -->
+  <!-- Portfolio / Dashboards -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-    <!-- Botones de pestañas -->
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
       <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
-    <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
@@ -74,7 +63,6 @@
       </div>
     </div>
 
-    <!-- Contenido Acciones -->
     <div id="stocks" class="tab-content">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
@@ -82,7 +70,6 @@
       </div>
     </div>
 
-    <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
       <div class="dashboard-card">
         <h4>Proyecto ABAP</h4>
@@ -91,30 +78,45 @@
     </div>
   </section>
 
-  <!-- Contacto -->
-  <footer>
-    <p>© 2025 - Pablo Sebastián Gómez</p>
-    <p>
-      <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
-      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
-    </p>
-  </footer>
+  <!-- Sobre mí debajo de dashboards -->
+  <section id="about">
+    <h3>Sobre mí</h3>
+    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
+  </section>
 
-  <!-- Script para tabs -->
+  <!-- Footer -->
+  <section id="contact">
+    <footer>
+      <p>© 2025 - Pablo Sebastián Gómez</p>
+      <p>
+        <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
+        <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">🔗 LinkedIn</a>
+      </p>
+    </footer>
+  </section>
+
+  <!-- Script Tabs y Navbar Scroll -->
   <script>
     function openTab(evt, tabId) {
-      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
 
-      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
-      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
+
+    // Navbar scroll
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
 
 </body>
