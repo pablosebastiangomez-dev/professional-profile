@@ -1,27 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Proyecto ABAP - Criptomonedas</title>
-  <style>
-    body { font-family: sans-serif; background: #141622; color: #e0e0e0; padding: 20px; }
-    pre { background: #1a1d28; padding: 15px; border-radius: 8px; overflow-x: auto; }
-    h1 { color: #36e2ec; }
-  </style>
+<meta charset="UTF-8">
+<title>ABAP + Criptos</title>
+<style>
+  body { background:#0b101a; color:#f0f0f0; font-family:sans-serif; padding:20px; }
+  pre { background:#141c2b; padding:15px; border-radius:8px; overflow-x:auto; }
+</style>
 </head>
 <body>
-  <h1>Proyecto ABAP - Criptomonedas</h1>
-  <p>Ejemplo de código ABAP que lista las principales criptomonedas usando la API de CoinGecko.</p>
+<h2>Ejemplo ABAP con Criptomonedas</h2>
+<pre>
+REPORT ZCRYPTO_API.
 
-  <h2>Archivo: zcrypto_api.abap</h2>
-  <pre>
-" Aquí puedes copiar el contenido de tu archivo ABAP
-DATA: lv_coin TYPE string.
-* Ejemplo de listado de criptomonedas
-WRITE: 'Bitcoin, Ethereum, Tether, BNB, USD Coin'.
-  </pre>
-
-  <p>📄 <a href="proyectos/abap-crypto/README.md" target="_blank">Ver README en GitHub</a></p>
+" Código ABAP de ejemplo
+WRITE: 'Bitcoin', 12345.
+WRITE: / 'Ethereum', 2345.
+</pre>
 </body>
 </html>
+
