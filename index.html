@@ -212,6 +212,18 @@
     footer a:hover {
       color: #5fa8d3;
     }
+
+    /* === Animaciones fade-in === */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -230,7 +242,7 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="hero">
+  <section id="hero" class="hero fade-in">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
@@ -242,7 +254,7 @@
   </section>
 
   <!-- Portfolio / Dashboards -->
-  <section id="portfolio">
+  <section id="portfolio" class="fade-in">
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
@@ -252,21 +264,21 @@
       <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
-    <div id="crypto" class="tab-content active">
+    <div id="crypto" class="tab-content active fade-in">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
         <iframe src="dashboard-crypto.html"></iframe>
       </div>
     </div>
 
-    <div id="stocks" class="tab-content">
+    <div id="stocks" class="tab-content fade-in">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
         <iframe src="dashboard-sp500.html"></iframe>
       </div>
     </div>
 
-    <div id="abap" class="tab-content">
+    <div id="abap" class="tab-content fade-in">
       <div class="dashboard-card">
         <h4>Proyecto ABAP</h4>
         <p>Este proyecto se encuentra en preparación. Pronto compartiré un ejemplo práctico en ABAP con integración de datos financieros.</p>
@@ -274,13 +286,13 @@
     </div>
   </section>
 
-  <!-- Sobre mí debajo de dashboards -->
-  <section id="about">
+  <!-- Sobre mí -->
+  <section id="about" class="fade-in">
     <h3>Sobre mí</h3>
     <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer / Contacto -->
   <section id="contact">
     <footer>
       <p>© 2025 - Pablo Sebastián Gómez</p>
@@ -291,7 +303,7 @@
     </footer>
   </section>
 
-  <!-- Script Tabs y Navbar Scroll -->
+  <!-- Script Tabs y Navbar Scroll / Animaciones -->
   <script>
     function openTab(evt, tabId) {
       const contents = document.querySelectorAll(".tab-content");
@@ -313,8 +325,27 @@
         navbar.classList.remove('scrolled');
       }
     });
+
+    // Fade-in animaciones
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
   </script>
 
 </body>
 </html>
-
