@@ -1,182 +1,145 @@
-/* === Reset básico === */
-* {
+/* ===== Estilos generales ===== */
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  background-color: #121212; /* fondo más oscuro */
+  color: #e0e0e0;
+  line-height: 1.6;
 }
 
-html, body {
-  height: 100%;
-  font-family: "Segoe UI", Roboto, sans-serif;
-  background-color: #0d1117; /* fondo negro-azulado */
-  color: #e6edf3;            /* gris claro */
-  line-height: 1.5;
-}
-
-/* === Hero / Presentación === */
+/* ===== Hero ===== */
 .hero {
-  background-color: #161b22; /* un poco más claro que el fondo */
-  color: #f7fafc;
   text-align: center;
   padding: 60px 20px;
+  background: #1f1f1f;
+  color: #ffffff;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #f7fafc;
+  margin: 0;
+  font-size: 2.5em;
 }
 
 .hero h2 {
-  font-size: 1.5rem;
-  color: #9ca3af;
-  margin-bottom: 1rem;
+  font-weight: normal;
+  margin: 10px 0;
+  color: #bbbbbb;
 }
 
-.hero p {
-  max-width: 600px;
-  margin: auto;
-  color: #cbd5e1;
-}
-
-/* === Links sociales === */
 .social-links a {
   margin: 0 10px;
-  color: #58a6ff;
+  color: #76c7c0;
   text-decoration: none;
-  font-weight: 500;
-}
-.social-links a:hover {
-  color: #1f6feb;
 }
 
-/* === Sección Sobre mí === */
-#about {
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Secciones ===== */
+section {
   padding: 40px 20px;
-  max-width: 800px;
+  max-width: 1200px;
   margin: auto;
 }
 
-#about h3 {
+section h3 {
   text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-  color: #f0f6fc;
+  margin-bottom: 20px;
+  color: #ffffff;
 }
 
-/* === Tabs === */
+/* ===== Tabs ===== */
 .tabs {
   display: flex;
   justify-content: center;
-  margin: 30px 0 15px 0;
-  gap: 10px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
 .tab-button {
-  padding: 10px 20px;
-  border: 1px solid #30363d;
-  background-color: #21262d;
-  color: #c9d1d9;
+  background: #2a2a2a;
+  border: none;
+  padding: 12px 24px;
+  margin: 5px;
   cursor: pointer;
-  border-radius: 6px 6px 0 0;
-  transition: background-color 0.3s, color 0.3s;
+  color: #e0e0e0;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.tab-button:hover {
+  background: #3a3a3a;
 }
 
 .tab-button.active {
-  background-color: #0d419d; /* azul fuerte */
-  color: #ffffff;
-  border-bottom-color: #0d419d;
+  background: #76c7c0;
+  color: #121212;
+  font-weight: bold;
 }
 
-.tab-button:hover:not(.active) {
-  background-color: #30363d;
-  color: #f0f6fc;
-}
-
-/* === Contenido Tabs === */
+/* ===== Contenido de pestañas ===== */
 .tab-content {
   display: none;
-  background-color: #161b22;
-  padding: 20px;
-  border: 1px solid #30363d;
-  border-top: none;
-  border-radius: 0 0 6px 6px;
 }
 
 .tab-content.active {
   display: block;
 }
 
-/* === iframe === */
-.tab-content iframe {
+.dashboard-card {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-card h4 {
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+/* iframes ocupan ancho completo y altura visible */
+.dashboard-card iframe {
   width: 100%;
-  height: 70vh;
+  height: 600px; /* puedes ajustar según tus dashboards */
   border: none;
-  border-radius: 4px;
-  background: #0d1117;
+  border-radius: 8px;
+  background: #121212;
 }
 
-/* === Tablas === */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  font-size: 0.95rem;
+/* Código ABAP */
+pre {
+  text-align: left;
+  background: #2a2a2a;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
 }
 
-th, td {
-  padding: 10px;
-  border: 1px solid #30363d;
-  text-align: center; /* centramos todo */
+code {
+  color: #76c7c0;
+  font-size: 0.95em;
+  font-family: monospace;
 }
 
-th {
-  background-color: #21262d;
-  color: #f0f6fc;
-  font-weight: 600;
-}
-
-td {
-  background-color: #161b22;
-}
-
-.coin-name {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: flex-start; /* nombres alineados a la izquierda */
-}
-
-.coin-name img {
-  width: 20px;
-  height: 20px;
-}
-
-/* Colores dinámicos */
-.color-green {
-  color: #2ea043;
-  font-weight: bold;
-}
-.color-red {
-  color: #f85149;
-  font-weight: bold;
-}
-
-/* === Footer === */
+/* ===== Footer ===== */
 footer {
-  background-color: #161b22;
-  color: #8b949e;
   text-align: center;
   padding: 20px;
-  margin-top: 30px;
+  background: #1f1f1f;
+  color: #bbbbbb;
 }
 
 footer a {
-  color: #58a6ff;
+  color: #76c7c0;
   text-decoration: none;
 }
+
 footer a:hover {
-  color: #1f6feb;
+  text-decoration: underline;
 }
 
