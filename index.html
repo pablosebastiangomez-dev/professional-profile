@@ -284,5 +284,24 @@
         <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
         <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
       </p>
-    </footer
+    </footer>
+  </section>
+
+  <!-- Script Tabs -->
+  <script>
+    function openTab(evt, tabId) {
+      const contents = document.querySelectorAll(".tab-content");
+      contents.forEach(c => c.classList.remove("active"));
+
+      const buttons = document.querySelectorAll(".tab-button");
+      buttons.forEach(b => b.classList.remove("active"));
+
+      document.getElementById(tabId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
+
 
