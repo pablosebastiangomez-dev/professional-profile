@@ -5,20 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pablo Sebastián Gómez - Portfolio</title>
-  <meta name="description"
-    content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
+  <meta name="description" content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
   <meta name="author" content="Pablo Sebastián Gómez">
-
-  <!-- Favicons -->
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-  <link rel="manifest" href="img/site.webmanifest">
-  <meta name="theme-color" content="#ffffff">
-
+  
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -39,13 +29,7 @@
   <section id="hero" class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
-    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados
-      bursátiles.</p>
-    <div class="social-links">
-      <a href="mailto:aspablogomez@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">LinkedIn</a>
-      <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
-    </div>
+    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
   </section>
 
   <!-- Portfolio / Dashboards -->
@@ -53,41 +37,24 @@
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-    <div class="tabs">
-      <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
-      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
-    </div>
-
-    <div id="crypto" class="tab-content active">
-      <div class="dashboard-card">
-        <h4>Criptomonedas en tiempo real</h4>
-        <iframe src="dashboard-crypto.html"></iframe>
-      </div>
-    </div>
-
-    <div id="stocks" class="tab-content">
-      <div class="dashboard-card">
-        <h4>S&P 500 - Análisis bursátil</h4>
-        <iframe src="dashboard-sp500.html"></iframe>
-      </div>
-    </div>
-
-    <div id="abap" class="tab-content">
-      <div class="dashboard-card">
-        <h4>Proyecto ABAP</h4>
-        <p>Este proyecto se encuentra en preparación. Pronto compartiré un ejemplo práctico en ABAP con integración de
-          datos financieros.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sobre mí -->
-  <section id="about">
-    <h3>Sobre mí</h3>
-    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y
-      automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación
-      clara.</p>
+    <!-- Criptomonedas -->
+    <section id="crypto">
+      <h3>Criptomonedas en tiempo real</h3>
+      <table id="crypto-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cambio 24h</th>
+            <th>Market Cap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Los datos se cargarán aquí dinámicamente -->
+        </tbody>
+      </table>
+    </section>
   </section>
 
   <!-- Footer -->
@@ -96,32 +63,46 @@
       <p>© 2025 - Pablo Sebastián Gómez</p>
       <p>
         <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
-        <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">🔗 LinkedIn</a>
+        <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">🔗 LinkedIn</a>
       </p>
     </footer>
   </section>
 
-  <!-- Script Tabs y Navbar Scroll -->
+  <!-- Script para cargar datos de criptomonedas -->
   <script>
-    function openTab(evt, tabId) {
-      const contents = document.querySelectorAll(".tab-content");
-      contents.forEach(c => c.classList.remove("active"));
+    document.addEventListener('DOMContentLoaded', () => {
+      const cryptoApiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=false';
+      const cryptoTableBody = document.querySelector('#crypto-table tbody');
 
-      const buttons = document.querySelectorAll(".tab-button");
-      buttons.forEach(b => b.classList.remove("active"));
-
-      document.getElementById(tabId).classList.add("active");
-      evt.currentTarget.classList.add("active");
-    }
-
-    // Navbar scroll
-    window.addEventListener('scroll', function () {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+      async function fetchCryptoData() {
+        try {
+          const response = await fetch(cryptoApiUrl);
+          const coins = await response.json();
+          displayCryptoData(coins);
+        } catch (error) {
+          cryptoTableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No se pudieron cargar los datos.</td></tr>`;
+        }
       }
+
+      function displayCryptoData(coins) {
+        let html = '';
+        coins.forEach((coin, index) => {
+          const priceChange = coin.price_change_percentage_24h;
+          const changeColorClass = priceChange >= 0 ? 'color-green' : 'color-red';
+          html += `
+            <tr>
+              <td>${index + 1}</td>
+              <td><img src="${coin.image}" alt="${coin.name} logo">${coin.name} (${coin.symbol.toUpperCase()})</td>
+              <td>$${coin.current_price.toLocaleString()}</td>
+              <td class="${changeColorClass}">${priceChange.toFixed(2)}%</td>
+              <td>$${coin.market_cap.toLocaleString()}</td>
+            </tr>
+          `;
+        });
+        cryptoTableBody.innerHTML = html;
+      }
+
+      fetchCryptoData();
     });
   </script>
 
