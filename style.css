@@ -1,9 +1,9 @@
-/* === Reset & base === */
+/* Reset y base */
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #0a0e16; /* fondo más oscuro */
-  color: #f0f0f0;
+  background: #0a0c12;
+  color: #e0e0e0;
   line-height: 1.6;
 }
 
@@ -11,24 +11,22 @@ h1, h2, h3, h4, h5 {
   margin: 0 0 10px;
 }
 
-/* === Hero === */
+/* Hero */
 .hero {
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #0a0e16 0%, #141820 100%);
+  background: linear-gradient(135deg, #0a0c12 0%, #11141d 100%);
 }
 
 .hero h1 {
   font-size: 2.5rem;
-  color: #36e2ec;
+  color: #5ac8fa;
 }
-
 .hero h2 {
   font-size: 1.5rem;
-  color: #e8ff5e;
+  color: #f5d547;
   margin-bottom: 15px;
 }
-
 .hero p {
   max-width: 600px;
   margin: 0 auto 20px;
@@ -38,73 +36,66 @@ h1, h2, h3, h4, h5 {
 .social-links a {
   margin: 0 10px;
   text-decoration: none;
-  color: #e67be7;
+  color: #a7a7a7;
   font-weight: bold;
 }
-
 .social-links a:hover {
-  color: #36e2ec;
+  color: #5ac8fa;
 }
 
-/* === Sección Sobre mí === */
+/* Sección Sobre mí */
 #about {
   padding: 40px 20px;
   max-width: 800px;
   margin: auto;
 }
 
-/* === Tabs === */
+/* Tabs */
 .tabs {
   display: flex;
   justify-content: center;
   margin: 20px 0;
   gap: 10px;
 }
-
 .tab-button {
   padding: 10px 20px;
   border: none;
   background: rgba(255,255,255,0.05);
-  color: #999;
+  color: #aaa;
   cursor: pointer;
   border-radius: 8px 8px 0 0;
   font-weight: bold;
   transition: all 0.3s;
 }
-
 .tab-button.active {
-  background: #141820;
-  color: #e8ff5e;
+  background: #11141d;
+  color: #f5d547;
 }
-
 .tab-button:hover {
   color: #fff;
 }
 
-/* === Contenido Tabs === */
+/* Contenido Tabs */
 .tab-content {
   display: none;
-  background: #141820;
-  padding: 20px;
+  background: #11141d;
+  padding: 0;
   border-radius: 0 8px 8px 8px;
 }
-
 .tab-content.active {
   display: block;
 }
 
-/* === Dashboard card === */
+/* Dashboard card */
 .dashboard-card {
-  padding: 0;
-  margin: 0;
-  border: none;
   width: 100%;
   height: 100%;
-  border-radius: 0;
-  background: rgba(255,255,255,0.02);
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
-/* Iframes ocupan todo el espacio */
+/* Iframe ocupa todo el contenedor */
 .dashboard-card iframe {
   width: 100%;
   height: 80vh;
@@ -112,52 +103,46 @@ h1, h2, h3, h4, h5 {
   display: block;
 }
 
-/* === Footer === */
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
   font-size: 0.9rem;
   color: #777;
 }
-
 footer a {
-  color: #36e2ec;
+  color: #5ac8fa;
   text-decoration: none;
 }
-
 footer a:hover {
-  color: #e67be7;
+  color: #f5d547;
 }
 
-/* === Tablas (Cripto y Acciones) === */
+/* Tablas */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  color: #f0f0f0;
+  color: #e0e0e0;
 }
-
 th, td {
   padding: 10px;
-  border: 1px solid #333;
+  border: 1px solid #222;
   text-align: left;
 }
-
 th {
-  background-color: #1e2a38;
+  background-color: #1a1d28;
 }
-
 .color-green {
   color: #28d98b;
 }
-
 .color-red {
   color: #ff5f5f;
 }
-
 .coin-name img {
   vertical-align: middle;
   margin-right: 6px;
 }
+
 
 
