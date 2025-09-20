@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Hero -->
+  <!-- Hero / Presentación -->
   <header class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
@@ -20,25 +20,25 @@
     </div>
   </header>
 
-  <!-- Sobre mí -->
+  <!-- Sección Sobre mí -->
   <section id="about">
     <h3>Sobre mí</h3>
     <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
   </section>
 
-  <!-- Portfolio -->
+  <!-- Portfolio con pestañas -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-    <!-- Tabs -->
+    <!-- Botones de pestañas -->
     <div class="tabs">
-      <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
-      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
+      <button class="tab-button active" data-tab="crypto">💰 Criptomonedas</button>
+      <button class="tab-button" data-tab="stocks">📈 Acciones</button>
+      <button class="tab-button" data-tab="abap">🟦 Proyecto ABAP</button>
     </div>
 
-    <!-- Criptomonedas -->
+    <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <!-- Acciones -->
+    <!-- Contenido Acciones -->
     <div id="stocks" class="tab-content">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
@@ -54,34 +54,24 @@
       </div>
     </div>
 
-    <!-- ABAP -->
+    <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
       <div class="dashboard-card">
-        <h4>ABAP + Criptomonedas</h4>
-        <p>Ejemplo en ABAP que consume la API pública de CoinGecko.</p>
+        <h4>Ejemplo ABAP con Criptomonedas</h4>
+        <p>Este proyecto muestra cómo listar las principales criptomonedas usando ABAP:</p>
         <pre><code>
-REPORT zcrypto_api.
+REPORT zcrypto_example.
 
-DATA: lv_url TYPE string VALUE 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false',
-      lv_response TYPE string.
+DATA: lv_url TYPE string VALUE 'https://api.coincap.io/v2/assets/bitcoin'.
 
-CALL METHOD cl_http_client=>create_by_url
-  EXPORTING url = lv_url
-  IMPORTING client = DATA(lo_client).
-
-lo_client->send( ).
-lo_client->receive( ).
-
-lv_response = lo_client->response->get_cdata( ).
-WRITE lv_response.
+WRITE: / 'Ejemplo ABAP para consumir API de criptomonedas:', lv_url.
         </code></pre>
-        <p><a href="https://github.com/pablosebastiangomez-dev/Perfil_profesional/tree/main/proyectos/abap-crypto" target="_blank">📄 Ver proyecto en GitHub</a></p>
       </div>
     </div>
 
   </section>
 
-  <!-- Footer -->
+  <!-- Contacto -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
@@ -90,19 +80,28 @@ WRITE lv_response.
     </p>
   </footer>
 
-  <!-- Script Tabs -->
+  <!-- Script para tabs -->
   <script>
-    function openTab(evt, tabId) {
-      const contents = document.querySelectorAll(".tab-content");
-      contents.forEach(c => c.classList.remove("active"));
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
 
-      const buttons = document.querySelectorAll(".tab-button");
-      buttons.forEach(b => b.classList.remove("active"));
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const tab = button.getAttribute("data-tab");
 
-      document.getElementById(tabId).classList.add("active");
-      evt.currentTarget.classList.add("active");
-    }
+        tabButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        tabContents.forEach(content => {
+          content.classList.remove("active");
+          if (content.id === tab) {
+            content.classList.add("active");
+          }
+        });
+      });
+    });
   </script>
 
 </body>
 </html>
+
