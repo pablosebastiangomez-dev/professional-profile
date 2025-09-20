@@ -1,57 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S&P 500 - Acciones</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Acciones S&P 500</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="dashboard-body">
 
-  <h2>📈 Acciones - Top 20</h2>
-  <p>Listado de las 20 empresas de mayor capitalización dentro del S&P 500.</p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Empresa</th>
-        <th>Símbolo</th>
-        <th>Precio</th>
-        <th>Cambio</th>
-        <th>Volumen</th>
-      </tr>
-    </thead>
-    <tbody id="stocks-table">
-      <!-- Aquí se cargan las acciones -->
-    </tbody>
-  </table>
-
-  <script>
-    fetch('stocks.json')
-      .then(res => res.json())
-      .then(data => {
-        const tbody = document.getElementById('stocks-table');
-        tbody.innerHTML = '';
-
-        data.forEach((stock, i) => {
-          const changeClass = stock.change >= 0 ? 'color-green' : 'color-red';
-          tbody.innerHTML += `
+    <table id="sp500-table">
+        <thead>
             <tr>
-              <td>${i + 1}</td>
-              <td>${stock.name}</td>
-              <td>${stock.symbol}</td>
-              <td>${stock.price ? '$' + stock.price.toFixed(2) : '-'}</td>
-              <td class="${changeClass}">${stock.change ? stock.change.toFixed(2) + '%' : '-'}</td>
-              <td>${stock.volume ? stock.volume : '-'}</td>
+                <th>Símbolo</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cambio (%)</th>
+                <th>Volumen</th>
             </tr>
-          `;
-        });
-      })
-      .catch(err => {
-        console.error('Error al cargar stocks.json:', err);
-      });
-  </script>
+        </thead>
+        <tbody>
+            <tr><td colspan="5" class="loading">Cargando datos...</td></tr>
+        </tbody>
+    </table>
 
+    <script src="main.js"></script>
 </body>
 </html>
