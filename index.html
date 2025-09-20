@@ -28,18 +28,24 @@
       scroll-margin-top: 80px;
     }
 
-    /* === Navbar alineado a la izquierda sin logo === */
+    /* === Navbar transparente / oscura === */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: #1f1f1f;
       padding: 15px 40px;
       display: flex;
       align-items: center;
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(31, 31, 31, 0.5); /* semi-transparente al inicio */
+      box-shadow: none;
+    }
+
+    .navbar.scrolled {
+      background: #1f1f1f; /* gris oscuro sólido */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
     .navbar nav ul {
@@ -285,7 +291,7 @@
     </footer>
   </section>
 
-  <!-- Script Tabs -->
+  <!-- Script Tabs y Navbar Scroll -->
   <script>
     function openTab(evt, tabId) {
       const contents = document.querySelectorAll(".tab-content");
@@ -297,7 +303,18 @@
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
+
+    // Navbar scroll
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
 
 </body>
 </html>
+
