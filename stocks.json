@@ -1,1 +1,8 @@
+[
+  {"symbol": "AAPL", "name": "Apple Inc.", "price": 185.12, "changePercent": 1.23, "volume": 123456789},
+  {"symbol": "MSFT", "name": "Microsoft Corp.", "price": 312.45, "changePercent": -0.56, "volume": 98765432},
+  {"symbol": "GOOGL", "name": "Alphabet Inc.", "price": 1432.67, "changePercent": 0.34, "volume": 54321678},
+  {"symbol": "AMZN", "name": "Amazon.com, Inc.", "price": 3487.21, "changePercent": -0.78, "volume": 67890123},
+  {"symbol": "NVDA", "name": "NVIDIA Corp.", "price": 405.12, "changePercent": 2.15, "volume": 45678901}
+]
 
