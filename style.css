@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #0a0c12; /* fondo más oscuro y sobrio */
-  color: #e0e0e0;      /* texto más suave */
+  background: #2f2f2f; /* gris plata oscuro */
+  color: #e0e0e0;
   line-height: 1.6;
 }
 
@@ -15,16 +15,16 @@ h1, h2, h3, h4, h5 {
 .hero {
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #0a0c12 0%, #12161f 100%);
+  background: linear-gradient(135deg, #2f2f2f 0%, #3a3a3a 100%);
 }
 
 .hero h1 {
   font-size: 2.5rem;
-  color: #6fc3df; /* azul suave */
+  color: #6fc3df;
 }
 .hero h2 {
   font-size: 1.5rem;
-  color: #cfd186; /* amarillo sobrio */
+  color: #cfd186;
   margin-bottom: 15px;
 }
 .hero p {
@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5 {
   transition: all 0.3s;
 }
 .tab-button.active {
-  background: #12161f;
+  background: #3a3a3a;
   color: #cfd186;
 }
 .tab-button:hover {
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5 {
 /* === Contenido Tabs === */
 .tab-content {
   display: none;
-  background: #12161f;
+  background: #3a3a3a;
   padding: 20px;
   border-radius: 0 8px 8px 8px;
 }
@@ -133,7 +133,7 @@ th, td {
   text-align: left;
 }
 th {
-  background-color: #1a1f2a;
+  background-color: #444;
 }
 .color-green {
   color: #28d98b;
@@ -145,3 +145,4 @@ th {
   vertical-align: middle;
   margin-right: 6px;
 }
+
