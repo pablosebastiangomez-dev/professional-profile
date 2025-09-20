@@ -119,6 +119,8 @@ h1, h2, h3, h4, h5 {
   border-radius: 0 8px 8px 8px;
   width: 100%; /* Asegura que ocupe todo el ancho de la pantalla */
   box-sizing: border-box; /* Para asegurar que el padding no afecte el tamaño total */
+  margin: 0 auto; /* Centra las pestañas */
+  max-width: 100%; /* Asegura que no haya restricción de ancho */
 }
 
 .tab-content.active {
@@ -130,6 +132,7 @@ h1, h2, h3, h4, h5 {
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 20px;
+  width: 100%; /* Asegura que la tarjeta ocupe todo el espacio disponible */
 }
 
 .dashboard-card iframe {
@@ -139,6 +142,7 @@ h1, h2, h3, h4, h5 {
   display: block;
   background: #2a2a2a;
   border-radius: 10px;
+  margin: 0 auto; /* Centra el iframe */
 }
 
 /* === Sobre mí === */
