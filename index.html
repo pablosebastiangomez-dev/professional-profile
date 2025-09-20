@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Hero / Presentación -->
+  <!-- Hero -->
   <header class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
@@ -20,25 +20,25 @@
     </div>
   </header>
 
-  <!-- Sección Sobre mí -->
+  <!-- Sobre mí -->
   <section id="about">
     <h3>Sobre mí</h3>
     <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
   </section>
 
-  <!-- Portfolio con pestañas -->
+  <!-- Portfolio -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-    <!-- Botones de pestañas -->
+    <!-- Tabs -->
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
       <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
-    <!-- Contenido Criptomonedas -->
+    <!-- Criptomonedas -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <!-- Contenido Acciones -->
+    <!-- Acciones -->
     <div id="stocks" class="tab-content">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
@@ -54,12 +54,11 @@
       </div>
     </div>
 
-    <!-- Contenido ABAP -->
+    <!-- ABAP -->
     <div id="abap" class="tab-content">
       <div class="dashboard-card">
         <h4>ABAP + Criptomonedas</h4>
         <p>Ejemplo en ABAP que consume la API pública de CoinGecko.</p>
-
         <pre><code>
 REPORT zcrypto_api.
 
@@ -76,14 +75,13 @@ lo_client->receive( ).
 lv_response = lo_client->response->get_cdata( ).
 WRITE lv_response.
         </code></pre>
-
         <p><a href="https://github.com/pablosebastiangomez-dev/Perfil_profesional/tree/main/proyectos/abap-crypto" target="_blank">📄 Ver proyecto en GitHub</a></p>
       </div>
     </div>
 
   </section>
 
-  <!-- Contacto -->
+  <!-- Footer -->
   <footer>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
@@ -92,18 +90,15 @@ WRITE lv_response.
     </p>
   </footer>
 
-  <!-- Script para tabs -->
+  <!-- Script Tabs -->
   <script>
     function openTab(evt, tabId) {
-      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
 
-      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
-      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
@@ -111,7 +106,3 @@ WRITE lv_response.
 
 </body>
 </html>
-
-
-
-
