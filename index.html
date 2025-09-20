@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pablo Sebastián Gómez - Portfolio</title>
-  <meta name="description" content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
+  <meta name="description"
+    content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
   <meta name="author" content="Pablo Sebastián Gómez">
 
   <!-- Favicons -->
@@ -17,6 +19,225 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <style>
+    /* === Scroll suave === */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    /* === Navbar transparente / oscura === */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 40px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(31, 31, 31, 0.5);
+      box-shadow: none;
+    }
+
+    .navbar.scrolled {
+      background: #1f1f1f;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar nav ul li a {
+      text-decoration: none;
+      color: #ddd;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar nav ul li a:hover {
+      color: #4682b4;
+    }
+
+    /* === Base / body === */
+    body {
+      padding-top: 70px;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #1f1f1f;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin: 0 0 10px;
+    }
+
+    /* === Hero === */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #b22222;
+    }
+
+    .hero h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      color: #bbb;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #4682b4;
+      font-weight: bold;
+    }
+
+    .social-links a:hover {
+      color: #5fa8d3;
+    }
+
+    /* === Tabs / Portfolio === */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 10px;
+    }
+
+    .tab-button {
+      padding: 12px 25px;
+      border-radius: 10px 10px 0 0;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ccc;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .tab-button:hover {
+      background: linear-gradient(135deg, #4682b4, #5fa8d3);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-button.active {
+      background: #2a2a2a;
+      color: #ffffff;
+      box-shadow: inset 0 -3px 0 #b22222;
+    }
+
+    .tab-content {
+      display: none;
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 0 8px 8px 8px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .dashboard-card {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      border-color: #4682b4;
+    }
+
+    .dashboard-card iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      display: block;
+      background: #2a2a2a;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    /* === Sobre mí === */
+    #about {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 40px auto;
+      background: #2a2a2a;
+      border-radius: 8px;
+    }
+
+    /* === Footer === */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    footer a {
+      color: #4682b4;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #5fa8d3;
+    }
+
+    /* === Animaciones fade-in scroll === */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === Animación fade-in tabs === */
+    .tab-content.fade-in-tab {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .tab-content.fade-in-tab.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
 <body>
@@ -34,19 +255,20 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="hero">
+  <section id="hero" class="hero fade-in">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
-    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
+    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados
+      bursátiles.</p>
     <div class="social-links">
       <a href="mailto:aspablogomez@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
       <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </div>
   </section>
 
   <!-- Portfolio / Dashboards -->
-  <section id="portfolio">
+  <section id="portfolio" class="fade-in">
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
@@ -56,55 +278,68 @@
       <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
-    <div id="crypto" class="tab-content active">
+    <div id="crypto" class="tab-content active fade-in-tab">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
         <iframe src="dashboard-crypto.html"></iframe>
       </div>
     </div>
 
-    <div id="stocks" class="tab-content">
+    <div id="stocks" class="tab-content fade-in-tab">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
         <iframe src="dashboard-sp500.html"></iframe>
       </div>
     </div>
 
-    <div id="abap" class="tab-content">
+    <div id="abap" class="tab-content fade-in-tab">
       <div class="dashboard-card">
         <h4>Proyecto ABAP</h4>
-        <p>Este proyecto se encuentra en preparación. Pronto compartiré un ejemplo práctico en ABAP con integración de datos financieros.</p>
+        <p>Este proyecto se encuentra en preparación. Pronto compartiré un ejemplo práctico en ABAP con integración de
+          datos financieros.</p>
       </div>
     </div>
   </section>
 
-  <!-- Sobre mí debajo de dashboards -->
-  <section id="about">
+  <!-- Sobre mí -->
+  <section id="about" class="fade-in">
     <h3>Sobre mí</h3>
-    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
+    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y
+      automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación
+      clara.</p>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer / Contacto -->
   <section id="contact">
     <footer>
       <p>© 2025 - Pablo Sebastián Gómez</p>
       <p>
         <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
-        <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">🔗 LinkedIn</a>
+        <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
       </p>
     </footer>
   </section>
 
-  <!-- Script Tabs y Navbar Scroll -->
+  <!-- Script Tabs y Navbar Scroll / Animaciones -->
   <script>
     function openTab(evt, tabId) {
       const contents = document.querySelectorAll(".tab-content");
-      contents.forEach(c => c.classList.remove("active"));
+      contents.forEach(c => {
+        c.classList.remove("active");
+        c.classList.remove("visible");
+        c.classList.add("fade-in-tab");
+      });
 
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
-      document.getElementById(tabId).classList.add("active");
+      const activeContent = document.getElementById(tabId);
+      activeContent.classList.add("active");
+
+      // Forzar reflow para reiniciar animación
+      void activeContent.offsetWidth;
+      activeContent.classList.add("visible");
+
       evt.currentTarget.classList.add("active");
     }
 
@@ -116,6 +351,26 @@
       } else {
         navbar.classList.remove('scrolled');
       }
+    });
+
+    // Fade-in animaciones scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
     });
   </script>
 
