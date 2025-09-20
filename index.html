@@ -12,7 +12,7 @@
   <header class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
-    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y proyectos ABAP.</p>
+    <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
     <div class="social-links">
       <a href="mailto:aspablogomez@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
@@ -23,7 +23,7 @@
   <!-- Sección Sobre mí -->
   <section id="about">
     <h3>Sobre mí</h3>
-    <p>Soy un profesional orientado al análisis de datos, especializado en visualización y automatización para apoyar la toma de decisiones. Combino estadística, programación y comunicación clara.</p>
+    <p>Soy un profesional orientado al análisis de datos, especializado en visualización y automatización para apoyar la toma de decisiones.</p>
   </section>
 
   <!-- Portfolio con pestañas -->
@@ -35,22 +35,46 @@
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto ABAP</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
     <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
-      <iframe src="dashboard-crypto.html"></iframe>
+      <div class="dashboard-card">
+        <h4>Criptomonedas en tiempo real</h4>
+        <iframe src="dashboard-crypto.html"></iframe>
+      </div>
     </div>
 
     <!-- Contenido Acciones -->
     <div id="stocks" class="tab-content">
-      <iframe src="dashboard-sp500.html"></iframe>
+      <div class="dashboard-card">
+        <h4>S&P 500 - Top 20 Acciones</h4>
+        <table id="stocks-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Símbolo</th>
+              <th>Precio</th>
+              <th>Variación</th>
+              <th>Volumen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Se carga desde stocks.json -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
-      <iframe src="dashboard-abap.html"></iframe>
+      <div class="dashboard-card">
+        <h4>ABAP + Criptomonedas</h4>
+        <p>Ejemplo en ABAP que lista las 5 principales criptomonedas.</p>
+        <a href="proyectos/abap-crypto/readme.md" target="_blank">📄 Ver proyecto en GitHub</a>
+      </div>
     </div>
 
   </section>
@@ -64,26 +88,42 @@
     </p>
   </footer>
 
-  <!-- Script para tabs -->
+  <!-- Script para tabs y carga de acciones -->
   <script>
+    // Tabs
     function openTab(evt, tabId) {
-      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
-
-      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
-      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
+
+    // Carga de acciones desde JSON
+    fetch('stocks.json')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector('#stocks-table tbody');
+        tbody.innerHTML = '';
+        data.forEach((stock,i) => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${i+1}</td>
+              <td>${stock.name}</td>
+              <td>${stock.symbol}</td>
+              <td>${stock.price ? '$'+stock.price.toFixed(2) : '-'}</td>
+              <td class="${stock.change >=0 ? 'color-green':'color-red'}">${stock.change ? stock.change.toFixed(2)+'%' : '-'}</td>
+              <td>${stock.volume || '-'}</td>
+            </tr>
+          `;
+        });
+      });
   </script>
 
 </body>
 </html>
-
 
 
 
