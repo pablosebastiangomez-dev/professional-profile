@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - Criptomonedas</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h2>💰 Dashboard de Criptomonedas</h2>
+<body class="dashboard-body">
+  
   <table id="crypto-table">
     <thead>
       <tr>
@@ -15,22 +15,14 @@
         <th>Nombre</th>
         <th>Precio</th>
         <th>Cambio 24h</th>
-        <th>Capitalización</th>
+        <th>Market Cap</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      <tr><td colspan="5" class="loading">Cargando datos...</td></tr>
+    </tbody>
   </table>
-  <script src="dashboard.js"></script>
 
-  <style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #11141d;
-  color: #e0e0e0;
-}
-</style>
-
+  <script src="main.js"></script>
 </body>
 </html>
