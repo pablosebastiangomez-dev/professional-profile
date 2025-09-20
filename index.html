@@ -5,7 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pablo Sebastián Gómez - Portfolio</title>
+  <meta name="description" content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
+  <meta name="author" content="Pablo Sebastián Gómez">
+
+  <!-- Favicons -->
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="img/site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -29,7 +41,7 @@
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
     <div class="social-links">
       <a href="mailto:aspablogomez@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">LinkedIn</a>
       <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </div>
   </section>
@@ -37,15 +49,14 @@
   <!-- Portfolio / Dashboards -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
+    <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-    <!-- Tabs -->
     <div class="tabs">
-      <button class="tab-button active" data-tab="crypto">💰 Criptomonedas</button>
-      <button class="tab-button" data-tab="stocks">📈 Acciones</button>
-      <button class="tab-button" data-tab="abap">🟦 Proyecto en ABAP</button>
+      <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
+      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
-    <!-- Contenido Tabs -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
@@ -63,15 +74,15 @@
     <div id="abap" class="tab-content">
       <div class="dashboard-card">
         <h4>Proyecto ABAP</h4>
-        <p>Este proyecto se encuentra en preparación. Pronto compartiré un ejemplo práctico en ABAP.</p>
+        <p>Este proyecto se encuentra en preparación. Pronto compartiré un ejemplo práctico en ABAP con integración de datos financieros.</p>
       </div>
     </div>
   </section>
 
-  <!-- Sobre mí -->
+  <!-- Sobre mí debajo de dashboards -->
   <section id="about">
     <h3>Sobre mí</h3>
-    <p>Soy un profesional orientado al análisis de datos, especializado en visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
+    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones. Mi enfoque combina estadística, programación y comunicación clara.</p>
   </section>
 
   <!-- Footer -->
@@ -80,35 +91,26 @@
       <p>© 2025 - Pablo Sebastián Gómez</p>
       <p>
         <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
-        <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
+        <a href="https://www.linkedin.com/in/pablo-sebastiangómez" target="_blank">🔗 LinkedIn</a>
       </p>
     </footer>
   </section>
 
-  <!-- Scripts -->
+  <!-- Script Tabs y Navbar Scroll -->
   <script>
-    // Tabs funcionales
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+    function openTab(evt, tabId) {
+      const contents = document.querySelectorAll(".tab-content");
+      contents.forEach(c => c.classList.remove("active"));
 
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-tab');
+      const buttons = document.querySelectorAll(".tab-button");
+      buttons.forEach(b => b.classList.remove("active"));
 
-        // Activar tab
-        tabContents.forEach(tc => {
-          tc.classList.remove('active');
-        });
-        document.getElementById(target).classList.add('active');
-
-        // Activar botón
-        tabButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
+      document.getElementById(tabId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
 
     // Navbar scroll
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function () {
       const navbar = document.querySelector('.navbar');
       if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -120,3 +122,4 @@
 
 </body>
 </html>
+
