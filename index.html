@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pablo Sebastián Gómez - Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
 
-  <!-- Hero / Presentación -->
+  <!-- Hero -->
   <header class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
@@ -20,63 +21,70 @@
     </div>
   </header>
 
-  <!-- Sección Sobre mí -->
+  <!-- Sobre mí -->
   <section id="about">
     <h3>Sobre mí</h3>
-    <p>Soy un profesional orientado al análisis de datos, especializado en visualización y automatización para apoyar la toma de decisiones.</p>
+    <p>Soy un profesional orientado al análisis de datos, especializado en el uso de herramientas de visualización y automatización para apoyar la toma de decisiones.</p>
   </section>
 
-  <!-- Portfolio con pestañas -->
+  <!-- Portfolio -->
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
-    <!-- Botones de pestañas -->
+    <!-- Tabs -->
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
-      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
-      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
+      <button class="tab-button" onclick="openTab(event, 'stocks')">📈 S&P 500</button>
+      <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto ABAP</button>
     </div>
 
-    <!-- Contenido Criptomonedas -->
+    <!-- Crypto -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
-        <iframe src="dashboard-crypto.html"></iframe>
-      </div>
-    </div>
-
-    <!-- Contenido Acciones -->
-    <div id="stocks" class="tab-content">
-      <div class="dashboard-card">
-        <h4>S&P 500 - Top 20 Acciones</h4>
-        <table id="stocks-table">
+        <table id="crypto-table">
           <thead>
             <tr>
               <th>#</th>
               <th>Nombre</th>
-              <th>Símbolo</th>
               <th>Precio</th>
-              <th>Variación</th>
-              <th>Volumen</th>
+              <th>Cambio 24h</th>
+              <th>Market Cap</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Se carga desde stocks.json -->
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     </div>
 
-    <!-- Contenido ABAP -->
-    <div id="abap" class="tab-content">
+    <!-- Stocks -->
+    <div id="stocks" class="tab-content">
       <div class="dashboard-card">
-        <h4>ABAP + Criptomonedas</h4>
-        <p>Ejemplo en ABAP que lista las 5 principales criptomonedas.</p>
-        <a href="proyectos/abap-crypto/readme.md" target="_blank">📄 Ver proyecto en GitHub</a>
+        <h4>Principales acciones S&P 500</h4>
+        <table id="stocks-table">
+          <thead>
+            <tr>
+              <th>Empresa</th>
+              <th>Símbolo</th>
+              <th>Precio</th>
+              <th>Cambio %</th>
+              <th>Volumen</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
 
+    <!-- ABAP -->
+    <div id="abap" class="tab-content">
+      <div class="dashboard-card">
+        <h4>ABAP + Criptomonedas</h4>
+        <p>Ejemplo en ABAP que consume la API pública de CoinGecko.</p>
+        <a href="proyectos/abap-crypto/zcrypto_api.abap" target="_blank">📄 Ver código ABAP</a>
+      </div>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -88,38 +96,14 @@
     </p>
   </footer>
 
-  <!-- Script para tabs y carga de acciones -->
+  <!-- Tabs Script -->
   <script>
-    // Tabs
     function openTab(evt, tabId) {
-      const contents = document.querySelectorAll(".tab-content");
-      contents.forEach(c => c.classList.remove("active"));
-      const buttons = document.querySelectorAll(".tab-button");
-      buttons.forEach(b => b.classList.remove("active"));
-
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+      document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
-
-    // Carga de acciones desde JSON
-    fetch('stocks.json')
-      .then(res => res.json())
-      .then(data => {
-        const tbody = document.querySelector('#stocks-table tbody');
-        tbody.innerHTML = '';
-        data.forEach((stock,i) => {
-          tbody.innerHTML += `
-            <tr>
-              <td>${i+1}</td>
-              <td>${stock.name}</td>
-              <td>${stock.symbol}</td>
-              <td>${stock.price ? '$'+stock.price.toFixed(2) : '-'}</td>
-              <td class="${stock.change >=0 ? 'color-green':'color-red'}">${stock.change ? stock.change.toFixed(2)+'%' : '-'}</td>
-              <td>${stock.volume || '-'}</td>
-            </tr>
-          `;
-        });
-      });
   </script>
 
 </body>
