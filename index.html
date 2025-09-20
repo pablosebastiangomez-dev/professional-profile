@@ -8,6 +8,17 @@
   <meta name="description" content="Portfolio profesional de Pablo Sebastián Gómez, Analista de Datos especializado en análisis financiero, criptomonedas y mercados bursátiles.">
   <meta name="author" content="Pablo Sebastián Gómez">
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Pablo Sebastián Gómez - Portfolio">
+  <meta property="og:description" content="Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pablosebastiangomez-dev.github.io/professional-profile/">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pablo Sebastián Gómez - Portfolio">
+  <meta name="twitter:description" content="Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.">
+
   <!-- Favicons -->
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
@@ -18,202 +29,12 @@
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    /* === Navbar === */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #1f1f1f;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .navbar .logo {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #b22222;
-    }
-
-    .navbar nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 20px;
-    }
-
-    .navbar nav ul li a {
-      text-decoration: none;
-      color: #ddd;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .navbar nav ul li a:hover {
-      color: #4682b4;
-    }
-
-    /* Compensar espacio del navbar fijo */
-    body {
-      padding-top: 70px;
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: #1f1f1f;
-      color: #f0f0f0;
-      line-height: 1.6;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      margin: 0 0 10px;
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      color: #b22222;
-    }
-
-    .hero h2 {
-      font-size: 1.5rem;
-      color: #ffffff;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      max-width: 600px;
-      margin: 0 auto 20px;
-      color: #bbb;
-    }
-
-    .social-links a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #4682b4;
-      font-weight: bold;
-    }
-
-    .social-links a:hover {
-      color: #5fa8d3;
-    }
-
-    /* Sección Sobre mí */
-    #about {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: 40px auto;
-      background: #2a2a2a;
-      border-radius: 8px;
-    }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      gap: 10px;
-    }
-
-    .tab-button {
-      padding: 10px 20px;
-      border: none;
-      background: rgba(255, 255, 255, 0.1);
-      color: #999;
-      cursor: pointer;
-      border-radius: 8px 8px 0 0;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-
-    .tab-button.active {
-      background: #2a2a2a;
-      color: #ffffff;
-    }
-
-    .tab-button:hover {
-      color: #fff;
-    }
-
-    .tab-content {
-      display: none;
-      background: #2a2a2a;
-      padding: 20px;
-      border-radius: 0 8px 8px 8px;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .dashboard-card {
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      margin: 0;
-      border: none;
-      box-shadow: none;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .dashboard-card iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
-      display: block;
-      background: #2a2a2a;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    footer a {
-      color: #4682b4;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #5fa8d3;
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">Pablo Sebastián Gómez</div>
-    <nav>
-      <ul>
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#about">Sobre mí</a></li>
-        <li><a href="#portfolio">Proyectos</a></li>
-        <li><a href="#contact">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero -->
-  <section id="hero" class="hero">
+  <!-- Hero / Presentación -->
+  <header class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
@@ -222,9 +43,9 @@
       <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">LinkedIn</a>
       <a href="https://github.com/pablosebastiangomez-dev" target="_blank">GitHub</a>
     </div>
-  </section>
+  </header>
 
-  <!-- Sobre mí -->
+  <!-- Sección Sobre mí -->
   <section id="about">
     <h3>Sobre mí</h3>
     <p>
@@ -238,12 +59,14 @@
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards en diferentes áreas de análisis:</p>
 
+    <!-- Botones de pestañas -->
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'crypto')">💰 Criptomonedas</button>
       <button class="tab-button" onclick="openTab(event, 'stocks')">📈 Acciones</button>
       <button class="tab-button" onclick="openTab(event, 'abap')">🟦 Proyecto en ABAP</button>
     </div>
 
+    <!-- Contenido Criptomonedas -->
     <div id="crypto" class="tab-content active">
       <div class="dashboard-card">
         <h4>Criptomonedas en tiempo real</h4>
@@ -251,6 +74,7 @@
       </div>
     </div>
 
+    <!-- Contenido Acciones -->
     <div id="stocks" class="tab-content">
       <div class="dashboard-card">
         <h4>S&P 500 - Análisis bursátil</h4>
@@ -258,6 +82,7 @@
       </div>
     </div>
 
+    <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
       <div class="dashboard-card">
         <h4>Proyecto ABAP</h4>
@@ -267,24 +92,26 @@
   </section>
 
   <!-- Contacto -->
-  <section id="contact">
-    <footer>
-      <p>© 2025 - Pablo Sebastián Gómez</p>
-      <p>
-        <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
-        <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
-      </p>
-    </footer>
-  </section>
+  <footer>
+    <p>© 2025 - Pablo Sebastián Gómez</p>
+    <p>
+      <a href="mailto:aspablogomez@gmail.com">📧 Email</a> | 
+      <a href="https://www.linkedin.com/in/pablo-sebastián-gómez" target="_blank">🔗 LinkedIn</a>
+    </p>
+  </footer>
 
+  <!-- Script para tabs -->
   <script>
     function openTab(evt, tabId) {
+      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
 
+      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
+      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
