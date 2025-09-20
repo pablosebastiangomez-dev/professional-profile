@@ -57,15 +57,19 @@
     <!-- Contenido ABAP -->
     <div id="abap" class="tab-content">
       <div class="dashboard-card">
-        <h4>Ejemplo ABAP con Criptomonedas</h4>
-        <p>Este proyecto muestra cómo listar las principales criptomonedas usando ABAP:</p>
-        <pre><code>
-REPORT zcrypto_example.
-
-DATA: lv_url TYPE string VALUE 'https://api.coincap.io/v2/assets/bitcoin'.
-
-WRITE: / 'Ejemplo ABAP para consumir API de criptomonedas:', lv_url.
-        </code></pre>
+        <h4>Proyecto ABAP - Criptomonedas</h4>
+        <p>Ejemplo de código ABAP que lista criptomonedas (archivo local):</p>
+        <pre>
+&lt;code&gt;
+<?php
+// ejemplo de lectura estática (no fetch) 
+include("proyectos/abap-crypto/zcrypto_api.abap");
+?>
+&lt;/code&gt;
+        </pre>
+        <p>
+          <a href="proyectos/abap-crypto/zcrypto_api.abap" target="_blank">📄 Ver archivo ABAP en GitHub</a>
+        </p>
       </div>
     </div>
 
@@ -83,15 +87,12 @@ WRITE: / 'Ejemplo ABAP para consumir API de criptomonedas:', lv_url.
   <!-- Script para tabs -->
   <script>
     function openTab(evt, tabId) {
-      // Oculta todos los contenidos
       const contents = document.querySelectorAll(".tab-content");
       contents.forEach(c => c.classList.remove("active"));
 
-      // Desactiva todos los botones
       const buttons = document.querySelectorAll(".tab-button");
       buttons.forEach(b => b.classList.remove("active"));
 
-      // Activa el tab seleccionado
       document.getElementById(tabId).classList.add("active");
       evt.currentTarget.classList.add("active");
     }
