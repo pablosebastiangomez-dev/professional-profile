@@ -8,8 +8,8 @@ export async function handler() {
 
     const prompt = `
       Analiza la tabla "Ganadoras" en la URL: ${url}.
-      Para las primeras 5 empresas, extrae únicamente: el nombre de la empresa, su símbolo (ticker) y el volumen.
-      Devuelve la información estrictamente en formato JSON, como un array de objetos. No incluyas ningún texto fuera del JSON.
+      Para las primeras 5 empresas, extrae únicamente el nombre de la empresa y su símbolo (ticker).
+      Devuelve la información estrictamente en formato JSON, como un array de objetos con las claves "nombre" y "simbolo". No incluyas nada más.
     `;
 
     const result = await model.generateContent(prompt);
