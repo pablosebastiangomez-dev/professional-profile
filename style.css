@@ -232,3 +232,20 @@ footer {
 .flash {
   animation: row-flash 1s ease-out;
 }
+
+/* === ESTILOS PARA LA SECCIÓN SOBRE MÍ === */
+#about p {
+  text-align: justify;
+  max-width: 800px; /* El texto justificado se lee mejor en líneas no muy largas */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.highlight-text {
+  display: block; /* Lo hacemos un bloque para poder centrarlo */
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--accent-color); /* Usamos el color de acento que ya definimos */
+  margin-top: 2em; /* Le damos un poco de espacio arriba */
+}
