@@ -137,3 +137,53 @@ async function fetchSP500Data() {
 const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 const formatMarketCap = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(num);
 const formatNumber = (num) => new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 2 }).format(num);
+
+// ... al final de tu archivo main.js
+
+// Detectamos si estamos en la página de Market Movers
+document.addEventListener('DOMContentLoaded', () => {
+    // ... tu código existente para las otras tablas
+    const moversTable = document.querySelector('#movers-table');
+    if (moversTable) {
+        fetchMarketMoversData();
+    }
+});
+
+
+async function fetchMarketMoversData() {
+    const tableBody = document.querySelector('#movers-table tbody');
+    try {
+        // Llamamos a nuestra nueva función serverless
+        const response = await fetch('/.netlify/functions/gemini-scraper');
+        if (!response.ok) {
+            throw new Error('La respuesta del servidor no fue exitosa');
+        }
+        const movers = await response.json();
+        
+        displayMarketMovers(movers);
+
+    } catch (error) {
+        console.error("Error al obtener datos de market movers:", error);
+        tableBody.innerHTML = `<tr><td colspan="4" class="error">No se pudieron obtener los datos.</td></tr>`;
+    }
+}
+
+function displayMarketMovers(movers) {
+    const tableBody = document.querySelector('#movers-table tbody');
+    tableBody.innerHTML = ''; // Limpiamos la tabla
+
+    movers.forEach(stock => {
+        const changeColorClass = stock.cambio_porcentaje >= 0 ? 'color-green' : 'color-red';
+        const row = `
+            <tr>
+                <td class="coin-name">
+                    <span>${stock.nombre} <span class="symbol">${stock.simbolo}</span></span>
+                </td>
+                <td>${formatCurrency(stock.precio)}</td>
+                <td class="${changeColorClass}">${stock.cambio_porcentaje}%</td>
+                <td>${stock.volumen}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
