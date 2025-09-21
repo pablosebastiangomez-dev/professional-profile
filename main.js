@@ -1,42 +1,29 @@
 // ==========================
 // LÓGICA PRINCIPAL UNIFICADA
-// Se ejecuta una sola vez cuando el HTML de cualquier página ha cargado.
 // ==========================
 document.addEventListener('DOMContentLoaded', () => {
-    // Buscamos las tablas activas en el documento.
     const cryptoTable = document.querySelector('#crypto-table');
-    const moversTable = document.querySelector('#movers-table');
+    const aiTable = document.querySelector('#ai-table');
+    const apiTable = document.querySelector('#api-table');
     
-    // Si encuentra la tabla de criptos, carga esos datos.
-    if (cryptoTable) {
-        fetchCryptoData();
-    }
-    
-    // Si encuentra la tabla de market movers, carga los datos con IA.
-    if (moversTable) {
-        fetchMarketMoversData();
-    }
+    if (cryptoTable) fetchCryptoData();
+    if (aiTable) fetchAiData();
+    if (apiTable) fetchApiData();
 });
 
-
-// =================================
-// FUNCIÓN PARA OBTENER CRIPTOMONEDAS (API de CoinGecko)
-// =================================
+// === LÓGICA PARA DASHBOARD DE CRIPTOMONEDAS ===
 async function fetchCryptoData() {
+    // ... (esta función se queda exactamente igual que antes)
     const cryptoTableBody = document.querySelector('#crypto-table tbody');
     const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=false';
-
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error(`Error en la respuesta: ${response.statusText}`);
         const coins = await response.json();
-        
-        cryptoTableBody.innerHTML = ''; // Limpiamos el mensaje de "Cargando..."
-
+        cryptoTableBody.innerHTML = ''; 
         coins.forEach((coin, index) => {
             const priceChange = coin.price_change_percentage_24h;
             const changeColorClass = priceChange >= 0 ? 'color-green' : 'color-red';
-            
             const row = `
                 <tr>
                     <td>${index + 1}</td>
@@ -51,66 +38,61 @@ async function fetchCryptoData() {
             `;
             cryptoTableBody.innerHTML += row;
         });
-
     } catch (error) {
-        console.error("Error al cargar datos de criptomonedas:", error);
         cryptoTableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los datos.</td></tr>`;
     }
 }
 
-
-// =================================
-// FUNCIÓN PARA OBTENER MARKET MOVERS (CON LOGS DE DEPURACIÓN)
-// =================================
-async function fetchMarketMoversData() {
-    const tableBody = document.querySelector('#movers-table tbody');
+// === LÓGICA PARA DASHBOARD DE IA (GEMINI) ===
+async function fetchAiData() {
+    const tableBody = document.querySelector('#ai-table tbody');
     try {
-        console.log("1. Iniciando la petición a la función serverless...");
         const response = await fetch('/.netlify/functions/gemini-scraper');
-        console.log("2. Respuesta recibida del servidor:", response);
-
-        if (!response.ok) {
-            throw new Error(`La respuesta del servidor no fue exitosa. Estado: ${response.status}`);
-        }
-
-        console.log("3. Intentando convertir la respuesta a JSON...");
-        const movers = await response.json();
-        console.log("4. JSON convertido exitosamente:", movers);
-
-        console.log("5. Intentando mostrar los datos en la tabla...");
-        displayMarketMovers(movers);
-        console.log("6. ¡Datos mostrados exitosamente!");
-
+        if (!response.ok) throw new Error('Respuesta de servidor no fue exitosa');
+        const data = await response.json();
+        
+        tableBody.innerHTML = '';
+        data.forEach(stock => {
+            const row = `
+                <tr>
+                    <td class="coin-name">
+                        <span>${stock.nombre} <span class="symbol">${stock.simbolo}</span></span>
+                    </td>
+                    <td>${stock.volumen}</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
     } catch (error) {
-        console.error("ERROR FINAL DETECTADO:", error); // Esto nos mostrará el error real
-        tableBody.innerHTML = `<tr><td colspan="4" class="error">No se pudieron obtener los datos.</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="2" class="error">No se pudieron obtener los datos de la IA.</td></tr>`;
     }
 }
 
-function displayMarketMovers(movers) {
-    const tableBody = document.querySelector('#movers-table tbody');
-    tableBody.innerHTML = ''; // Limpiamos la tabla
+// === LÓGICA PARA DASHBOARD DE API (FMP) ===
+async function fetchApiData() {
+    const tableBody = document.querySelector('#api-table tbody');
+    try {
+        const response = await fetch('/.netlify/functions/fmp-api');
+        if (!response.ok) throw new Error('Respuesta de servidor no fue exitosa');
+        const data = await response.json();
 
-    movers.forEach(stock => {
-        const changeColorClass = stock.cambio_porcentaje >= 0 ? 'color-green' : 'color-red';
-        const row = `
-            <tr>
-                <td class="coin-name">
-                    <span>${stock.nombre} <span class="symbol">${stock.simbolo}</span></span>
-                </td>
-                <td>${formatCurrency(stock.precio)}</td>
-                <td class="${changeColorClass}">${stock.cambio_porcentaje}%</td>
-                <td>${stock.volumen}</td>
-            </tr>
-        `;
-        tableBody.innerHTML += row;
-    });
+        tableBody.innerHTML = '';
+        data.forEach(stock => {
+            const changeColorClass = stock.cambio_porcentaje >= 0 ? 'color-green' : 'color-red';
+            const row = `
+                <tr>
+                    <td>${stock.simbolo}</td>
+                    <td>${formatCurrency(stock.precio)}</td>
+                    <td class="${changeColorClass}">${stock.cambio_porcentaje.toFixed(2)}%</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    } catch (error) {
+        tableBody.innerHTML = `<tr><td colspan="3" class="error">No se pudieron obtener los datos de la API.</td></tr>`;
+    }
 }
 
-
-// ==========================
-// FUNCIONES AUXILIARES (Para formatear números)
-// ==========================
+// === FUNCIONES AUXILIARES ===
 const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 const formatMarketCap = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(num);
-const formatNumber = (num) => new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 2 }).format(num);
