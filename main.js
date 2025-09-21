@@ -1,19 +1,23 @@
 // ==========================
-// LÓGICA PRINCIPAL
-// Se ejecuta cuando el HTML ha cargado completamente.
+// LÓGICA PRINCIPAL UNIFICADA
+// Se ejecuta una sola vez cuando el HTML de cualquier página ha cargado.
 // ==========================
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Página cargada. Verificando dashboards...");
+
     // Buscamos las tablas activas en el documento.
     const cryptoTable = document.querySelector('#crypto-table');
     const moversTable = document.querySelector('#movers-table');
     
     // Si encuentra la tabla de criptos, carga esos datos.
     if (cryptoTable) {
+        console.log("Tabla de criptomonedas encontrada. Cargando datos...");
         fetchCryptoData();
     }
     
     // Si encuentra la tabla de market movers, carga los datos con IA.
     if (moversTable) {
+        console.log("Tabla de market movers encontrada. Cargando datos...");
         fetchMarketMoversData();
     }
 });
@@ -31,10 +35,8 @@ async function fetchCryptoData() {
         if (!response.ok) throw new Error(`Error en la respuesta: ${response.statusText}`);
         const coins = await response.json();
         
-        // Limpiamos el mensaje de "Cargando..."
-        cryptoTableBody.innerHTML = ''; 
+        cryptoTableBody.innerHTML = ''; // Limpiamos el mensaje de "Cargando..."
 
-        // Creamos una fila en la tabla por cada moneda.
         coins.forEach((coin, index) => {
             const priceChange = coin.price_change_percentage_24h;
             const changeColorClass = priceChange >= 0 ? 'color-green' : 'color-red';
@@ -53,10 +55,10 @@ async function fetchCryptoData() {
             `;
             cryptoTableBody.innerHTML += row;
         });
-
+        console.log("Datos de criptomonedas cargados exitosamente.");
     } catch (error) {
         console.error("Error al cargar datos de criptomonedas:", error);
-        cryptoTableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los datos. Intenta de nuevo más tarde.</td></tr>`;
+        cryptoTableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los datos.</td></tr>`;
     }
 }
 
@@ -67,7 +69,6 @@ async function fetchCryptoData() {
 async function fetchMarketMoversData() {
     const tableBody = document.querySelector('#movers-table tbody');
     try {
-        // Llamamos a nuestra función serverless segura en Netlify
         const response = await fetch('/.netlify/functions/gemini-scraper');
         if (!response.ok) {
             throw new Error('La respuesta del servidor no fue exitosa');
@@ -75,6 +76,7 @@ async function fetchMarketMoversData() {
         const movers = await response.json();
         
         displayMarketMovers(movers);
+        console.log("Datos de market movers cargados exitosamente.");
 
     } catch (error) {
         console.error("Error al obtener datos de market movers:", error);
@@ -94,4 +96,18 @@ function displayMarketMovers(movers) {
                     <span>${stock.nombre} <span class="symbol">${stock.simbolo}</span></span>
                 </td>
                 <td>${formatCurrency(stock.precio)}</td>
-                <td class
+                <td class="${changeColorClass}">${stock.cambio_porcentaje}%</td>
+                <td>${stock.volumen}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
+
+
+// ==========================
+// FUNCIONES AUXILIARES (Para formatear números)
+// ==========================
+const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
+const formatMarketCap = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(num);
+const formatNumber = (num) => new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 2 }).format(num);
