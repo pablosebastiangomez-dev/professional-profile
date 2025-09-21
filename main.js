@@ -1,19 +1,73 @@
-// ==========================
-// LÓGICA PRINCIPAL UNIFICADA
-// ==========================
 document.addEventListener('DOMContentLoaded', () => {
     const cryptoTable = document.querySelector('#crypto-table');
-    const aiTable = document.querySelector('#ai-table');
-    const apiTable = document.querySelector('#api-table');
+    const moversFinalTable = document.querySelector('#movers-final-table');
     
     if (cryptoTable) fetchCryptoData();
-    if (aiTable) fetchAiData();
-    if (apiTable) fetchApiData();
+    if (moversFinalTable) fetchHybridMoversData();
 });
 
-// === LÓGICA PARA DASHBOARD DE CRIPTOMONEDAS ===
+// === LÓGICA PARA DASHBOARD HÍBRIDO DE ACCIONES ===
+async function fetchHybridMoversData() {
+    const tableBody = document.querySelector('#movers-final-table tbody');
+    try {
+        // 1. Hacemos ambas llamadas a nuestras funciones serverless A LA VEZ.
+        const [aiResponse, apiResponse] = await Promise.all([
+            fetch('/.netlify/functions/gemini-scraper'),
+            fetch('/.netlify/functions/fmp-api')
+        ]);
+
+        if (!aiResponse.ok || !apiResponse.ok) {
+            throw new Error('Una de las fuentes de datos falló.');
+        }
+
+        const companiesFromAI = await aiResponse.json();
+        const financialsFromAPI = await apiResponse.json();
+
+        // 2. Creamos un "mapa" para buscar datos financieros por símbolo fácilmente.
+        const financialsMap = new Map(financialsFromAPI.map(stock => [stock.simbolo, stock]));
+
+        // 3. Unimos los datos: Usamos la lista de la IA y le añadimos los datos de la API.
+        const mergedData = companiesFromAI.map(company => {
+            const financials = financialsMap.get(company.simbolo) || {}; // Obtenemos los datos de la API
+            return {
+                ...company, // nombre, simbolo (de la IA)
+                ...financials, // precio, cambio_porcentaje, volumen (de la API)
+            };
+        });
+
+        displayHybridMovers(mergedData);
+
+    } catch (error) {
+        console.error("Error al obtener datos híbridos:", error);
+        tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron obtener los datos combinados.</td></tr>`;
+    }
+}
+
+function displayHybridMovers(data) {
+    const tableBody = document.querySelector('#movers-final-table tbody');
+    tableBody.innerHTML = '';
+    
+    data.forEach(stock => {
+        const price = stock.precio ?? 0; // Usamos 0 si el precio no existe
+        const change = stock.cambio_porcentaje ?? 0;
+        const changeColorClass = change >= 0 ? 'color-green' : 'color-red';
+
+        const row = `
+            <tr>
+                <td>${stock.simbolo}</td>
+                <td class="stock-name">${stock.nombre}</td>
+                <td>${formatCurrency(price)}</td>
+                <td class="${changeColorClass}">${change.toFixed(2)}%</td>
+                <td>${stock.volumen || 'N/A'}</td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
+
+
+// === LÓGICA PARA DASHBOARD DE CRIPTOMONEDAS (sin cambios) ===
 async function fetchCryptoData() {
-    // ... (esta función se queda exactamente igual que antes)
     const cryptoTableBody = document.querySelector('#crypto-table tbody');
     const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=false';
     try {
@@ -40,56 +94,6 @@ async function fetchCryptoData() {
         });
     } catch (error) {
         cryptoTableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los datos.</td></tr>`;
-    }
-}
-
-// === LÓGICA PARA DASHBOARD DE IA (GEMINI) ===
-async function fetchAiData() {
-    const tableBody = document.querySelector('#ai-table tbody');
-    try {
-        const response = await fetch('/.netlify/functions/gemini-scraper');
-        if (!response.ok) throw new Error('Respuesta de servidor no fue exitosa');
-        const data = await response.json();
-        
-        tableBody.innerHTML = '';
-        data.forEach(stock => {
-            const row = `
-                <tr>
-                    <td class="coin-name">
-                        <span>${stock.nombre} <span class="symbol">${stock.simbolo}</span></span>
-                    </td>
-                    <td>${stock.volumen}</td>
-                </tr>
-            `;
-            tableBody.innerHTML += row;
-        });
-    } catch (error) {
-        tableBody.innerHTML = `<tr><td colspan="2" class="error">No se pudieron obtener los datos de la IA.</td></tr>`;
-    }
-}
-
-// === LÓGICA PARA DASHBOARD DE API (FMP) ===
-async function fetchApiData() {
-    const tableBody = document.querySelector('#api-table tbody');
-    try {
-        const response = await fetch('/.netlify/functions/fmp-api');
-        if (!response.ok) throw new Error('Respuesta de servidor no fue exitosa');
-        const data = await response.json();
-
-        tableBody.innerHTML = '';
-        data.forEach(stock => {
-            const changeColorClass = stock.cambio_porcentaje >= 0 ? 'color-green' : 'color-red';
-            const row = `
-                <tr>
-                    <td>${stock.simbolo}</td>
-                    <td>${formatCurrency(stock.precio)}</td>
-                    <td class="${changeColorClass}">${stock.cambio_porcentaje.toFixed(2)}%</td>
-                </tr>
-            `;
-            tableBody.innerHTML += row;
-        });
-    } catch (error) {
-        tableBody.innerHTML = `<tr><td colspan="3" class="error">No se pudieron obtener los datos de la API.</td></tr>`;
     }
 }
 
