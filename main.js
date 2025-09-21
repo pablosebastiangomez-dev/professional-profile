@@ -1,3 +1,4 @@
+// main.js - Versión con errores detallados
 document.addEventListener('DOMContentLoaded', () => {
     const cryptoTable = document.querySelector('#crypto-table');
     const moversFinalTable = document.querySelector('#movers-final-table');
@@ -10,36 +11,35 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchHybridMoversData() {
     const tableBody = document.querySelector('#movers-final-table tbody');
     try {
-        // 1. Hacemos ambas llamadas a nuestras funciones serverless A LA VEZ.
         const [aiResponse, apiResponse] = await Promise.all([
             fetch('/.netlify/functions/gemini-scraper'),
             fetch('/.netlify/functions/fmp-api')
         ]);
 
-        if (!aiResponse.ok || !apiResponse.ok) {
-            throw new Error('Una de las fuentes de datos falló.');
+        // Verificamos cada respuesta por separado para dar un error específico
+        if (!aiResponse.ok) {
+            throw new Error('La función de IA falló. (gemini-scraper)');
+        }
+        if (!apiResponse.ok) {
+            throw new Error('La API de FMP falló. Revisa la clave de API en Netlify.');
         }
 
         const companiesFromAI = await aiResponse.json();
         const financialsFromAPI = await apiResponse.json();
 
-        // 2. Creamos un "mapa" para buscar datos financieros por símbolo fácilmente.
         const financialsMap = new Map(financialsFromAPI.map(stock => [stock.simbolo, stock]));
 
-        // 3. Unimos los datos: Usamos la lista de la IA y le añadimos los datos de la API.
         const mergedData = companiesFromAI.map(company => {
-            const financials = financialsMap.get(company.simbolo) || {}; // Obtenemos los datos de la API
-            return {
-                ...company, // nombre, simbolo (de la IA)
-                ...financials, // precio, cambio_porcentaje, volumen (de la API)
-            };
+            const financials = financialsMap.get(company.simbolo) || {};
+            return { ...company, ...financials };
         });
 
         displayHybridMovers(mergedData);
 
     } catch (error) {
         console.error("Error al obtener datos híbridos:", error);
-        tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron obtener los datos combinados.</td></tr>`;
+        // Mostramos el error específico en la tabla
+        tableBody.innerHTML = `<tr><td colspan="5" class="error">${error.message}</td></tr>`;
     }
 }
 
@@ -48,7 +48,7 @@ function displayHybridMovers(data) {
     tableBody.innerHTML = '';
     
     data.forEach(stock => {
-        const price = stock.precio ?? 0; // Usamos 0 si el precio no existe
+        const price = stock.precio ?? 0;
         const change = stock.cambio_porcentaje ?? 0;
         const changeColorClass = change >= 0 ? 'color-green' : 'color-red';
 
