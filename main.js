@@ -1,39 +1,20 @@
 // ==========================
-// CONFIGURACIÓN GENERAL
-// ==========================
-
-// 🔑 IMPORTANTE: Reemplaza con tus propias claves de API.
-// La clave de Alpha Vantage es gratuita y la puedes obtener en su sitio web.
-const ALPHA_VANTAGE_API_KEY = "1UOK46NY9578FX4Y"; 
-
-// Lista de símbolos de acciones del S&P 500 que queremos mostrar.
-const SP500_SYMBOLS = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA', 'META', 'TSLA', 'JPM'];
-
-// Nombres de las empresas para que se vean más amigables.
-const COMPANY_NAMES = {
-    'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corp.', 'GOOGL': 'Alphabet Inc.',
-    'AMZN': 'Amazon.com, Inc.', 'NVDA': 'NVIDIA Corp.', 'META': 'Meta Platforms, Inc.',
-    'TSLA': 'Tesla, Inc.', 'JPM': 'JPMorgan Chase & Co.'
-};
-
-
-// ==========================
 // LÓGICA PRINCIPAL
 // Se ejecuta cuando el HTML ha cargado completamente.
 // ==========================
 document.addEventListener('DOMContentLoaded', () => {
-    // Buscamos las tablas en el documento.
+    // Buscamos las tablas activas en el documento.
     const cryptoTable = document.querySelector('#crypto-table');
-    const sp500Table = document.querySelector('#sp500-table');
+    const moversTable = document.querySelector('#movers-table');
     
     // Si encuentra la tabla de criptos, carga esos datos.
     if (cryptoTable) {
         fetchCryptoData();
     }
     
-    // Si encuentra la tabla de acciones, carga esos otros datos.
-    if (sp500Table) {
-        fetchSP500Data();
+    // Si encuentra la tabla de market movers, carga los datos con IA.
+    if (moversTable) {
+        fetchMarketMoversData();
     }
 });
 
@@ -81,79 +62,12 @@ async function fetchCryptoData() {
 
 
 // =================================
-// FUNCIÓN PARA OBTENER ACCIONES (API de Alpha Vantage)
+// FUNCIÓN PARA OBTENER MARKET MOVERS (CON IA de Gemini)
 // =================================
-async function fetchSP500Data() {
-    const stocksTableBody = document.querySelector('#sp500-table tbody');
-    stocksTableBody.innerHTML = ''; // Limpiamos la tabla para empezar a llenarla.
-
-    for (const symbol of SP500_SYMBOLS) {
-        const apiUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${ALPHA_VANTAGE_API_KEY}`;
-        
-        try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error(`Error en la respuesta: ${response.statusText}`);
-            const data = await response.json();
-
-            // Alpha Vantage a veces responde con un objeto vacío si la clave es inválida o se excede el límite.
-            if (data['Global Quote'] && Object.keys(data['Global Quote']).length > 0) {
-                const quote = data['Global Quote'];
-                const price = parseFloat(quote['05. price']);
-                const changePercent = parseFloat(quote['10. change percent'].replace('%', ''));
-                const volume = parseInt(quote['06. volume']);
-
-                const changeColorClass = changePercent >= 0 ? 'color-green' : 'color-red';
-
-                const row = `
-                    <tr>
-                        <td>${symbol}</td>
-                        <td class="stock-name">${COMPANY_NAMES[symbol] || symbol}</td>
-                        <td>${formatCurrency(price)}</td>
-                        <td class="${changeColorClass}">${changePercent.toFixed(2)}%</td>
-                        <td>${formatNumber(volume)}</td>
-                    </tr>
-                `;
-                stocksTableBody.innerHTML += row;
-            } else {
-                // Si no hay datos para un símbolo, lo mostramos en la consola.
-                console.warn(`No se recibieron datos para el símbolo: ${symbol}. Puede ser por el límite de la API.`);
-            }
-
-            // IMPORTANTE: Pausa de 15 segundos entre cada llamada para no superar el límite
-            // de la API gratuita de Alpha Vantage (5 llamadas por minuto).
-            await new Promise(resolve => setTimeout(resolve, 15000)); 
-
-        } catch (error) {
-            console.error(`Error al cargar datos para ${symbol}:`, error);
-            // Si quieres, puedes agregar una fila de error en la tabla aquí.
-        }
-    }
-}
-
-
-// ==========================
-// FUNCIONES AUXILIARES (Para formatear números)
-// ==========================
-const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
-const formatMarketCap = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(num);
-const formatNumber = (num) => new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 2 }).format(num);
-
-// ... al final de tu archivo main.js
-
-// Detectamos si estamos en la página de Market Movers
-document.addEventListener('DOMContentLoaded', () => {
-    // ... tu código existente para las otras tablas
-    const moversTable = document.querySelector('#movers-table');
-    if (moversTable) {
-        fetchMarketMoversData();
-    }
-});
-
-
 async function fetchMarketMoversData() {
     const tableBody = document.querySelector('#movers-table tbody');
     try {
-        // Llamamos a nuestra nueva función serverless
+        // Llamamos a nuestra función serverless segura en Netlify
         const response = await fetch('/.netlify/functions/gemini-scraper');
         if (!response.ok) {
             throw new Error('La respuesta del servidor no fue exitosa');
@@ -180,10 +94,4 @@ function displayMarketMovers(movers) {
                     <span>${stock.nombre} <span class="symbol">${stock.simbolo}</span></span>
                 </td>
                 <td>${formatCurrency(stock.precio)}</td>
-                <td class="${changeColorClass}">${stock.cambio_porcentaje}%</td>
-                <td>${stock.volumen}</td>
-            </tr>
-        `;
-        tableBody.innerHTML += row;
-    });
-}
+                <td class
