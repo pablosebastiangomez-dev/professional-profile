@@ -329,6 +329,26 @@ footer {
   animation: row-flash 1s ease-out;
 }
 
+@keyframes price-up-bg {
+  from { background-color: rgba(40, 167, 69, 0.3); }
+  to { background-color: transparent; }
+}
+
+@keyframes price-down-bg {
+  from { background-color: rgba(220, 53, 69, 0.3); }
+  to { background-color: transparent; }
+}
+
+.price-up {
+  animation: price-up-bg 1.5s ease-out;
+  color: var(--color-green) !important;
+}
+
+.price-down {
+  animation: price-down-bg 1.5s ease-out;
+  color: var(--color-red) !important;
+}
+
 /* === ESTILOS PARA LA SECCIÓN SOBRE MÍ === */
 #about p {
   text-align: justify;
