@@ -47,7 +47,8 @@
     <div class="tab-container">
       <div class="tabs">
         <button class="tab-button active" data-tab="crypto">Dashboard de Criptomonedas</button>
-        <button class="tab-button" data-tab="movers">Principales Movimientos del Mercado</button>
+        <button class="tab-button" data-tab="data-analysis">Análisis de Datos y Visualización</button>
+        <button class="tab-button" data-tab="ml-projects">Proyectos de Machine Learning</button>
       </div>
 
       <div id="crypto" class="tab-content active">
@@ -60,12 +61,24 @@
         </div>
       </div>
       
-      <div id="movers" class="tab-content">
+      <div id="data-analysis" class="tab-content">
         <div class="dashboard-card">
-          <h4>Principales Movimientos del Mercado</h4>
-          <p>Dashboard híbrido: La IA identifica las 5 acciones ganadoras y una API trae los datos financieros en tiempo real.</p>
+          <h4>Análisis de Datos y Visualización</h4>
+          <p>Exploración y visualización interactiva de conjuntos de datos. Aquí se mostrarán insights clave.</p>
           <div class="dashboard-container">
-            <iframe src="dashboard-movers-final.html" class="dashboard-iframe" loading="lazy"></iframe>
+            <!-- Contenido del nuevo dashboard de análisis de datos -->
+            <iframe src="dashboard-data-analysis.html" class="dashboard-iframe" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div id="ml-projects" class="tab-content">
+        <div class="dashboard-card">
+          <h4>Proyectos de Machine Learning</h4>
+          <p>Demostraciones interactivas de modelos de Machine Learning y sus predicciones.</p>
+          <div class="dashboard-container">
+            <!-- Contenido del nuevo dashboard de proyectos ML -->
+            <iframe src="dashboard-ml-projects.html" class="dashboard-iframe" loading="lazy"></iframe>
           </div>
         </div>
       </div>
