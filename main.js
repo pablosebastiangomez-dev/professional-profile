@@ -115,34 +115,24 @@ function drawGauge(canvas, value) {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const centerX = canvas.width / 2;
-    const centerY = canvas.height - 10; // Adjusted for a semi-circle based at the bottom
+    const centerY = canvas.height - 25; // Adjusted for a semi-circle based at the bottom
     const radius = Math.min(centerX, centerY) - 20;
     
-    // Angles for the semi-circle (0 degrees to 180 degrees)
-    // 0 degrees is right horizontal, Math.PI is left horizontal
-    // We want the gauge to sweep from left (0 value) to right (100 value)
-    // So, actual start angle for drawing should be Math.PI (left) and end angle 0 (right)
-    // But for the user's mental model, 0 maps to 0deg and 100 maps to 180deg
-    // We need to map the value to angles: 0 -> Math.PI, 100 -> 0 for a clockwise sweep
-
-    // To sweep from left to right (0 to 100), we need to draw from Math.PI to 0 in a counter-clockwise manner
-    // For the pointer calculation, we want 0 value to be at Math.PI (left) and 100 value to be at 0 (right)
-    // Let's use 0 to Math.PI for drawing, but reverse the value mapping for the pointer
     const gaugeStartAngle = Math.PI; // Left side
     const gaugeEndAngle = 0; // Right side
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Create gradient. The gradient itself is horizontal, independent of arc sweep direction.
+    // Create gradient
     const gradient = ctx.createLinearGradient(centerX - radius, centerY, centerX + radius, centerY);
-    gradient.addColorStop(0, 'red'); // At 0 value (left side)
-    gradient.addColorStop(0.5, 'yellow'); // At 50 value (middle)
-    gradient.addColorStop(1, 'green'); // At 100 value (right side)
+    gradient.addColorStop(0, 'red');
+    gradient.addColorStop(0.5, 'yellow');
+    gradient.addColorStop(1, 'green');
 
     // Draw gauge background arc
     ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, gaugeStartAngle, gaugeEndAngle, false); // false for clockwise from PI to 0
+    ctx.arc(centerX, centerY, radius, gaugeStartAngle, gaugeEndAngle, false);
     ctx.lineWidth = 20;
     ctx.strokeStyle = gradient;
     ctx.stroke();
@@ -153,27 +143,18 @@ function drawGauge(canvas, value) {
     ctx.textAlign = 'center';
     
     // Label for 0 (leftmost)
-    const label0X = centerX + (radius + 20) * Math.cos(gaugeStartAngle);
-    const label0Y = centerY + (radius + 20) * Math.sin(gaugeStartAngle);
-    ctx.fillText('0', label0X, label0Y);
+    ctx.fillText('0', centerX - radius, centerY + 20);
 
     // Label for 50 (top middle)
-    const label50X = centerX + (radius + 20) * Math.cos(gaugeStartAngle / 2); // This is Math.PI / 2 (vertical up)
-    const label50Y = centerY + (radius + 20) * Math.sin(gaugeStartAngle / 2);
-    ctx.fillText('50', label50X, label50Y);
+    ctx.fillText('50', centerX, centerY - radius - 5);
 
     // Label for 100 (rightmost)
-    const label100X = centerX + (radius + 20) * Math.cos(gaugeEndAngle);
-    const label100Y = centerY + (radius + 20) * Math.sin(gaugeEndAngle);
-    ctx.fillText('100', label100X, label100Y);
+    ctx.fillText('100', centerX + radius, centerY + 20);
 
 
     // Draw pointer
-    // Map value 0-100 to angle Math.PI (left) to 0 (right)
-    // The angle needs to go from Math.PI to 0 as value goes from 0 to 100
-    // Angle = Math.PI - (value / 100) * Math.PI
     const pointerAngle = Math.PI - (value / 100) * Math.PI;
-    const pointerLength = radius - 5;
+    const pointerLength = radius;
     const pointerX = centerX + pointerLength * Math.cos(pointerAngle);
     const pointerY = centerY + pointerLength * Math.sin(pointerAngle);
 
