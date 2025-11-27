@@ -8,42 +8,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // === LÓGICA PARA DASHBOARD HÍBRIDO DE ACCIONES ===
 async function fetchHybridMoversData() {
-    console.log('fetchHybridMoversData: Starting data fetch from Alpha Vantage API.');
+    console.log('fetchHybridMoversData: Starting data fetch from proxy server.');
     const tableBody = document.querySelector('#movers-final-table tbody');
     try {
-        const marketMovers = await fetchMarketMoversFromAlphaVantage();
+        const marketMovers = await fetchMarketMoversFromProxy(); // New function name
         displayHybridMovers(marketMovers);
-        console.log('fetchHybridMoversData: Table updated with data from Alpha Vantage.');
+        console.log('fetchHybridMoversData: Table updated with data from proxy server.');
     } catch (error) {
-        console.error("fetchHybridMoversData: Error al obtener datos de Alpha Vantage:", error);
-        tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los movimientos del mercado. Error: ${error.message}. Por favor, verifica tu clave de API de Alpha Vantage o inténtalo de nuevo más tarde.</td></tr>`;
+        console.error("fetchHybridMoversData: Error al obtener datos del servidor proxy:", error);
+        tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los movimientos del mercado. Error: ${error.message}. Asegúrate de que el servidor proxy de Alpha Vantage esté funcionando.</td></tr>`;
     }
 }
 
-// === LÓGICA PARA OBTENER PRINCIPALES ACCIONES DE ALPHA VANTAGE ===
-async function fetchMarketMoversFromAlphaVantage() {
-    console.log('fetchMarketMoversFromAlphaVantage: Fetching data from Alpha Vantage API.');
-    // !!! ADVERTENCIA DE SEGURIDAD !!!
-    // Exponer la clave de API directamente en el código del lado del cliente es INSEGURO.
-    // Para una aplicación de producción, siempre usa un backend (como una función Netlify)
-    // para proxyar las solicitudes a la API y proteger tu clave de API.
-    // Para propósitos de este ejercicio y por la solicitud del usuario de evitar funciones Netlify,
-    // se coloca la clave aquí. REEMPLAZA 'YOUR_ALPHA_VANTAGE_API_KEY' con tu clave real.
-    const ALPHA_VANTAGE_API_KEY = 'YOUR_ALPHA_VANTAGE_API_KEY'; 
-
-    if (ALPHA_VANTAGE_API_KEY === 'YOUR_ALPHA_VANTAGE_API_KEY' || !ALPHA_VANTAGE_API_KEY) {
-        throw new Error("Clave de API de Alpha Vantage no configurada. Edita dashboard-movers.js para añadir tu clave.");
-    }
-
+// === LÓGICA PARA OBTENER PRINCIPALES ACCIONES DEL SERVIDOR PROXY ===
+async function fetchMarketMoversFromProxy() {
+    console.log('fetchMarketMoversFromProxy: Fetching data from proxy server.');
     const popularTickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA', 'TSLA', 'FB', 'JPM', 'V', 'PG']; // Example popular tickers
     const marketMoversData = [];
 
     for (const ticker of popularTickers) {
         try {
-            const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`;
+            // Call our proxy server
+            const url = `http://localhost:3000/api/alpha-vantage-proxy?function=GLOBAL_QUOTE&symbol=${ticker}`;
             const response = await fetch(url);
+
             if (!response.ok) {
-                throw new Error(`Alpha Vantage API error for ${ticker}: ${response.statusText}`);
+                const errorData = await response.json();
+                throw new Error(`Proxy server error for ${ticker}: ${errorData.error || response.statusText}`);
             }
             const data = await response.json();
 
@@ -62,10 +53,10 @@ async function fetchMarketMoversFromAlphaVantage() {
                     volumen: parseFloat(globalQuote['06. volume']).toLocaleString('en-US') 
                 });
             } else {
-                console.warn(`Alpha Vantage: No Global Quote data for ${ticker}.`);
+                console.warn(`Proxy Server: No Global Quote data for ${ticker}.`);
             }
         } catch (error) {
-            console.error(`Error fetching data for ${ticker} from Alpha Vantage:`, error);
+            console.error(`Error fetching data for ${ticker} from proxy server:`, error);
             // Continue processing other tickers even if one fails
         }
     }
