@@ -143,7 +143,7 @@ function drawGauge(canvas, value) {
     ctx.textAlign = 'center';
     
     ctx.fillText('0', centerX - radius, centerY + 20);
-    ctx.fillText('50', centerX, centerY - radius - 5);
+    ctx.fillText('50', centerX, centerY - radius - 15);
     ctx.fillText('100', centerX + radius, centerY + 20);
 
     // Draw pointer
