@@ -99,54 +99,7 @@
                 </div>
             </div>
 
-            <script>
-                // Función para realizar la simulación de predicción
-                function simulatePrediction() {
-                    const antiguedad = document.getElementById('antiguedad').value;
-                    const uso_servicio = document.getElementById('uso_servicio').value;
-                    const factura_promedio = document.getElementById('factura_promedio').value;
-                    const resultDiv = document.getElementById('prediction_result');
 
-                    // Simulación de un modelo ML simple
-                    // Los pesos son arbitrarios para simular una predicción
-                    const churnProbability = (
-                        (parseFloat(antiguedad) * -0.01) + // Clientes más antiguos, menos probabilidad de abandono
-                        (parseFloat(uso_servicio) * 0.005) + // Más uso, más probabilidad de abandono (ej. problemas de servicio)
-                        (parseFloat(factura_promedio) * 0.02) + // Factura más alta, más probabilidad de abandono
-                        0.3 // Bias ajustado
-                    );
-
-                    let probability = Math.max(0, Math.min(1, churnProbability)); // Asegura que esté entre 0 y 1
-                    probability = (probability * 100).toFixed(2);
-
-                    let message;
-                    let color = 'var(--text-primary)';
-                    if (probability > 70) {
-                        message = `¡ALTO RIESGO! Probabilidad de abandono: ${probability}%`;
-                        color = 'var(--color-red)';
-                    } else if (probability > 40) {
-                        message = `RIESGO MODERADO. Probabilidad de abandono: ${probability}%`;
-                        color = '#ffc107'; // Amarillo
-                    } else {
-                        message = `BAJO RIESGO. Probabilidad de abandono: ${probability}%`;
-                        color = 'var(--color-green)';
-                    }
-
-                    resultDiv.innerHTML = message;
-                    resultDiv.style.color = color;
-                }
-
-                // Ejecuta la predicción inicial al cargar
-                document.addEventListener('DOMContentLoaded', simulatePrediction);
-
-                // Asigna listeners a los campos de entrada para actualización dinámica
-                document.getElementById('antiguedad').addEventListener('input', simulatePrediction);
-                document.getElementById('uso_servicio').addEventListener('input', simulatePrediction);
-                document.getElementById('factura_promedio').addEventListener('input', simulatePrediction);
-                
-                // Asigna listener al botón (redundante si ya es dinámico, pero puede servir como trigger manual)
-                document.getElementById('predict_button').addEventListener('click', simulatePrediction);
-            </script>
         </div>
         <p><strong>Resultado Clave:</strong> El modelo logró una precisión del 88% en la identificación de clientes en riesgo, superando los métodos de detección manual previos.</p>
     </div>
@@ -165,5 +118,53 @@
     </div>
 
     <p style="text-align: center; margin-top: 50px; color: var(--text-secondary);">Para más información sobre la implementación y la evaluación detallada de este modelo, visita mi repositorio de GitHub.</p>
+<script>
+    // Función para realizar la simulación de predicción
+    function simulatePrediction() {
+        const antiguedad = document.getElementById('antiguedad').value;
+        const uso_servicio = document.getElementById('uso_servicio').value;
+        const factura_promedio = document.getElementById('factura_promedio').value;
+        const resultDiv = document.getElementById('prediction_result');
+
+        // Simulación de un modelo ML simple
+        // Los pesos son arbitrarios para simular una predicción
+        const churnProbability = (
+            (parseFloat(antiguedad) * -0.01) + // Clientes más antiguos, menos probabilidad de abandono
+            (parseFloat(uso_servicio) * 0.005) + // Más uso, más probabilidad de abandono (ej. problemas de servicio)
+            (parseFloat(factura_promedio) * 0.02) + // Factura más alta, más probabilidad de abandono
+            0.3 // Bias ajustado
+        );
+
+        let probability = Math.max(0, Math.min(1, churnProbability)); // Asegura que esté entre 0 y 1
+        probability = (probability * 100).toFixed(2);
+
+        let message;
+        let color = 'var(--text-primary)';
+        if (probability > 70) {
+            message = `¡ALTO RIESGO! Probabilidad de abandono: ${probability}%`;
+            color = 'var(--color-red)';
+        } else if (probability > 40) {
+            message = `RIESGO MODERADO. Probabilidad de abandono: ${probability}%`;
+            color = '#ffc107'; // Amarillo
+        } else {
+            message = `BAJO RIESGO. Probabilidad de abandono: ${probability}%`;
+            color = 'var(--color-green)';
+        }
+
+        resultDiv.innerHTML = message;
+        resultDiv.style.color = color;
+    }
+
+    // Ejecuta la predicción inicial al cargar
+    document.addEventListener('DOMContentLoaded', simulatePrediction);
+
+    // Asigna listeners a los campos de entrada para actualización dinámica
+    document.getElementById('antiguedad').addEventListener('input', simulatePrediction);
+    document.getElementById('uso_servicio').addEventListener('input', simulatePrediction);
+    document.getElementById('factura_promedio').addEventListener('input', simulatePrediction);
+    
+    // Asigna listener al botón (redundante si ya es dinámico, pero puede servir como trigger manual)
+    document.getElementById('predict_button').addEventListener('click', simulatePrediction);
+</script>
 </body>
 </html>
