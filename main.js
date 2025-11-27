@@ -115,11 +115,11 @@ function drawGauge(canvas, value) {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const centerX = canvas.width / 2;
-    const centerY = canvas.height - 25; // Adjusted for a semi-circle based at the bottom
+    const centerY = canvas.height - 25;
     const radius = Math.min(centerX, centerY) - 20;
     
-    const gaugeStartAngle = Math.PI; // Left side
-    const gaugeEndAngle = 0; // Right side
+    const gaugeStartAngle = Math.PI;
+    const gaugeEndAngle = 0;
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -142,21 +142,15 @@ function drawGauge(canvas, value) {
     ctx.font = '12px Montserrat';
     ctx.textAlign = 'center';
     
-    // Label for 0 (leftmost)
     ctx.fillText('0', centerX - radius, centerY + 20);
-
-    // Label for 50 (top middle)
     ctx.fillText('50', centerX, centerY - radius - 5);
-
-    // Label for 100 (rightmost)
     ctx.fillText('100', centerX + radius, centerY + 20);
-
 
     // Draw pointer
     const pointerAngle = Math.PI - (value / 100) * Math.PI;
     const pointerLength = radius;
     const pointerX = centerX + pointerLength * Math.cos(pointerAngle);
-    const pointerY = centerY + pointerLength * Math.sin(pointerAngle);
+    const pointerY = centerY + pointerLength * Math.sin(pointerAngle) * -1; // Invert Y to point up
 
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
