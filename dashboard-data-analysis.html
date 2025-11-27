@@ -6,18 +6,94 @@
     <title>Análisis de Datos y Visualización</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { background-color: var(--bg-card); padding: 20px; color: var(--text-primary); }
-        h1 { color: var(--accent-color); }
-        p { color: var(--text-secondary); }
+        body {
+            background-color: var(--bg-card);
+            padding: 20px;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        .section-container {
+            background-color: var(--bg-light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .visualization-placeholder {
+            height: 450px;
+            background-color: #3a3a3a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .link-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .link-button:hover {
+            background-color: var(--accent-hover);
+        }
     </style>
 </head>
 <body>
-    <h1>Análisis de Datos y Visualización</h1>
-    <p>¡Hola! Aquí podrás explorar un análisis de datos interactivo o visualizaciones clave de un conjunto de datos. Próximamente...</p>
-    <!-- Aquí iría tu visualización interactiva, un gráfico de Plotly, D3.js, etc. -->
-    <div style="height: 400px; background-color: #3a3a3a; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
-        [ESPACIO PARA VISUALIZACIÓN INTERACTIVA / GRÁFICO]
+    <h1>Análisis Exploratorio de Datos: Ventas de Videojuegos Globales</h1>
+    
+    <div class="section-container">
+        <h2>Resumen del Proyecto</h2>
+        <p>Este proyecto se enfoca en el análisis de un conjunto de datos global de ventas de videojuegos, explorando tendencias de la industria, rendimiento por plataforma y editor, y el impacto de géneros específicos a lo largo del tiempo. El objetivo es descubrir patrones ocultos y proporcionar información valiosa para la toma de decisiones estratégicas en la industria del gaming.</p>
+        <p>Se utilizaron técnicas de limpieza de datos, análisis estadístico y visualización para extraer conclusiones significativas.</p>
     </div>
-    <p style="margin-top: 20px;">Este espacio está dedicado a mostrar mi habilidad para extraer información de los datos y presentarla de manera clara y efectiva.</p>
+
+    <div class="section-container">
+        <h2>Visualización Clave</h2>
+        <p>A continuación, se presenta una visualización interactiva que muestra las ventas globales por género a lo largo de los años. Puedes pasar el ratón sobre los elementos para ver detalles específicos.</p>
+        <div class="visualization-placeholder">
+            [Aquí iría tu gráfico interactivo, por ejemplo, un gráfico de líneas de Plotly o un diagrama de barras apiladas de ventas por género a lo largo del tiempo. Puedes embedir un `<iframe>` de un notebook de Colab/Jupyter o de un servicio como Tableau Public/Power BI.]
+        </div>
+        <p><strong>Insight Destacado:</strong> Se observa una clara evolución en la popularidad de ciertos géneros, con picos de ventas en los años 2000 y una diversificación en el mercado actual.</p>
+    </div>
+
+    <div class="section-container">
+        <h2>Metodología y Herramientas</h2>
+        <p>El análisis se realizó utilizando Python con librerías como Pandas para manipulación de datos, Matplotlib y Seaborn para visualización estática, y Plotly para gráficos interactivos. El proceso incluyó:</p>
+        <ul>
+            <li>Limpieza y preprocesamiento de datos (manejo de valores nulos, estandarización).</li>
+            <li>Análisis de tendencias temporales y geográficas.</li>
+            <li>Segmentación de datos por plataforma, editor y género.</li>
+            <li>Identificación de los juegos más vendidos y sus características.</li>
+        </ul>
+        <a href="https://github.com/tu_usuario/tu_repositorio_analisis" target="_blank" class="link-button">Ver Código y Notebook en GitHub</a>
+    </div>
+
+    <p style="text-align: center; margin-top: 50px; color: var(--text-secondary);">Para más detalles sobre este proyecto, incluyendo el código fuente y el informe completo, visita mi repositorio de GitHub.</p>
 </body>
 </html>
