@@ -115,45 +115,42 @@ function drawGauge(canvas, value) {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const centerX = canvas.width / 2;
-    const centerY = canvas.height; // Bottom center
-    const radius = canvas.width / 2 - 10;
-    const startAngle = Math.PI; // 180 degrees
-    const endAngle = 0; // 0 degrees (top right)
-    
+    const centerY = canvas.height - 10;
+    const radius = Math.min(centerX, centerY) - 10;
+    const startAngle = Math.PI;
+    const endAngle = 0;
+
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw background arc
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, startAngle, endAngle, false);
-    ctx.lineWidth = 20;
-    ctx.strokeStyle = '#333'; // Dark background for the gauge
-    ctx.stroke();
-
-    // Draw colored sections (Fear, Neutral, Greed)
+    // Draw colored sections
     const sections = [
-        { color: 'red',   start: 0,   end: 20,   label: 'Extreme Fear' },
-        { color: 'orange', start: 20,  end: 40,   label: 'Fear' },
-        { color: 'gray',  start: 40,  end: 60,   label: 'Neutral' },
-        { color: 'yellowgreen', start: 60,  end: 80,   label: 'Greed' },
-        { color: 'green', start: 80,  end: 100,  label: 'Extreme Greed' }
+        { color: "red", start: 0, end: 20 },
+        { color: "orange", start: 20, end: 40 },
+        { color: "gray", start: 40, end: 60 },
+        { color: "yellowgreen", start: 60, end: 80 },
+        { color: "green", start: 80, end: 100 }
     ];
 
+    ctx.lineWidth = 20;
     sections.forEach(section => {
-        const sectionStartAngle = startAngle - (startAngle - endAngle) * (section.start / 100);
-        const sectionEndAngle = startAngle - (startAngle - endAngle) * (section.end / 100);
+        const sectionStartAngle = startAngle + (section.start / 100) * (endAngle - startAngle);
+        const sectionEndAngle = startAngle + (section.end / 100) * (endAngle - startAngle);
         ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, sectionStartAngle, sectionEndAngle, true);
+        ctx.arc(centerX, centerY, radius, sectionStartAngle, sectionEndAngle);
         ctx.strokeStyle = section.color;
         ctx.stroke();
     });
 
     // Draw pointer
-    const angle = startAngle - (startAngle - endAngle) * (value / 100);
-    const pointerLength = radius - 5;
+    const angle = startAngle + (value / 100) * (endAngle - startAngle);
+    const pointerLength = radius + 5;
+    const pointerX = centerX + pointerLength * Math.cos(angle);
+    const pointerY = centerY + pointerLength * Math.sin(angle);
+
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
-    ctx.lineTo(centerX + pointerLength * Math.cos(angle), centerY + pointerLength * Math.sin(angle));
+    ctx.lineTo(pointerX, pointerY);
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'white';
     ctx.stroke();
@@ -164,5 +161,3 @@ function drawGauge(canvas, value) {
     ctx.fillStyle = 'white';
     ctx.fill();
 }
-
-console.log('main.js: Script finished (waiting for DOMContentLoaded).');
