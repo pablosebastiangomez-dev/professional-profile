@@ -76,5 +76,93 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.log('main.js: No tab buttons or tab contents found, skipping tab logic setup.');
     }
+
+    // Fetch and display Fear & Greed Index
+    fetchFearAndGreedIndex();
+    setInterval(fetchFearAndGreedIndex, 3600000); // Update every hour
 });
+// === LÓGICA PARA EL ÍNDICE DE MIEDO Y CODICIA ===
+async function fetchFearAndGreedIndex() {
+    console.log('fetchFearAndGreedIndex: Starting data fetch.');
+    const fngValueElem = document.getElementById('fng-value');
+    const fngClassificationElem = document.getElementById('fng-classification');
+    const fngGaugeCanvas = document.getElementById('fng-gauge');
+    const fngApiUrl = 'https://api.alternative.me/fng/';
+
+    try {
+        const response = await fetch(fngApiUrl);
+        if (!response.ok) throw new Error(`Error fetching F&G Index: ${response.statusText}`);
+        const data = await response.json();
+        const fngData = data.data[0]; // Get the latest data point
+
+        const value = parseInt(fngData.value);
+        const classification = fngData.value_classification;
+
+        fngValueElem.textContent = `Valor: ${value}`;
+        fngClassificationElem.textContent = `Clasificación: ${classification}`;
+        
+        drawGauge(fngGaugeCanvas, value);
+        console.log('fetchFearAndGreedIndex: F&G Index updated.');
+
+    } catch (error) {
+        console.error("fetchFearAndGreedIndex: Error al cargar el índice de Miedo y Codicia:", error);
+        fngValueElem.textContent = 'Error al cargar.';
+        fngClassificationElem.textContent = '';
+    }
+}
+
+function drawGauge(canvas, value) {
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height; // Bottom center
+    const radius = canvas.width / 2 - 10;
+    const startAngle = Math.PI; // 180 degrees
+    const endAngle = 0; // 0 degrees (top right)
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw background arc
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle, false);
+    ctx.lineWidth = 20;
+    ctx.strokeStyle = '#333'; // Dark background for the gauge
+    ctx.stroke();
+
+    // Draw colored sections (Fear, Neutral, Greed)
+    const sections = [
+        { color: 'red',   start: 0,   end: 20,   label: 'Extreme Fear' },
+        { color: 'orange', start: 20,  end: 40,   label: 'Fear' },
+        { color: 'gray',  start: 40,  end: 60,   label: 'Neutral' },
+        { color: 'yellowgreen', start: 60,  end: 80,   label: 'Greed' },
+        { color: 'green', start: 80,  end: 100,  label: 'Extreme Greed' }
+    ];
+
+    sections.forEach(section => {
+        const sectionStartAngle = startAngle - (startAngle - endAngle) * (section.start / 100);
+        const sectionEndAngle = startAngle - (startAngle - endAngle) * (section.end / 100);
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, sectionStartAngle, sectionEndAngle, true);
+        ctx.strokeStyle = section.color;
+        ctx.stroke();
+    });
+
+    // Draw pointer
+    const angle = startAngle - (startAngle - endAngle) * (value / 100);
+    const pointerLength = radius - 5;
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(centerX + pointerLength * Math.cos(angle), centerY + pointerLength * Math.sin(angle));
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'white';
+    ctx.stroke();
+
+    // Draw center circle
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+}
+
 console.log('main.js: Script finished (waiting for DOMContentLoaded).');
