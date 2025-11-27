@@ -126,13 +126,16 @@
         const factura_promedio = document.getElementById('factura_promedio').value;
         const resultDiv = document.getElementById('prediction_result');
 
-        // Simulación de un modelo ML simple
-        // Los pesos son arbitrarios para simular una predicción
-        const churnProbability = (
-            (parseFloat(antiguedad) * -0.01) + // Clientes más antiguos, menos probabilidad de abandono
-            (parseFloat(uso_servicio) * 0.005) + // Más uso, más probabilidad de abandono (ej. problemas de servicio)
-            (parseFloat(factura_promedio) * 0.02) + // Factura más alta, más probabilidad de abandono
-            0.3 // Bias ajustado
+        // Normalizar los valores de entrada a un rango de 0-1
+        const antiguedad_norm = (parseFloat(antiguedad) - 1) / (72 - 1);
+        const uso_servicio_norm = parseFloat(uso_servicio) / 500;
+        const factura_promedio_norm = (parseFloat(factura_promedio) - 10) / (200 - 10);
+
+        // Fórmula básica para calcular la probabilidad de abandono
+        let churnProbability = (
+            (1 - antiguedad_norm) * 0.5 + // Clientes más nuevos, más probabilidad de abandono
+            uso_servicio_norm * 0.2 + // Más uso, un poco más de probabilidad (ej. problemas de servicio)
+            factura_promedio_norm * 0.3 // Factura más alta, más probabilidad
         );
 
         let probability = Math.max(0, Math.min(1, churnProbability)); // Asegura que esté entre 0 y 1
@@ -140,7 +143,7 @@
 
         let message;
         let color = 'var(--text-primary)';
-        if (probability > 70) {
+        if (probability > 80) {
             message = `¡ALTO RIESGO! Probabilidad de abandono: ${probability}%`;
             color = 'var(--color-red)';
         } else if (probability > 40) {
