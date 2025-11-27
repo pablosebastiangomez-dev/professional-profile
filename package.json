@@ -2,7 +2,21 @@
   "name": "professional-profile",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "start": "http-server -c-1",
+    "optimize-images": "imagemin img/* --out-dir=img/optimized --plugin=pngquant --plugin=mozjpeg --plugin=webp"
+  },
   "dependencies": {
-    "@google/generative-ai": "^0.14.1"
+    "@google/generative-ai": "^0.14.1",
+    "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "http-server": "^14.1.1",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-webp": "^8.0.0",
+    "terser": "^5.44.1"
   }
 }
