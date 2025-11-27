@@ -17,7 +17,7 @@ async function fetchHybridMoversData() {
         // Assuming fmp-api is still used for additional financial data
         const apiResponse = await fetch('/.netlify/functions/fmp-api');
         if (!apiResponse.ok) {
-            throw new Error(`La API de FMP falló. Revisa la clave de API en Netlify. Estado: ${apiResponse.status}, Texto: ${apiResponse.statusText}`);
+            throw new Error(`Error al obtener datos financieros (FMP). Por favor, verifica la configuración de la API o inténtalo de nuevo más tarde. (Estado: ${apiResponse.status}, Texto: ${apiResponse.statusText})`);
         }
         const financialsFromAPI = await apiResponse.json();
         console.log('fetchHybridMoversData: Data from TradingView (simulated) and FMP parsed.');
