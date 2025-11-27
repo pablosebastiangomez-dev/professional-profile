@@ -8,66 +8,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // === LÓGICA PARA DASHBOARD HÍBRIDO DE ACCIONES ===
 async function fetchHybridMoversData() {
-    console.log('fetchHybridMoversData: Starting data fetch.');
+    console.log('fetchHybridMoversData: Starting data fetch from Alpha Vantage API.');
     const tableBody = document.querySelector('#movers-final-table tbody');
     try {
-        console.log('fetchHybridMoversData: Fetching main stocks from TradingView API (simulated).');
-        const mainStocks = await fetchMainStocksFromTradingView();
-        
-        // Assuming fmp-api is still used for additional financial data
-        const apiResponse = await fetch('/.netlify/functions/fmp-api');
-        if (!apiResponse.ok) {
-            throw new Error(`Error al obtener datos financieros (FMP). Por favor, verifica la configuración de la API o inténtalo de nuevo más tarde. (Estado: ${apiResponse.status}, Texto: ${apiResponse.statusText})`);
-        }
-        const financialsFromAPI = await apiResponse.json();
-        console.log('fetchHybridMoversData: Data from TradingView (simulated) and FMP parsed.');
-
-        const financialsMap = new Map(financialsFromAPI.map(stock => [stock.simbolo, stock]));
-
-        const mergedData = mainStocks.map(company => {
-            const financials = financialsMap.get(company.simbolo) || {};
-            // Merge TradingView data with FMP data
-            return {
-                simbolo: company.simbolo,
-                nombre: company.nombre,
-                precio: company.precio || financials.precio, // Prefer TradingView price, fallback to FMP
-                cambio_porcentaje: company.cambio_porcentaje || financials.cambio_porcentaje, // Prefer TradingView change, fallback to FMP
-                volumen: company.volumen || financials.volumen // Prefer TradingView volume, fallback to FMP
-            };
-        });
-
-        displayHybridMovers(mergedData);
-        console.log('fetchHybridMoversData: Table updated with data.');
-
+        const marketMovers = await fetchMarketMoversFromAlphaVantage();
+        displayHybridMovers(marketMovers);
+        console.log('fetchHybridMoversData: Table updated with data from Alpha Vantage.');
     } catch (error) {
-        console.error("fetchHybridMoversData: Error al obtener datos híbridos:", error);
-        // Display generic error if main stock fetch or FMP API fails
-        tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los movimientos del mercado. Error: ${error.message}</td></tr>`;
+        console.error("fetchHybridMoversData: Error al obtener datos de Alpha Vantage:", error);
+        tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los movimientos del mercado. Error: ${error.message}. Por favor, verifica tu clave de API de Alpha Vantage o inténtalo de nuevo más tarde.</td></tr>`;
     }
 }
 
-// === LÓGICA PARA OBTENER PRINCIPALES ACCIONES DE TRADINGVIEW (SIMULADO) ===
-async function fetchMainStocksFromTradingView() {
-    console.log('fetchMainStocksFromTradingView: Simulating fetch from TradingView API.');
-    // In a real scenario, this would involve actual API calls to TradingView
-    // For now, we'll return some mock data based on the OpenAPI spec
-    const mockStocks = [
-        { simbolo: 'AAPL', nombre: 'Apple Inc.', precio: 170.00, cambio_porcentaje: 1.25, volumen: '100M' },
-        { simbolo: 'MSFT', nombre: 'Microsoft Corp.', precio: 430.50, cambio_porcentaje: -0.75, volumen: '80M' },
-        { simbolo: 'GOOGL', nombre: 'Alphabet Inc. (Class A)', precio: 150.20, cambio_porcentaje: 2.10, volumen: '60M' },
-        { simbolo: 'AMZN', nombre: 'Amazon.com Inc.', precio: 180.10, cambio_porcentaje: -0.30, volumen: '95M' },
-        { simbolo: 'NVDA', nombre: 'NVIDIA Corp.', precio: 900.80, cambio_porcentaje: 3.50, volumen: '120M' },
-    ];
+// === LÓGICA PARA OBTENER PRINCIPALES ACCIONES DE ALPHA VANTAGE ===
+async function fetchMarketMoversFromAlphaVantage() {
+    console.log('fetchMarketMoversFromAlphaVantage: Fetching data from Alpha Vantage API.');
+    // !!! ADVERTENCIA DE SEGURIDAD !!!
+    // Exponer la clave de API directamente en el código del lado del cliente es INSEGURO.
+    // Para una aplicación de producción, siempre usa un backend (como una función Netlify)
+    // para proxyar las solicitudes a la API y proteger tu clave de API.
+    // Para propósitos de este ejercicio y por la solicitud del usuario de evitar funciones Netlify,
+    // se coloca la clave aquí. REEMPLAZA 'YOUR_ALPHA_VANTAGE_API_KEY' con tu clave real.
+    const ALPHA_VANTAGE_API_KEY = 'YOUR_ALPHA_VANTAGE_API_KEY'; 
 
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 500));
+    if (ALPHA_VANTAGE_API_KEY === 'YOUR_ALPHA_VANTAGE_API_KEY' || !ALPHA_VANTAGE_API_KEY) {
+        throw new Error("Clave de API de Alpha Vantage no configurada. Edita dashboard-movers.js para añadir tu clave.");
+    }
 
-    // Simulate a possible error for testing the fallback
-    // if (Math.random() > 0.8) {
-    //     throw new Error('Simulated TradingView API error');
-    // }
+    const popularTickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA', 'TSLA', 'FB', 'JPM', 'V', 'PG']; // Example popular tickers
+    const marketMoversData = [];
 
-    return mockStocks;
+    for (const ticker of popularTickers) {
+        try {
+            const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${ALPHA_VANTAGE_API_KEY}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Alpha Vantage API error for ${ticker}: ${response.statusText}`);
+            }
+            const data = await response.json();
+
+            const globalQuote = data['Global Quote'];
+
+            if (globalQuote && globalQuote['01. symbol']) {
+                const price = parseFloat(globalQuote['05. price']);
+                const changePercentRaw = globalQuote['10. change percent']; 
+                const changePercent = parseFloat(changePercentRaw.replace('%', ''));
+
+                marketMoversData.push({
+                    simbolo: globalQuote['01. symbol'],
+                    nombre: globalQuote['01. symbol'], 
+                    precio: price,
+                    cambio_porcentaje: changePercent,
+                    volumen: parseFloat(globalQuote['06. volume']).toLocaleString('en-US') 
+                });
+            } else {
+                console.warn(`Alpha Vantage: No Global Quote data for ${ticker}.`);
+            }
+        } catch (error) {
+            console.error(`Error fetching data for ${ticker} from Alpha Vantage:`, error);
+            // Continue processing other tickers even if one fails
+        }
+    }
+    return marketMoversData;
 }
 
 function displayHybridMovers(data) {
