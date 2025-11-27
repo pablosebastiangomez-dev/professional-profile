@@ -76,8 +76,32 @@
     <div class="section-container">
         <h2>Visualización Clave</h2>
         <p>A continuación, se presenta una visualización interactiva que muestra las ventas globales por género a lo largo de los años. Puedes pasar el ratón sobre los elementos para ver detalles específicos.</p>
-        <div class="visualization-placeholder">
-            [Aquí iría tu gráfico interactivo, por ejemplo, un gráfico de líneas de Plotly o un diagrama de barras apiladas de ventas por género a lo largo del tiempo. Puedes embedir un `<iframe>` de un notebook de Colab/Jupyter o de un servicio como Tableau Public/Power BI.]
+        <div class="visualization-placeholder" style="flex-direction: column; justify-content: space-between; padding: 20px;">
+            <div style="width: 100%; display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #555;">
+                <span style="font-size: 0.9em; color: #aaa;">Ventas (Millones USD)</span>
+                <span style="font-size: 0.9em; color: #aaa;">Gráfico de Líneas Ficticio</span>
+            </div>
+            <div style="flex-grow: 1; width: 100%; display: flex; align-items: flex-end; justify-content: space-around; padding: 10px 0;">
+                <!-- Simulated data points -->
+                <div style="width: 15%; height: 70%; background-color: var(--accent-color); border-radius: 3px; transform: scaleY(0.7); animation: barGrow 2s ease-out forwards; position: relative;" title="2005: $150M"></div>
+                <div style="width: 15%; height: 85%; background-color: var(--accent-color); border-radius: 3px; transform: scaleY(0.85); animation: barGrow 2s ease-out forwards; position: relative;" title="2010: $220M"></div>
+                <div style="width: 15%; height: 60%; background-color: var(--accent-color); border-radius: 3px; transform: scaleY(0.6); animation: barGrow 2s ease-out forwards; position: relative;" title="2015: $180M"></div>
+                <div style="width: 15%; height: 95%; background-color: var(--accent-color); border-radius: 3px; transform: scaleY(0.95); animation: barGrow 2s ease-out forwards; position: relative;" title="2020: $300M"></div>
+                <div style="width: 15%; height: 80%; background-color: var(--accent-color); border-radius: 3px; transform: scaleY(0.8); animation: barGrow 2s ease-out forwards; position: relative;" title="2024: $250M"></div>
+            </div>
+            <div style="width: 100%; display: flex; justify-content: space-around; padding-top: 10px; border-top: 1px solid #555;">
+                <span style="font-size: 0.8em; color: #aaa;">2005</span>
+                <span style="font-size: 0.8em; color: #aaa;">2010</span>
+                <span style="font-size: 0.8em; color: #aaa;">2015</span>
+                <span style="font-size: 0.8em; color: #aaa;">2020</span>
+                <span style="font-size: 0.8em; color: #aaa;">2024</span>
+            </div>
+            <style>
+                @keyframes barGrow {
+                    from { transform: scaleY(0); }
+                    to { transform: scaleY(1); }
+                }
+            </style>
         </div>
         <p><strong>Insight Destacado:</strong> Se observa una clara evolución en la popularidad de ciertos géneros, con picos de ventas en los años 2000 y una diversificación en el mercado actual.</p>
     </div>

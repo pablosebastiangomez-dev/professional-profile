@@ -76,8 +76,65 @@
     <div class="section-container">
         <h2>Demostración del Modelo</h2>
         <p>A continuación, puedes interactuar con una versión simplificada del modelo. Ingresa algunos datos de cliente (simulados) y obtén una predicción de probabilidad de abandono.</p>
-        <div class="demo-placeholder">
-            [Aquí iría tu demo interactiva del modelo ML. Podría ser un formulario simple donde el usuario ingresa valores y se muestra una predicción. Puedes usar JavaScript para una lógica de predicción simple en el cliente o integrar un modelo más complejo a través de una API si lo despliegas.]
+        <div class="demo-placeholder" style="flex-direction: column; justify-content: center; align-items: center; padding: 20px;">
+            <div style="background-color: var(--bg-card); padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); width: 80%;">
+                <h3 style="color: var(--accent-color); margin-top: 0; text-align: left;">Simulador de Predicción de Churn</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div>
+                        <label for="antiguedad" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Antigüedad del Cliente (meses):</label>
+                        <input type="number" id="antiguedad" value="24" min="1" max="72" style="width: 100%; padding: 10px; border: 1px solid #555; border-radius: 5px; background-color: #444; color: var(--text-primary);">
+                    </div>
+                    <div>
+                        <label for="uso_servicio" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Uso del Servicio (horas/mes):</label>
+                        <input type="number" id="uso_servicio" value="150" min="0" max="500" style="width: 100%; padding: 10px; border: 1px solid #555; border-radius: 5px; background-color: #444; color: var(--text-primary);">
+                    </div>
+                    <div>
+                        <label for="factura_promedio" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Factura Promedio (USD):</label>
+                        <input type="number" id="factura_promedio" value="75" min="10" max="200" step="0.01" style="width: 100%; padding: 10px; border: 1px solid #555; border-radius: 5px; background-color: #444; color: var(--text-primary);">
+                    </div>
+                    <button id="predict_button" style="background-color: var(--accent-color); color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s ease; margin-top: 10px;">Predecir Probabilidad de Abandono</button>
+                </div>
+                <div id="prediction_result" style="margin-top: 25px; font-size: 1.1em; font-weight: bold; text-align: center; color: var(--text-primary);">
+                    <!-- Resultado de la predicción aquí -->
+                </div>
+            </div>
+
+            <script>
+                document.getElementById('predict_button').addEventListener('click', function() {
+                    const antiguedad = document.getElementById('antiguedad').value;
+                    const uso_servicio = document.getElementById('uso_servicio').value;
+                    const factura_promedio = document.getElementById('factura_promedio').value;
+                    const resultDiv = document.getElementById('prediction_result');
+
+                    // Simulación de un modelo ML simple
+                    // Los pesos son arbitrarios para simular una predicción
+                    const churnProbability = (
+                        (parseFloat(antiguedad) * -0.01) +
+                        (parseFloat(uso_servicio) * 0.005) +
+                        (parseFloat(factura_promedio) * 0.02) +
+                        0.5 // Bias
+                    );
+
+                    let probability = Math.max(0, Math.min(1, churnProbability)); // Asegura que esté entre 0 y 1
+                    probability = (probability * 100).toFixed(2);
+
+                    let message;
+                    let color = 'var(--text-primary)';
+                    if (probability > 70) {
+                        message = `¡ALTO RIESGO! Probabilidad de abandono: ${probability}%`;
+                        color = 'var(--color-red)';
+                    } else if (probability > 40) {
+                        message = `RIESGO MODERADO. Probabilidad de abandono: ${probability}%`;
+                        color = '#ffc107'; // Amarillo
+                    } else {
+                        message = `BAJO RIESGO. Probabilidad de abandono: ${probability}%`;
+                        color = 'var(--color-green)';
+                    }
+
+                    resultDiv.innerHTML = message;
+                    resultDiv.style.color = color;
+                });
+            </script>
         </div>
         <p><strong>Resultado Clave:</strong> El modelo logró una precisión del 88% en la identificación de clientes en riesgo, superando los métodos de detección manual previos.</p>
     </div>
