@@ -8,9 +8,16 @@
   <meta name="author" content="Pablo Sebastián Gómez">
   
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/webp" sizes="32x32" href="img/favicon-32x32.webp">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/webp" sizes="16x16" href="img/favicon-16x16.webp">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
   <link rel="manifest" href="img/site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -21,6 +28,7 @@
         <li><a href="#hero">Inicio</a></li>
         <li><a href="#portfolio">Proyectos</a></li>
         <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#skills">Habilidades</a></li>
         <li><a href="#contact">Contacto</a></li>
       </ul>
     </nav>
@@ -36,20 +44,29 @@
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards interactivos en diferentes áreas de análisis:</p>
     
-    <div class="dashboards-grid">
-      <div class="dashboard-card">
-        <h4>Dashboard de Criptomonedas</h4>
-        <p>Seguimiento en tiempo real de las principales criptomonedas, ordenadas por capitalización de mercado.</p>
-        <div class="dashboard-container">
-          <iframe src="dashboard-crypto.html" class="dashboard-iframe"></iframe>
+    <div class="tab-container">
+      <div class="tabs">
+        <button class="tab-button active" data-tab="crypto">Dashboard de Criptomonedas</button>
+        <button class="tab-button" data-tab="movers">Principales Movimientos del Mercado</button>
+      </div>
+
+      <div id="crypto" class="tab-content active">
+        <div class="dashboard-card">
+          <h4>Dashboard de Criptomonedas</h4>
+          <p>Seguimiento en tiempo real de las principales criptomonedas, ordenadas por capitalización de mercado.</p>
+          <div class="dashboard-container">
+            <iframe src="dashboard-crypto.html" class="dashboard-iframe" loading="lazy"></iframe>
+          </div>
         </div>
       </div>
       
-      <div class="dashboard-card">
-        <h4>Principales Movimientos del Mercado</h4>
-        <p>Dashboard híbrido: La IA identifica las 5 acciones ganadoras y una API trae los datos financieros en tiempo real.</p>
-        <div class="dashboard-container">
-          <iframe src="dashboard-movers-final.html" class="dashboard-iframe"></iframe>
+      <div id="movers" class="tab-content">
+        <div class="dashboard-card">
+          <h4>Principales Movimientos del Mercado</h4>
+          <p>Dashboard híbrido: La IA identifica las 5 acciones ganadoras y una API trae los datos financieros en tiempo real.</p>
+          <div class="dashboard-container">
+            <iframe src="dashboard-movers-final.html" class="dashboard-iframe" loading="lazy"></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -64,6 +81,32 @@
       <p class="highlight-text">Este puede ser un buen momento para que empieces...</p>
   </section>
 
+  <section id="skills">
+    <h3>Habilidades Técnicas</h3>
+    <div class="skills-category">
+        <h4>Lenguajes de Programación</h4>
+        <ul>
+            <li>Python (Pandas, NumPy)</li>
+            <li>SQL</li>
+        </ul>
+    </div>
+    <div class="skills-category">
+        <h4>Bases de Datos</h4>
+        <ul>
+            <li>PostgreSQL</li>
+            <li>MySQL</li>
+            <li>MongoDB</li>
+        </ul>
+    </div>
+    <div class="skills-category">
+        <h4>Otros</h4>
+        <ul>
+            <li>Excel Avanzado</li>
+            <li>Git</li>
+        </ul>
+    </div>
+  </section>
+
   <footer id="contact">
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
@@ -73,5 +116,7 @@
   </footer>
 
   <script src="main.js"></script>
+
+  <a href="#hero" id="back-to-top" class="back-to-top" aria-label="Volver arriba">↑</a>
 </body>
 </html>

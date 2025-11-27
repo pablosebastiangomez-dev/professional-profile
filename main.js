@@ -1,102 +1,80 @@
 // main.js - Versión con errores detallados
+console.log('main.js: Script started.');
+
 document.addEventListener('DOMContentLoaded', () => {
-    const cryptoTable = document.querySelector('#crypto-table');
-    const moversFinalTable = document.querySelector('#movers-final-table');
+    console.log('main.js: DOMContentLoaded fired.');
     
-    if (cryptoTable) fetchCryptoData();
-    if (moversFinalTable) fetchHybridMoversData();
-});
+    // Lógica para el botón "Volver Arriba" y resaltado de la navegación
+    const backToTopButton = document.getElementById('back-to-top');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.navbar nav ul a');
 
-// === LÓGICA PARA DASHBOARD HÍBRIDO DE ACCIONES ===
-async function fetchHybridMoversData() {
-    const tableBody = document.querySelector('#movers-final-table tbody');
-    try {
-        const [aiResponse, apiResponse] = await Promise.all([
-            fetch('/.netlify/functions/gemini-scraper'),
-            fetch('/.netlify/functions/fmp-api')
-        ]);
-
-        // Verificamos cada respuesta por separado para dar un error específico
-        if (!aiResponse.ok) {
-            throw new Error('La función de IA falló. (gemini-scraper)');
-        }
-        if (!apiResponse.ok) {
-            throw new Error('La API de FMP falló. Revisa la clave de API en Netlify.');
+    console.log('main.js: Setting up scroll event listener.');
+    window.addEventListener('scroll', () => {
+        // Visibilidad del botón "Volver Arriba"
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
         }
 
-        const companiesFromAI = await aiResponse.json();
-        const financialsFromAPI = await apiResponse.json();
-
-        const financialsMap = new Map(financialsFromAPI.map(stock => [stock.simbolo, stock]));
-
-        const mergedData = companiesFromAI.map(company => {
-            const financials = financialsMap.get(company.simbolo) || {};
-            return { ...company, ...financials };
+        // Resaltado del enlace de navegación activo
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop - sectionHeight / 3) {
+                currentSectionId = section.getAttribute('id');
+            }
         });
 
-        displayHybridMovers(mergedData);
-
-    } catch (error) {
-        console.error("Error al obtener datos híbridos:", error);
-        // Mostramos el error específico en la tabla
-        tableBody.innerHTML = `<tr><td colspan="5" class="error">${error.message}</td></tr>`;
-    }
-}
-
-function displayHybridMovers(data) {
-    const tableBody = document.querySelector('#movers-final-table tbody');
-    tableBody.innerHTML = '';
-    
-    data.forEach(stock => {
-        const price = stock.precio ?? 0;
-        const change = stock.cambio_porcentaje ?? 0;
-        const changeColorClass = change >= 0 ? 'color-green' : 'color-red';
-
-        const row = `
-            <tr>
-                <td>${stock.simbolo}</td>
-                <td class="stock-name">${stock.nombre}</td>
-                <td>${formatCurrency(price)}</td>
-                <td class="${changeColorClass}">${change.toFixed(2)}%</td>
-                <td>${stock.volumen || 'N/A'}</td>
-            </tr>
-        `;
-        tableBody.innerHTML += row;
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
     });
-}
+    console.log('main.js: Scroll event listener set.');
 
-
-// === LÓGICA PARA DASHBOARD DE CRIPTOMONEDAS (sin cambios) ===
-async function fetchCryptoData() {
-    const cryptoTableBody = document.querySelector('#crypto-table tbody');
-    const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=false';
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`Error en la respuesta: ${response.statusText}`);
-        const coins = await response.json();
-        cryptoTableBody.innerHTML = ''; 
-        coins.forEach((coin, index) => {
-            const priceChange = coin.price_change_percentage_24h;
-            const changeColorClass = priceChange >= 0 ? 'color-green' : 'color-red';
-            const row = `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td class="coin-name">
-                        <img src="${coin.image}" alt="${coin.name} logo">
-                        <span>${coin.name} <span class="symbol">${coin.symbol.toUpperCase()}</span></span>
-                    </td>
-                    <td>${formatCurrency(coin.current_price)}</td>
-                    <td class="${changeColorClass}">${priceChange.toFixed(2)}%</td>
-                    <td>${formatMarketCap(coin.market_cap)}</td>
-                </tr>
-            `;
-            cryptoTableBody.innerHTML += row;
+    // Desplazamiento suave para el botón "Volver Arriba"
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-    } catch (error) {
-        cryptoTableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los datos.</td></tr>`;
-    }
-}
+    });
+    console.log('main.js: Back to top button event listener set.');
 
-// === FUNCIONES AUXILIARES ===
-const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
-const formatMarketCap = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(num);
+    // Lógica para el manejo de pestañas
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    if (tabButtons.length > 0 && tabContents.length > 0) {
+        console.log('main.js: Setting up tab event listeners.');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Desactivar todas las pestañas y ocultar todos los contenidos
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Activar la pestaña clicada
+                button.classList.add('active');
+
+                // Mostrar el contenido correspondiente
+                const targetTabId = button.dataset.tab;
+                const targetTabContent = document.getElementById(targetTabId);
+                if (targetTabContent) {
+                    targetTabContent.classList.add('active');
+                } else {
+                    console.error(`main.js: Tab content with ID '${targetTabId}' not found.`);
+                }
+            });
+        });
+        console.log('main.js: Tab event listeners set.');
+    } else {
+        console.log('main.js: No tab buttons or tab contents found, skipping tab logic setup.');
+    }
+});
+console.log('main.js: Script finished (waiting for DOMContentLoaded).');
