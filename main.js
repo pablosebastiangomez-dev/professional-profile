@@ -80,7 +80,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch and display Fear & Greed Index
     fetchFearAndGreedIndex();
     setInterval(fetchFearAndGreedIndex, 3600000); // Update every hour
+
+    // Fetch and display converter data
+    fetchConverterData(); // Fetch data for converter dropdowns and prices
+    setInterval(fetchConverterData, 300000); // Update converter data every 5 minutes
+
+    // Add event listeners for converter elements
+    document.getElementById('convert-amount').addEventListener('input', performConversion);
+    document.getElementById('convert-from').addEventListener('change', performConversion);
+    document.getElementById('convert-to').addEventListener('change', performConversion);
 });
+
+let allCryptoPrices = {}; // Global object to store prices for conversion
+
 // === LÓGICA PARA EL ÍNDICE DE MIEDO Y CODICIA ===
 async function fetchFearAndGreedIndex() {
     console.log('fetchFearAndGreedIndex: Starting data fetch.');
@@ -165,4 +177,73 @@ function drawGauge(canvas, value) {
     ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
     ctx.fillStyle = 'white';
     ctx.fill();
+}
+
+// === LÓGICA PARA EL CONVERSOR DE CRIPTOMONEDAS ===
+async function fetchConverterData() {
+    console.log('fetchConverterData: Starting converter data fetch.');
+    const selectFrom = document.getElementById('convert-from');
+    const selectTo = document.getElementById('convert-to');
+    const converterApiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'; // Fetch more coins for converter
+    
+    try {
+        const response = await fetch(converterApiUrl);
+        if (!response.ok) throw new Error(`Error fetching converter data: ${response.statusText}`);
+        const coins = await response.json();
+
+        // Add USD as a base currency
+        allCryptoPrices['usd'] = 1; // 1 USD = 1 USD
+        
+        // Clear previous options
+        selectFrom.innerHTML = '<option value="usd">USD</option>';
+        selectTo.innerHTML = '<option value="usd">USD</option>';
+
+        coins.forEach(coin => {
+            allCryptoPrices[coin.id] = coin.current_price;
+            const optionFrom = document.createElement('option');
+            optionFrom.value = coin.id;
+            optionFrom.textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
+            selectFrom.appendChild(optionFrom);
+
+            const optionTo = document.createElement('option');
+            optionTo.value = coin.id;
+            optionTo.textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
+            selectTo.appendChild(optionTo);
+        });
+
+        // Set default selections
+        selectFrom.value = 'bitcoin'; // Default to Bitcoin
+        selectTo.value = 'ethereum'; // Default to Ethereum
+
+        // Perform initial conversion
+        performConversion();
+
+        console.log('fetchConverterData: Converter data loaded and dropdowns populated.');
+    } catch (error) {
+        console.error("fetchConverterData: Error al cargar datos del conversor:", error);
+        document.getElementById('conversion-result').textContent = 'Error al cargar monedas.';
+    }
+}
+
+function performConversion() {
+    const amount = parseFloat(document.getElementById('convert-amount').value);
+    const fromCurrency = document.getElementById('convert-from').value;
+    const toCurrency = document.getElementById('convert-to').value;
+    const resultElem = document.getElementById('conversion-result');
+
+    if (isNaN(amount) || amount <= 0) {
+        resultElem.textContent = 'Ingrese un monto válido.';
+        return;
+    }
+
+    const fromPrice = allCryptoPrices[fromCurrency];
+    const toPrice = allCryptoPrices[toCurrency];
+
+    if (!fromPrice || !toPrice) {
+        resultElem.textContent = 'Precios no disponibles.';
+        return;
+    }
+
+    const convertedValue = (amount * fromPrice) / toPrice;
+    resultElem.textContent = `${amount} ${fromCurrency.toUpperCase()} = ${convertedValue.toFixed(6)} ${toCurrency.toUpperCase()}`;
 }
