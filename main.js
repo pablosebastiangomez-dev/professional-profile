@@ -116,35 +116,37 @@ function drawGauge(canvas, value) {
     const ctx = canvas.getContext('2d');
     const centerX = canvas.width / 2;
     const centerY = canvas.height - 10;
-    const radius = Math.min(centerX, centerY) - 10;
+    const radius = Math.min(centerX, centerY) - 20;
     const startAngle = Math.PI;
     const endAngle = 0;
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw colored sections
-    const sections = [
-        { color: "red", start: 0, end: 20 },
-        { color: "orange", start: 20, end: 40 },
-        { color: "gray", start: 40, end: 60 },
-        { color: "yellowgreen", start: 60, end: 80 },
-        { color: "green", start: 80, end: 100 }
-    ];
+    // Create gradient
+    const gradient = ctx.createLinearGradient(centerX - radius, centerY, centerX + radius, centerY);
+    gradient.addColorStop(0, 'red');
+    gradient.addColorStop(0.5, 'yellow');
+    gradient.addColorStop(1, 'green');
 
+    // Draw gauge background arc
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
     ctx.lineWidth = 20;
-    sections.forEach(section => {
-        const sectionStartAngle = startAngle + (section.start / 100) * (endAngle - startAngle);
-        const sectionEndAngle = startAngle + (section.end / 100) * (endAngle - startAngle);
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, sectionStartAngle, sectionEndAngle);
-        ctx.strokeStyle = section.color;
-        ctx.stroke();
-    });
+    ctx.strokeStyle = gradient;
+    ctx.stroke();
+
+    // Draw gauge labels
+    ctx.fillStyle = 'white';
+    ctx.font = '12px Montserrat';
+    ctx.textAlign = 'center';
+    ctx.fillText('0', centerX - radius - 10, centerY);
+    ctx.fillText('50', centerX, centerY - radius - 10);
+    ctx.fillText('100', centerX + radius + 10, centerY);
 
     // Draw pointer
     const angle = startAngle + (value / 100) * (endAngle - startAngle);
-    const pointerLength = radius + 5;
+    const pointerLength = radius - 5;
     const pointerX = centerX + pointerLength * Math.cos(angle);
     const pointerY = centerY + pointerLength * Math.sin(angle);
 
@@ -153,6 +155,7 @@ function drawGauge(canvas, value) {
     ctx.lineTo(pointerX, pointerY);
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'white';
+    ctx.lineCap = 'round';
     ctx.stroke();
 
     // Draw center circle
