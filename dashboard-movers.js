@@ -11,36 +11,29 @@ async function fetchHybridMoversData() {
     console.log('fetchHybridMoversData: Starting data fetch.');
     const tableBody = document.querySelector('#movers-final-table tbody');
     try {
-        console.log('fetchHybridMoversData: Fetching from Netlify functions.');
-        const [aiResponse, apiResponse] = await Promise.all([
-            fetch('/.netlify/functions/gemini-scraper'),
-            fetch('/.netlify/functions/fmp-api')
-        ]);
-        console.log('fetchHybridMoversData: Netlify functions responses received.');
-
-        // Verificamos cada respuesta por separado para dar un error específico
-        if (!aiResponse.ok) {
-            try {
-                const errorData = await aiResponse.json();
-                throw new Error(`La función de IA falló: ${errorData.error || 'Error desconocido'}`);
-            } catch (jsonError) {
-                const errorText = await aiResponse.text();
-                throw new Error(`No se pudo obtener la información de la IA. El servidor no devolvió una respuesta JSON válida. Estado: ${aiResponse.status}, Respuesta: ${errorText.substring(0, 100)}...`);
-            }
-        }
+        console.log('fetchHybridMoversData: Fetching main stocks from TradingView API (simulated).');
+        const mainStocks = await fetchMainStocksFromTradingView();
+        
+        // Assuming fmp-api is still used for additional financial data
+        const apiResponse = await fetch('/.netlify/functions/fmp-api');
         if (!apiResponse.ok) {
             throw new Error(`La API de FMP falló. Revisa la clave de API en Netlify. Estado: ${apiResponse.status}, Texto: ${apiResponse.statusText}`);
         }
-
-        const companiesFromAI = await aiResponse.json();
         const financialsFromAPI = await apiResponse.json();
-        console.log('fetchHybridMoversData: Data from AI and FMP parsed.');
+        console.log('fetchHybridMoversData: Data from TradingView (simulated) and FMP parsed.');
 
         const financialsMap = new Map(financialsFromAPI.map(stock => [stock.simbolo, stock]));
 
-        const mergedData = companiesFromAI.map(company => {
+        const mergedData = mainStocks.map(company => {
             const financials = financialsMap.get(company.simbolo) || {};
-            return { ...company, ...financials };
+            // Merge TradingView data with FMP data
+            return {
+                simbolo: company.simbolo,
+                nombre: company.nombre,
+                precio: company.precio || financials.precio, // Prefer TradingView price, fallback to FMP
+                cambio_porcentaje: company.cambio_porcentaje || financials.cambio_porcentaje, // Prefer TradingView change, fallback to FMP
+                volumen: company.volumen || financials.volumen // Prefer TradingView volume, fallback to FMP
+            };
         });
 
         displayHybridMovers(mergedData);
@@ -48,41 +41,59 @@ async function fetchHybridMoversData() {
 
     } catch (error) {
         console.error("fetchHybridMoversData: Error al obtener datos híbridos:", error);
-        // Si falla la IA o cualquier otro error, intentamos cargar datos de criptomonedas como fallback
-        console.log('fetchHybridMoversData: AI data fetch failed, attempting crypto fallback.');
-        try {
-            const cryptoData = await fetchAndFormatCryptoDataForMovers();
-            displayHybridMovers(cryptoData);
-            console.log('fetchHybridMoversData: Crypto fallback data displayed.');
-        } catch (cryptoError) {
-            console.error("fetchHybridMoversData: Error en el fallback de criptomonedas:", cryptoError);
-            tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los movimientos del mercado. Intente de nuevo más tarde. Error AI: ${error.message}. Error Crypto Fallback: ${cryptoError.message}</td></tr>`;
-        }
+        // Display generic error if main stock fetch or FMP API fails
+        tableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los movimientos del mercado. Error: ${error.message}</td></tr>`;
     }
 }
 
-// === LÓGICA PARA FALLBACK DE CRIPTOMONEDAS ===
-async function fetchAndFormatCryptoDataForMovers() {
-    console.log('fetchAndFormatCryptoDataForMovers: Starting crypto data fetch for fallback.');
-    const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=15&page=1&sparkline=false';
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`Error en la respuesta de CoinGecko: ${response.statusText}`);
-        const coins = await response.json();
-        console.log('fetchAndFormatCryptoDataForMovers: Crypto data fetched and parsed.');
+// === LÓGICA PARA OBTENER PRINCIPALES ACCIONES DE TRADINGVIEW (SIMULADO) ===
+async function fetchMainStocksFromTradingView() {
+    console.log('fetchMainStocksFromTradingView: Simulating fetch from TradingView API.');
+    // In a real scenario, this would involve actual API calls to TradingView
+    // For now, we'll return some mock data based on the OpenAPI spec
+    const mockStocks = [
+        { simbolo: 'AAPL', nombre: 'Apple Inc.', precio: 170.00, cambio_porcentaje: 1.25, volumen: '100M' },
+        { simbolo: 'MSFT', nombre: 'Microsoft Corp.', precio: 430.50, cambio_porcentaje: -0.75, volumen: '80M' },
+        { simbolo: 'GOOGL', nombre: 'Alphabet Inc. (Class A)', precio: 150.20, cambio_porcentaje: 2.10, volumen: '60M' },
+        { simbolo: 'AMZN', nombre: 'Amazon.com Inc.', precio: 180.10, cambio_porcentaje: -0.30, volumen: '95M' },
+        { simbolo: 'NVDA', nombre: 'NVIDIA Corp.', precio: 900.80, cambio_porcentaje: 3.50, volumen: '120M' },
+    ];
 
-        return coins.map(coin => ({
-            simbolo: coin.symbol.toUpperCase(),
-            nombre: coin.name,
-            precio: coin.current_price,
-            cambio_porcentaje: coin.price_change_percentage_24h,
-            // Usamos market_cap como un sustituto para volumen en este contexto de fallback
-            volumen: formatMarketCap(coin.market_cap) 
-        }));
-    } catch (error) {
-        console.error("fetchAndFormatCryptoDataForMovers: Error fetching crypto data:", error);
-        throw error; // Re-throw to be caught by the main fetchHybridMoversData catch block
-    }
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Simulate a possible error for testing the fallback
+    // if (Math.random() > 0.8) {
+    //     throw new Error('Simulated TradingView API error');
+    // }
+
+    return mockStocks;
+}
+
+function displayHybridMovers(data) {
+    console.log('displayHybridMovers: Updating table.');
+    const tableBody = document.querySelector('#movers-final-table tbody');
+    tableBody.innerHTML = '';
+    
+    const fragment = document.createDocumentFragment();
+
+    data.forEach(stock => {
+        const price = stock.precio ?? 0;
+        const change = stock.cambio_porcentaje ?? 0;
+        const changeColorClass = change >= 0 ? 'color-green' : 'color-red';
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${stock.simbolo}</td>
+            <td class="stock-name">${stock.nombre}</td>
+            <td>${formatCurrency(price)}</td>
+            <td class="${changeColorClass}">${change.toFixed(2)}%</td>
+            <td>${stock.volumen || 'N/A'}</td>
+        `;
+        fragment.appendChild(row);
+    });
+    tableBody.appendChild(fragment);
+    console.log('displayHybridMovers: Table updated.');
 }
 
 // === FUNCIONES AUXILIARES ===
