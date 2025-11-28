@@ -1,117 +1,174 @@
 console.log('main.js: Script started.');
 
-// Global variables for converter data (will be used by dynamically loaded scripts)
-let allCryptoPrices = {};
-let allFiatPrices = {};
-const availableFiatCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'BRL', 'ARS'];
+// Global function to execute scripts in dynamically loaded HTML
+function executeScripts(element) {
+    const scripts = element.querySelectorAll('script');
+    scripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+        newScript.textContent = oldScript.textContent;
+        // The original script tag might still be in the DOM. Replacing it ensures it runs.
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('main.js: DOMContentLoaded fired.');
-    
-    // Lógica para el botón "Volver Arriba" y resaltado de la navegación
-    const backToTopButton = document.getElementById('back-to-top');
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.navbar nav ul a');
 
-    console.log('main.js: Setting up scroll event listener.');
-    window.addEventListener('scroll', () => {
-        // Visibilidad del botón "Volver Arriba"
-        if (window.scrollY > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
+    const dynamicNavbarArea = document.getElementById('dynamic-navbar-area');
+    const mainContentArea = document.getElementById('main-content-area');
+    const dynamicFooterArea = document.getElementById('dynamic-footer-area');
 
-        // Resaltado del enlace de navegación activo
-        let currentSectionId = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - sectionHeight / 3) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-    console.log('main.js: Scroll event listener set.');
-
-    // Desplazamiento suave para el botón "Volver Arriba"
-    backToTopButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    console.log('main.js: Back to top button event listener set.');
-
-    // Lógica para el manejo de pestañas dinámicas
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContentArea = document.getElementById('tab-content-area');
-
-    // Map tab IDs to their corresponding HTML file paths
-    const tabFileMap = {
-        'crypto': 'dashboard-crypto.html',
-        'data-analysis': 'dashboard-data-analysis.html',
-        'ml-projects': 'dashboard-ml-projects.html',
-        'conversion': 'conversion-tab-content.html'
+    // Map section IDs to their corresponding HTML file paths
+    const sectionFileMap = {
+        'hero': 'hero-section.html', // This should already be in index.html
+        'indicators': 'indicators-section.html',
+        'portfolio': 'portfolio-projects-content.html',
+        'about': 'about-section.html',
+        'skills': 'skills-section.html',
+        'contact-footer': 'contact-footer.html',
+        'project-tabs': 'project-tabs-section.html' // The tabs bar itself
     };
 
-    async function loadTabContent(tabId) {
-        console.log(`main.js: Loading content for tab: ${tabId}`);
-        const filePath = tabFileMap[tabId];
-        if (!filePath) {
-            console.error(`main.js: No file path found for tab ID: ${tabId}`);
-            tabContentArea.innerHTML = `<p class="error">Contenido no encontrado para esta pestaña.</p>`;
+    // --- Dynamic Section Loading Logic ---
+    async function loadSection(sectionId, targetElementId) {
+        console.log(`main.js: Loading section: ${sectionId} into #${targetElementId}`);
+        const filePath = sectionFileMap[sectionId];
+        const targetElement = document.getElementById(targetElementId);
+
+        if (!filePath || !targetElement) {
+            console.error(`main.js: Invalid section ID '${sectionId}' or target element ID '${targetElementId}'.`);
+            if (targetElement) targetElement.innerHTML = `<p class="error">Contenido no encontrado.</p>`;
             return;
         }
 
         try {
             const response = await fetch(filePath);
-            if (!response.ok) throw new Error(`Error loading tab content: ${response.statusText}`);
+            if (!response.ok) throw new Error(`Error loading section content: ${response.statusText}`);
             const html = await response.text();
-            tabContentArea.innerHTML = html;
-
-            // Execute scripts within the loaded HTML (e.g., dashboard-crypto.js, conversion-tab-logic.js)
-            const scripts = tabContentArea.querySelectorAll('script');
-            scripts.forEach(oldScript => {
-                const newScript = document.createElement('script');
-                Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-                newScript.textContent = oldScript.textContent;
-                oldScript.parentNode.replaceChild(newScript, oldScript);
-            });
-            console.log(`main.js: Content for tab '${tabId}' loaded successfully.`);
+            targetElement.innerHTML = html;
+            executeScripts(targetElement); // Execute scripts in the loaded content
+            console.log(`main.js: Section '${sectionId}' loaded successfully.`);
+            return true; // Indicate successful load
         } catch (error) {
-            console.error(`main.js: Error al cargar el contenido de la pestaña '${tabId}':`, error);
-            tabContentArea.innerHTML = `<p class="error">Error al cargar el contenido: ${error.message}</p>`;
+            console.error(`main.js: Error al cargar la sección '${sectionId}':`, error);
+            targetElement.innerHTML = `<p class="error">Error al cargar el contenido: ${error.message}</p>`;
+            return false; // Indicate failed load
         }
     }
+    
+    // --- Initial Load ---
+    // Load navbar and footer first
+    loadSection('navbar', 'dynamic-navbar-area'); // Navbar will contain initial links
+    loadSection('contact-footer', 'dynamic-footer-area'); // Footer contains back to top button
 
-    // Event listeners for tab buttons
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Make sections visible when a tab is clicked for the first time
-            document.getElementById('project-tabs').classList.remove('hidden-initially');
-            document.getElementById('portfolio').classList.remove('hidden-initially');
+    // --- Navigation Link Event Listeners ---
+    // This needs to be set up AFTER the navbar is loaded
+    dynamicNavbarArea.addEventListener('click', async (event) => {
+        const link = event.target.closest('a[href^="#"]');
+        if (link) {
+            event.preventDefault();
+            const targetHash = link.getAttribute('href');
+            const sectionId = targetHash.substring(1); // e.g., 'indicators', 'portfolio'
 
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            loadTabContent(button.dataset.tab);
-        });
+            // Hide main content area if a new section is being loaded, for smooth transition
+            mainContentArea.innerHTML = ''; // Clear previous content
+            
+            // Special handling for portfolio and its tabs
+            if (sectionId === 'portfolio') {
+                // Load the tabs bar first, then the portfolio content
+                await loadSection('project-tabs', 'main-content-area'); // Load tabs bar into main content area
+                const portfolioContentArea = document.createElement('div');
+                portfolioContentArea.id = 'portfolio-content-wrapper'; // Wrapper for portfolio-specific content
+                mainContentArea.appendChild(portfolioContentArea);
+                await loadSection('portfolio', 'portfolio-content-wrapper'); // Load portfolio specific content
+                
+                // Now setup tab logic for the loaded portfolio section
+                const tabButtons = document.querySelectorAll('#project-tabs .tab-button');
+                const tabContentArea = document.getElementById('tab-content-area');
+
+                // Map tab IDs to their corresponding HTML file paths
+                const tabFileMap = {
+                    'crypto': 'dashboard-crypto.html',
+                    'data-analysis': 'dashboard-data-analysis.html',
+                    'ml-projects': 'dashboard-ml-projects.html',
+                    'conversion': 'conversion-tab-content.html'
+                };
+
+                // Function to load tab content
+                async function loadInnerTabContent(innerTabId) {
+                    console.log(`main.js: Loading inner tab content: ${innerTabId}`);
+                    const filePath = tabFileMap[innerTabId];
+                    if (!filePath) {
+                        console.error(`main.js: No file path found for inner tab ID: ${innerTabId}`);
+                        tabContentArea.innerHTML = `<p class="error">Contenido no encontrado para esta pestaña.</p>`;
+                        return;
+                    }
+                    try {
+                        const response = await fetch(filePath);
+                        if (!response.ok) throw new Error(`Error loading inner tab content: ${response.statusText}`);
+                        const html = await response.text();
+                        tabContentArea.innerHTML = html;
+                        executeScripts(tabContentArea); // Execute scripts in the loaded inner tab content
+                        console.log(`main.js: Inner tab content '${innerTabId}' loaded successfully.`);
+                    } catch (error) {
+                        console.error(`main.js: Error al cargar el contenido de la pestaña '${innerTabId}':`, error);
+                        tabContentArea.innerHTML = `<p class="error">Error al cargar el contenido: ${error.message}</p>`;
+                    }
+                }
+
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        loadInnerTabContent(button.dataset.tab);
+                    });
+                });
+                // Load default inner tab (e.g., crypto)
+                const initialInnerTab = document.querySelector('#project-tabs .tab-button.active');
+                if (initialInnerTab) {
+                    loadInnerTabContent(initialInnerTab.dataset.tab);
+                } else if (tabButtons.length > 0) {
+                    tabButtons[0].classList.add('active');
+                    loadInnerTabContent(tabButtons[0].dataset.tab);
+                }
+
+            } else {
+                await loadSection(sectionId, 'main-content-area');
+            }
+            // Scroll to the loaded section if it's not the hero
+            if (sectionId !== 'hero') {
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            }
+             // For indicators section, re-run F&G fetch if loaded
+            if (sectionId === 'indicators') {
+                const fngCanvas = document.getElementById('fng-gauge');
+                if (fngCanvas) {
+                    // Initial fetch and set interval if not already set
+                    if (!fngCanvas.dataset.fngInterval) {
+                        fetchFearAndGreedIndex();
+                        fngCanvas.dataset.fngInterval = setInterval(fetchFearAndGreedIndex, 3600000);
+                    }
+                }
+            }
+            // Update active state of main navigation links
+            navLinks.forEach(navLink => {
+                navLink.classList.remove('active');
+                if (navLink.getAttribute('href') === targetHash) {
+                    navLink.classList.add('active');
+                }
+            });
+        }
     });
 
-    // No initial tab content loading on DOMContentLoaded as per user request.
-    // Content will load only when a tab is explicitly clicked.
-
-    // Fetch and display Fear & Greed Index (this is always on index.html)
-    fetchFearAndGreedIndex();
-    setInterval(fetchFearAndGreedIndex, 3600000); // Update every hour
+    // Handle initial active link for "Inicio" (Hero section)
+    const initialHeroLink = document.querySelector('a[href="#hero"]');
+    if (initialHeroLink) {
+        initialHeroLink.classList.add('active');
+    }
+    
+    // Fear & Greed Index functions remain global, as they are called from indicators-section.html
+    // and also need to be re-initialized when that section loads.
 });
 
 // === LÓGICA PARA EL ÍNDICE DE MIEDO Y CODICIA ===
@@ -139,8 +196,8 @@ async function fetchFearAndGreedIndex() {
 
     } catch (error) {
         console.error("fetchFearAndGreedIndex: Error al cargar el índice de Miedo y Codicia:", error);
-        fngValueElem.textContent = 'Error al cargar.';
-        fngClassificationElem.textContent = '';
+        if (fngValueElem) fngValueElem.textContent = 'Error al cargar.';
+        if (fngClassificationElem) fngClassificationElem.textContent = '';
     }
 }
 

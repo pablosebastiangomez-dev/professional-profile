@@ -22,105 +22,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="navbar">
-    <nav>
-      <ul>
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#indicators">Indicadores</a></li>
-        <li><a href="#portfolio">Proyectos</a></li>
-        <li><a href="#about">Sobre mí</a></li>
-        <li><a href="#skills">Habilidades</a></li>
-        <li><a href="#contact">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
-
+  <div id="dynamic-navbar-area"></div>
   <section id="hero" class="hero">
     <h1>Pablo Sebastián Gómez</h1>
     <h2>Analista de Datos</h2>
     <p>Transformo datos en decisiones estratégicas. Experiencia en análisis financiero, criptomonedas y mercados bursátiles.</p>
   </section>
 
-  <section id="project-tabs" class="tab-container hidden-initially" style="margin-top: 30px;">
-    <div class="tabs">
-      <button class="tab-button active" data-tab="crypto">Dashboard de Criptomonedas</button>
-      <button class="tab-button" data-tab="data-analysis">Análisis de Datos y Visualización</button>
-      <button class="tab-button" data-tab="ml-projects">Proyectos de Machine Learning</button>
-      <button class="tab-button" data-tab="conversion">Conversión</button>
-    </div>
-  </section>
+  <div id="main-content-area">
+    <!-- Dynamically loaded content will be inserted here -->
+  </div>
 
-  <section id="indicators">
-    <div class="section-container" style="margin-top: 30px;">
-      <h2 style="margin-bottom: 20px;">Indicadores de Mercado</h2>
-      <div class="indicators-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
-        <div class="indicator-card" style="background-color: var(--bg-light); padding: 20px; border-radius: 10px; text-align: center;">
-          <h3>Índice de Miedo y Codicia (Fear & Greed Index)</h3>
-          <canvas id="fng-gauge" width="300" height="150" style="max-width: 100%; height: auto;"></canvas>
-          <p id="fng-value" style="font-size: 1.5em; font-weight: bold; margin-top: 10px;"></p>
-          <p id="fng-classification" style="font-size: 1.1em; color: var(--text-secondary);"></p>
-          <p style="font-size: 0.9em; color: var(--text-secondary);">Fuente: <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" style="color: var(--accent-color);">alternative.me</a></p>
-        </div>
-        <!-- Aquí se pueden agregar más indicadores en el futuro -->
-      </div>
-    </div>
-  </section>
-
-  <section id="portfolio" class="hidden-initially">
-    <h3>Proyectos de Datos</h3>
-    <p>Explorá mis dashboards interactivos en diferentes áreas de análisis:</p>
-    <div id="tab-content-area">
-      <!-- Dynamic tab content will be loaded here -->
-    </div>
-    
-
-  </section>
-
-  <section id="about">
-      <h3>Sobre Mí</h3>
-      <p>Mi misión es simple: ayudarte a tomar decisiones financieras inteligentes para que tu dinero trabaje por ti.</p>
-      <p>Mi experiencia como Gerente de Sistemas en una tarjeta de crédito no solo me dio un profundo conocimiento en análisis de datos y gestión de riesgos, sino que también me enseñó a crear soluciones que se adaptan a las necesidades reales de las personas.</p>
-      <p>No necesitas ser un experto en finanzas para invertir con éxito. Me especializo en guiar a quienes buscan multiplicar sus ingresos y construir un futuro sólido con seguridad y confianza. Mi enfoque combina la educación financiera con un análisis de mercado exhaustivo para crear estrategias personalizadas que se alineen con tus metas y tu momento de vida.</p>
-      <p>En cada asesoría, te ofrezco claridad, confianza y resultados medibles. Mi trabajo no se basa en fórmulas mágicas, sino en un asesoramiento honesto y herramientas concretas para que tomes el control de tus finanzas e inversiones.</p>
-      <p class="highlight-text">Este puede ser un buen momento para que empieces...</p>
-  </section>
-
-  <section id="skills">
-    <h3>Habilidades Técnicas</h3>
-    <div class="skills-category">
-        <h4>Lenguajes de Programación</h4>
-        <ul>
-            <li>Python (Pandas, NumPy)</li>
-            <li>SQL</li>
-        </ul>
-    </div>
-    <div class="skills-category">
-        <h4>Bases de Datos</h4>
-        <ul>
-            <li>PostgreSQL</li>
-            <li>MySQL</li>
-            <li>MongoDB</li>
-        </ul>
-    </div>
-    <div class="skills-category">
-        <h4>Otros</h4>
-        <ul>
-            <li>Excel Avanzado</li>
-            <li>Git</li>
-        </ul>
-    </div>
-  </section>
-
-  <footer id="contact">
-    <p>© 2025 - Pablo Sebastián Gómez</p>
-    <p>
-      <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
-      <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">🔗 LinkedIn</a>
-    </p>
-  </footer>
+  <div id="dynamic-footer-area"></div>
 
   <script src="main.js"></script>
-
-  <a href="#hero" id="back-to-top" class="back-to-top" aria-label="Volver arriba">↑</a>
 </body>
 </html>
