@@ -69,84 +69,11 @@
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
     <p>Explorá mis dashboards interactivos en diferentes áreas de análisis:</p>
+    <div id="tab-content-area">
+      <!-- Dynamic tab content will be loaded here -->
+    </div>
     
-      <div id="crypto" class="tab-content active">
-        <div class="dashboard-card">
-          <h4>Dashboard de Criptomonedas</h4>
-          <p>Seguimiento en tiempo real de las principales criptomonedas, ordenadas por capitalización de mercado.</p>
-          <div class="dashboard-container">
-            <iframe src="dashboard-crypto.html" class="dashboard-iframe" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-      
-      <div id="data-analysis" class="tab-content">
-        <div class="dashboard-card">
-          <h4>Análisis de Datos y Visualización</h4>
-          <p>Exploración y visualización interactiva de conjuntos de datos. Aquí se mostrarán insights clave.</p>
-          <div class="dashboard-container">
-            <!-- Contenido del nuevo dashboard de análisis de datos -->
-            <iframe src="dashboard-data-analysis.html" class="dashboard-iframe" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
 
-      <div id="ml-projects" class="tab-content">
-        <div class="dashboard-card">
-          <h4>Proyectos de Machine Learning</h4>
-          <p>Demostraciones interactivas de modelos de Machine Learning y sus predicciones.</p>
-          <div class="dashboard-container">
-            <!-- Contenido del nuevo dashboard de proyectos ML -->
-            <iframe src="dashboard-ml-projects.html" class="dashboard-iframe" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-      
-      <div id="conversion" class="tab-content">
-        <div class="dashboard-card">
-          <h4>Conversor de Criptomonedas</h4>
-          <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: flex-end;">
-            <div>
-              <label for="convert-amount" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Cantidad:</label>
-              <input type="number" id="convert-amount" value="1" min="0.01" step="0.01" style="width: 120px; padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);">
-            </div>
-            <div>
-              <label for="convert-from" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">De:</label>
-              <select id="convert-from" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-            </div>
-            <div style="font-size: 1.5em; color: var(--text-secondary); margin-bottom: 5px;">↔</div>
-            <div>
-              <label for="convert-to" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">A:</label>
-              <select id="convert-to" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-            </div>
-          </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <p id="conversion-result" style="font-size: 1.6em; font-weight: bold; color: var(--accent-color);">--</p>
-          </div>
-        </div>
-
-        <div class="dashboard-card" style="margin-top: 30px;">
-          <h4>Conversor de Monedas Fiat</h4>
-          <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: flex-end;">
-            <div>
-              <label for="fiat-amount" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Cantidad:</label>
-              <input type="number" id="fiat-amount" value="1" min="0.01" step="0.01" style="width: 120px; padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);">
-            </div>
-            <div>
-              <label for="fiat-from" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">De:</label>
-              <select id="fiat-from" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-            </div>
-            <div style="font-size: 1.5em; color: var(--text-secondary); margin-bottom: 5px;">↔</div>
-            <div>
-              <label for="fiat-to" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">A:</label>
-              <select id="fiat-to" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-            </div>
-          </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <p id="fiat-conversion-result" style="font-size: 1.6em; font-weight: bold; color: var(--accent-color);">--</p>
-          </div>
-        </div>
-      </div>
   </section>
 
   <section id="about">
