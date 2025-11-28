@@ -17,7 +17,7 @@
 /* === RESET Y BASE === */
 body {
   margin: 0;
-  padding-top: 60px; /* Espacio para la navbar fija */
+  padding-top: 80px; /* Espacio para la navbar fija + nueva barra de pestañas */
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-dark) 100%);
   color: var(--text-primary);
@@ -367,19 +367,36 @@ footer {
 }
 
 /* === ESTILOS PARA TABS === */
-.tab-container {
-  margin-top: 30px;
-  background-color: var(--bg-card);
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  overflow: hidden; /* Para contener los bordes redondeados del content */
+#project-tabs {
+  position: sticky; /* Make it stick at the top */
+  top: 60px; /* Below the main navbar */
+  z-index: 999; /* Ensure it's above other content but below the main navbar */
+  width: 100%;
+  background-color: var(--bg-dark); /* Match background to navbar or body */
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 0; /* Add some padding */
+  margin-top: 0; /* Remove top margin */
 }
 
 .tabs {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid var(--border-color);
-  background-color: #222; /* Un fondo ligeramente diferente para las pestañas */
+  /* Remove border-bottom as it's now on #project-tabs */
+  /* Remove background-color as it's now on #project-tabs */
+  max-width: 1200px; /* Keep content centered */
+  margin: 0 auto;
+}
+
+/* Original .tab-container styling no longer applies directly to #project-tabs,
+   but we might need it for tab content if we re-introduce it as a wrapper */
+.tab-container {
+  /* Removed properties that are now on #project-tabs */
+  margin-top: 30px; /* Keep default margin for tab content if needed */
+  background-color: transparent; /* Make it transparent so background is handled by sections */
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .tab-button {
