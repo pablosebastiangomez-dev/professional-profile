@@ -43,45 +43,9 @@
     <p>Fusiono más de 15 años en Data (SQL/ETL) con la arquitectura Full-Stack de Educhain (Web3), implementando Blockchain y estrategias PLG para garantizar la trazabilidad inmutable de logros y activos digitales.</p>
   </section>
 
-  <section id="indicators">
-    <div class="section-container" style="margin-top: 30px;">
-      <h2 style="margin-bottom: 20px;">Indicadores de Mercado</h2>
-      <div class="indicators-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
-        <div class="indicator-card" style="background-color: var(--bg-light); padding: 20px; border-radius: 10px; text-align: center;">
-          <h3>Índice de Miedo y Codicia (Fear & Greed Index)</h3>
-          <canvas id="fng-gauge" width="300" height="150" style="max-width: 100%; height: auto;"></canvas>
-          <p id="fng-value" style="font-size: 1.5em; font-weight: bold; margin-top: 10px;"></p>
-          <p id="fng-classification" style="font-size: 1.1em; color: var(--text-secondary);"></p>
-          <p style="font-size: 0.9em; color: var(--text-secondary);">Fuente: <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" style="color: var(--accent-color);">alternative.me</a></p>
-        </div>
-        <!-- Aquí se pueden agregar más indicadores en el futuro -->
-      </div>
-    </div>
-  </section>
 
-  <section id="converter">
-    <div class="section-container" style="margin-top: 30px;">
-      <h2>Conversor de Criptomonedas</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: flex-end;">
-        <div>
-          <label for="convert-amount" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Cantidad:</label>
-          <input type="number" id="convert-amount" value="1" min="0.01" step="0.01" style="width: 120px; padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);">
-        </div>
-        <div>
-          <label for="convert-from" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">De:</label>
-          <select id="convert-from" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-        </div>
-        <div style="font-size: 1.5em; color: var(--text-secondary); margin-bottom: 5px;">↔</div>
-        <div>
-          <label for="convert-to" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">A:</label>
-          <select id="convert-to" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 20px;">
-        <p id="conversion-result" style="font-size: 1.6em; font-weight: bold; color: var(--accent-color);">--</p>
-      </div>
-    </div>
-  </section>
+
+
 
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
@@ -124,6 +88,46 @@
             <iframe src="dashboard-ml-projects.html" class="dashboard-iframe" loading="lazy"></iframe>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="indicators">
+    <div class="section-container" style="margin-top: 30px;">
+      <h2 style="margin-bottom: 20px;">Indicadores de Mercado</h2>
+      <div class="indicators-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
+        <div class="indicator-card" style="background-color: var(--bg-light); padding: 20px; border-radius: 10px; text-align: center;">
+          <h3>Índice de Miedo y Codicia (Fear & Greed Index)</h3>
+          <canvas id="fng-gauge" width="300" height="150" style="max-width: 100%; height: auto;"></canvas>
+          <p id="fng-value" style="font-size: 1.5em; font-weight: bold; margin-top: 10px;"></p>
+          <p id="fng-classification" style="font-size: 1.1em; color: var(--text-secondary);"></p>
+          <p style="font-size: 0.9em; color: var(--text-secondary);">Fuente: <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" style="color: var(--accent-color);">alternative.me</a></p>
+        </div>
+        <!-- Aquí se pueden agregar más indicadores en el futuro -->
+      </div>
+    </div>
+  </section>
+
+  <section id="converter">
+    <div class="section-container" style="margin-top: 30px;">
+      <h2>Conversor de Criptomonedas</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: flex-end;">
+        <div>
+          <label for="convert-amount" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Cantidad:</label>
+          <input type="number" id="convert-amount" value="1" min="0.01" step="0.01" style="width: 120px; padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);">
+        </div>
+        <div>
+          <label for="convert-from" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">De:</label>
+          <select id="convert-from" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
+        </div>
+        <div style="font-size: 1.5em; color: var(--text-secondary); margin-bottom: 5px;">↔</div>
+        <div>
+          <label for="convert-to" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">A:</label>
+          <select id="convert-to" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 20px;">
+        <p id="conversion-result" style="font-size: 1.6em; font-weight: bold; color: var(--accent-color);">--</p>
       </div>
     </div>
   </section>
