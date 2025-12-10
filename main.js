@@ -96,18 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listeners for tab buttons
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Make sections visible when a tab is clicked for the first time
-            document.getElementById('project-tabs').classList.remove('hidden-initially');
-            document.getElementById('portfolio').classList.remove('hidden-initially');
-
             tabButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             loadTabContent(button.dataset.tab);
         });
     });
 
-    // No initial tab content loading on DOMContentLoaded as per user request.
-    // Content will load only when a tab is explicitly clicked.
+    // Load initial tab content (e.g., crypto dashboard)
+    const initialTab = document.querySelector('.tab-button.active');
+    if (initialTab) {
+        loadTabContent(initialTab.dataset.tab);
+    } else if (tabButtons.length > 0) {
+        tabButtons[0].classList.add('active');
+        loadTabContent(tabButtons[0].dataset.tab);
+    }
 
     // Fetch and display Fear & Greed Index (this is always on index.html)
     fetchFearAndGreedIndex();
