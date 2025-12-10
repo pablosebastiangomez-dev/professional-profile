@@ -1,34 +1,44 @@
 /* === FUENTES Y VARIABLES GLOBALES === */
 
-
 :root {
-  --bg-dark: #121212;
-  --bg-light: #1e1e1e;
-  --bg-card: #2a2a2a;
-  --text-primary: #e0e0e0;
-  --text-secondary: #b3b3b3;
-  --accent-color: #007bff; /* Un azul más brillante y moderno */
-  --accent-hover: #0056b3;
-  --color-green: #28a745;
-  --color-red: #dc3545;
-  --border-color: #333;
+  --bg-dark: #111827;
+  --bg-light: #1F2937;
+  --bg-card: #374151;
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --accent-color: #3B82F6;
+  --accent-hover: #2563EB;
+  --secondary-accent: #10B981;
+  --color-red: #EF4444;
+  --border-color: #4B5563;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 /* === RESET Y BASE === */
 body {
   margin: 0;
-  padding-top: 60px; /* Espacio para la navbar fija */
+  padding-top: 70px; /* Espacio para la navbar fija */
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-dark) 100%);
+  background-color: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.8;
-  font-size: 17px;
+  font-size: 18px;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4 {
   margin: 0 0 1rem;
   font-weight: 700;
+  color: var(--text-primary);
 }
+
+h1 { font-size: 4rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
 
 a {
   color: var(--accent-color);
@@ -41,9 +51,17 @@ a:hover {
 }
 
 section {
-  padding: 60px 20px;
+  padding: 80px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* === NAVBAR === */
@@ -52,96 +70,113 @@ section {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 15px 40px;
+  padding: 20px 40px;
   z-index: 1000;
-  background: rgba(18, 18, 18, 0.8);
+  background: rgba(17, 24, 39, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   transition: background 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 35px;
   margin: 0;
   padding: 0;
 }
 
+.navbar nav ul a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar nav ul a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.navbar nav ul a:hover,
+.navbar nav ul a.active {
+  color: var(--text-primary);
+}
+
+.navbar nav ul a:hover::after,
+.navbar nav ul a.active::after {
+  width: 100%;
+}
+
+
 /* === HERO === */
 .hero {
   text-align: center;
-  padding: 80px 20px;
-  background-color: var(--bg-light);
+  padding: 100px 20px;
+  background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-light) 100%);
   border-bottom: 1px solid var(--border-color);
 }
 
 .hero h1 {
-  font-size: 3rem;
-  color: var(--accent-color);
+  color: var(--text-primary);
+  margin-bottom: 10px;
 }
 
 .hero h2 {
-  font-size: 1.8rem;
-  color: var(--text-primary);
+  font-size: 2rem;
+  color: var(--accent-color);
   margin-bottom: 15px;
 }
 
+.hero h3 {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+
 .hero p {
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto 20px;
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
-/* === PORTFOLIO Y DASHBOARDS === */
-#portfolio {
-  background-color: var(--bg-dark);
+/* === CARD STYLES === */
+.dashboard-card, .skills-category, .educhain-card, .indicator-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#portfolio h3 {
+.dashboard-card:hover, .skills-category:hover, .educhain-card:hover, .indicator-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* === SECTIONS === */
+#portfolio h3, #educhain h3, #skills h3, #about h3, #indicators h2, #converter h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 40px;
-}
-
-.dashboards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 30px;
-}
-
-.dashboard-card {
-  background-color: var(--bg-card);
-  border: none; /* Quitamos el borde para un look más limpio */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  border-radius: 15px; /* Bordes más redondeados */
-  padding: 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para el hover */
-}
-
-.dashboard-card:hover {
-  transform: translateY(-5px); /* Se eleva ligeramente */
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-}
-
-.dashboard-card h4 {
-    font-size: 1.5rem;
-    color: var(--accent-color);
-}
-
-.dashboard-card p {
-    color: var(--text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .dashboard-container {
   width: 100%;
-  height: 60vh;
+  height: 65vh;
   border-radius: 8px;
   overflow: hidden;
+  border: 1px solid var(--border-color);
 }
 
 .dashboard-iframe {
@@ -150,108 +185,18 @@ section {
   border: none;
 }
 
-/* === ESTILOS PARA LOS DASHBOARDS (DENTRO DEL IFRAME) === */
-.dashboard-body {
-    background-color: var(--bg-card);
-    padding: 0;
-    padding-top: 0; /* Reset para body dentro de iframe */
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: var(--text-primary);
-}
-
-table th, table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
-  vertical-align: middle;
-}
-
-table thead th {
-  background-color: #333;
-  font-weight: bold;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-
-table tbody tr {
-  transition: background-color 0.2s ease;
-}
-
-table tbody tr:hover {
-  background-color: #3a3a3a;
-}
-
-.coin-name, .stock-name {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.coin-name img {
-  width: 24px;
-  height: 24px;
-}
-
-.symbol {
-  color: var(--text-secondary);
-  font-size: 0.9em;
-}
-
-.color-green { color: var(--color-green); }
-.color-red { color: var(--color-red); }
-
-.loading, .error {
-    text-align: center;
-    padding: 40px;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-}
-
-/* === ABOUT ME & FOOTER === */
-#about {
-    background-color: var(--bg-light);
-    text-align: center;
-}
-
 /* === SKILLS === */
-#skills {
-    background-color: var(--bg-dark);
-    text-align: center;
-}
-
-#skills h3 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-}
-
 .skills-category {
-    background-color: var(--bg-card);
-    border: none;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skills-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  margin-bottom: 25px;
+  text-align: left;
 }
 
 .skills-category h4 {
     color: var(--accent-color);
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .skills-category ul {
@@ -260,186 +205,143 @@ table tbody tr:hover {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .skills-category li {
     background-color: var(--bg-light);
     color: var(--text-primary);
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 0.95rem;
-    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 
-/* === BACK TO TOP BUTTON === */
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--accent-color);
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 40px;
-  font-size: 24px;
-  z-index: 100;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
-}
-
-.back-to-top:hover {
-  background-color: var(--accent-hover);
-  color: white;
-}
-
-.back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* === NAVBAR ACTIVE LINK === */
-.navbar nav ul a.active {
-  color: var(--accent-hover);
-  font-weight: bold;
-}
-
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  border-top: 1px solid var(--border-color);
-}
-
-/* === EFECTO DE ACTUALIZACIÓN (FLASH) === */
-@keyframes row-flash {
-  0% {
-    background-color: #5a5a5a; /* Un gris un poco más claro */
-  }
-  100% {
-    background-color: transparent; /* Vuelve al color original de la fila */
-  }
-}
-
-.flash {
-  animation: row-flash 1s ease-out;
-}
-
-@keyframes price-up-bg {
-  from { background-color: rgba(40, 167, 69, 0.3); }
-  to { background-color: transparent; }
-}
-
-@keyframes price-down-bg {
-  from { background-color: rgba(220, 53, 69, 0.3); }
-  to { background-color: transparent; }
-}
-
-.price-up {
-  animation: price-up-bg 1.5s ease-out;
-  color: var(--color-green) !important;
-}
-
-.price-down {
-  animation: price-down-bg 1.5s ease-out;
-  color: var(--color-red) !important;
-}
-
-/* === ESTILOS PARA LA SECCIÓN SOBRE MÍ === */
+/* === ABOUT ME === */
 #about p {
   text-align: justify;
-  max-width: 800px; /* El texto justificado se lee mejor en líneas no muy largas */
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  color: var(--text-secondary);
 }
 
-.highlight-text {
-  display: block; /* Lo hacemos un bloque para poder centrarlo */
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.1em;
-  color: var(--accent-color); /* Usamos el color de acento que ya definimos */
-  margin-top: 2em; /* Le damos un poco de espacio arriba */
-}
-
-/* === ESTILOS PARA TABS === */
+/* === TABS === */
 .tab-container {
   margin-top: 30px;
   background-color: var(--bg-card);
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  overflow: hidden; /* Para contener los bordes redondeados del content */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
 .tabs {
   display: flex;
   justify-content: center;
   border-bottom: 1px solid var(--border-color);
-  background-color: #222; /* Un fondo ligeramente diferente para las pestañas */
+  background-color: var(--bg-light);
 }
 
 .tab-button {
   background-color: transparent;
   border: none;
-  padding: 15px 25px;
+  padding: 18px 30px;
   cursor: pointer;
   font-size: 1.1rem;
+  font-weight: 500;
   color: var(--text-secondary);
   transition: all 0.3s ease;
-  border-bottom: 3px solid transparent; /* Para el indicador de pestaña activa */
+  border-bottom: 3px solid transparent;
 }
 
 .tab-button:hover {
   color: var(--text-primary);
-  background-color: #333;
+  background-color: var(--bg-card);
 }
 
 .tab-button.active {
   color: var(--accent-color);
   border-bottom: 3px solid var(--accent-color);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .tab-content {
-  padding: 20px;
-  display: none; /* Ocultar por defecto */
+  padding: 30px;
+  display: none;
 }
 
 .tab-content.active {
-  display: block; /* Mostrar contenido de la pestaña activa */
+  display: block;
 }
 
-/* Ajuste para los cards dentro de las pestañas */
 .tab-content .dashboard-card {
-  box-shadow: none; /* Quitamos la sombra del card dentro de la pestaña para evitar doble sombra */
-  border-radius: 0; /* Quitamos los bordes redondeados del card dentro de la pestaña */
+  box-shadow: none;
+  border-radius: 0;
   padding: 0;
-  background-color: transparent; /* Fondo transparente para que el tab-container lo maneje */
-}
-
-.tab-content .dashboard-card h4,
-.tab-content .dashboard-card p {
-  padding: 15px 20px 0; /* Añadir padding para que el texto no se pegue al borde superior */
+  background-color: transparent;
 }
 
 .tab-content .dashboard-container {
-    height: 70vh; /* Ajustar la altura del iframe dentro de las pestañas si es necesario */
-    margin: 15px 20px;
-    border-radius: 8px; /* Mantener bordes redondeados para el iframe */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra ligera para el iframe */
+    height: 70vh;
+    margin-top: 20px;
 }
 
-/* Remueve los estilos de grid anteriores que ya no se usan */
-.dashboards-grid {
-    display: block; /* o none si no quieres que ocupe espacio */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+  border-radius: 8px;
 }
 
-/* Asegúrate de que los iframes llenen el espacio de sus contenedores */
-.tab-content .dashboard-iframe {
-    width: 100%;
-    height: 100%;
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+/* === UTILITIES === */
+.color-green { color: var(--secondary-accent); }
+.color-red { color: var(--color-red); }
+
+/* === BACK TO TOP BUTTON === */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--accent-color);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 28px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-3px);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
 }
