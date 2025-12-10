@@ -19,6 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -58,15 +59,15 @@
 
       <div id="educhain-description" class="tab-content active">
         <div class="educhain-card">
-          <h4 style="text-align: center;">Edu & Chain: Visión y Ejecución</h4>
-          <img src="img/Logo_EduChain.png" alt="Edu & Chain Logo" style="max-width: 300px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+          <h4>Edu & Chain: Visión y Ejecución</h4>
+          <img src="img/Logo_EduChain.png" alt="Edu & Chain Logo" style="max-width: 100%; height: auto; max-height: 150px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
           <p>Como Fundador y Tech Lead/Product Owner de Edu & Chain, mi misión ha sido definir y ejecutar la visión de un sistema de incentivos EdTech que es a la vez gamificado e inmutable mediante la adopción de la tecnología Blockchain bajo una estrategia de Crecimiento Liderado por el Producto (PLG). Esto implicó liderar la arquitectura Full-Stack (React/Node.js) y la integración del Stellar SDK para la emisión de Tokens y NFTs de Mérito con Multi-Firma para garantizar la gobernanza de activos, mientras aplicaba mi sólida experiencia en SQL/ETL (+10 años) para diseñar una estructura de datos on-chain y off-chain (Firestore) que asegura la integridad del dato y proporciona el reporting automatizado de logros estudiantiles requerido por la administración escolar.</p>
         </div>
       </div>
 
       <div id="educhain-video" class="tab-content">
         <div class="educhain-card">
-          <h4 style="text-align: center;">Video Institucional de Edu & Chain</h4>
+          <h4>Video Institucional de Edu & Chain</h4>
           <div class="video-container" style="text-align: center;">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/hQofpTYjoy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
           </div>
@@ -77,7 +78,7 @@
 
   <section id="portfolio">
     <h3>Proyectos de Datos</h3>
-    <p>Explorá mis dashboards interactivos en diferentes áreas de análisis:</p>
+    <p style="text-align: center;">Explorá mis dashboards interactivos en diferentes áreas de análisis:</p>
     
     <div class="tab-container">
       <div class="tabs">
@@ -169,31 +170,48 @@
 
   <section id="skills">
     <h3>Habilidades Técnicas</h3>
-    <div class="skills-category">
+    <div class="skills-grid">
+      <div class="skill-card">
+        <i class="fas fa-code skill-icon"></i>
         <h4>Lenguajes de Programación</h4>
         <ul>
-            <li>Python (Pandas, NumPy)</li>
-            <li>SQL</li>
+          <li>Python (Pandas, NumPy)</li>
+          <li>SQL</li>
         </ul>
-    </div>
-    <div class="skills-category">
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-database skill-icon"></i>
         <h4>Bases de Datos</h4>
         <ul>
-            <li>PostgreSQL</li>
-            <li>MySQL</li>
-            <li>MongoDB</li>
+          <li>PostgreSQL</li>
+          <li>MySQL</li>
+          <li>MongoDB</li>
         </ul>
-    </div>
-    <div class="skills-category">
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-tools skill-icon"></i>
         <h4>Otros</h4>
         <ul>
-            <li>Excel Avanzado</li>
-            <li>Git</li>
+          <li>Excel Avanzado</li>
+          <li>Git</li>
         </ul>
+      </div>
     </div>
   </section>
 
   <footer id="contact">
+    <h3>Contacto</h3>
+    <p>¿Interesado en colaborar? Enviame un mensaje.</p>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+      <div class="form-group">
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <textarea name="message" placeholder="Mensaje" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+    </form>
     <p>© 2025 - Pablo Sebastián Gómez</p>
     <p>
       <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |

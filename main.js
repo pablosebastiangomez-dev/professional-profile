@@ -46,6 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Smooth scroll for nav links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 60, // Adjust for fixed navbar
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
     // Smooth scroll for back to top button
     backToTopButton.addEventListener('click', (e) => {
         e.preventDefault();

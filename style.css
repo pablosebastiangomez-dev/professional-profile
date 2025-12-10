@@ -2,16 +2,16 @@
 
 
 :root {
-  --bg-dark: #121212;
-  --bg-light: #1e1e1e;
-  --bg-card: #2a2a2a;
+  --bg-dark: #0d1117;
+  --bg-light: #161b22;
+  --bg-card: #1c2128;
   --text-primary: #e0e0e0;
   --text-secondary: #b3b3b3;
-  --accent-color: #007bff; /* Un azul más brillante y moderno */
-  --accent-hover: #0056b3;
+  --accent-color: #58a6ff;
+  --accent-hover: #3a8dff;
   --color-green: #28a745;
   --color-red: #dc3545;
-  --border-color: #333;
+  --border-color: #30363d;
 }
 
 /* === RESET Y BASE === */
@@ -19,7 +19,8 @@ body {
   margin: 0;
   padding-top: 60px; /* Espacio para la navbar fija */
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-dark) 100%);
+  background-color: var(--bg-dark);
+  background-image: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-dark) 40%);
   color: var(--text-primary);
   line-height: 1.8;
   font-size: 17px;
@@ -38,9 +39,7 @@ a {
 
 a:hover {
   color: var(--accent-hover);
-}
-
-section {
+}section {
   padding: 60px 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -54,11 +53,11 @@ section {
   width: 100%;
   padding: 15px 40px;
   z-index: 1000;
-  background: rgba(18, 18, 18, 0.8);
+  background: rgba(13, 17, 23, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   transition: background 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .navbar nav ul {
@@ -70,12 +69,30 @@ section {
   padding: 0;
 }
 
+.navbar nav ul a {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar nav ul a:hover,
+.navbar nav ul a.active {
+  background-color: var(--accent-color);
+  color: var(--bg-dark);
+  font-weight: bold;
+}
+
 /* === HERO === */
 .hero {
   text-align: center;
-  padding: 80px 20px;
-  background-color: var(--bg-light);
+  padding: 100px 20px;
+  background-color: transparent;
+  background-image: radial-gradient(circle at 50% -20%, var(--accent-color) -80%, transparent 40%);
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
@@ -101,7 +118,7 @@ section {
   background-color: var(--bg-dark);
 }
 
-#portfolio h3 {
+#portfolio h3, #educhain h3 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
@@ -114,32 +131,37 @@ section {
 }
 
 .dashboard-card {
-  background-color: var(--bg-card);
-  border: none; /* Quitamos el borde para un look más limpio */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  border-radius: 15px; /* Bordes más redondeados */
-  padding: 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para el hover */
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  transition: none;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-5px); /* Se eleva ligeramente */
+  transform: none;
+  box-shadow: none;
+}
+
+.educhain-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.educhain-card:hover {
+  transform: translateY(-5px);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
 .dashboard-card h4, .educhain-card h4 {
-  font-size: 1.2rem;
-}
-
-.educhain-card img {
-  max-width: 150px;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-.dashboard-card h4 {
-    font-size: 1.5rem;
-    color: var(--accent-color);
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  text-align: center;
 }
 
 .dashboard-card p {
@@ -230,56 +252,68 @@ table tbody tr:hover {
 
 /* === SKILLS === */
 #skills {
-    background-color: var(--bg-dark);
-    text-align: center;
+  background-color: var(--bg-dark);
+  text-align: center;
 }
 
 #skills h3 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
 }
 
-.skills-category {
-    background-color: var(--bg-card);
-    border: none;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.skills-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+.skill-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.skills-category h4 {
-    color: var(--accent-color);
-    margin-top: 0;
-    margin-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
-.skills-category ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.skill-icon {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
 }
 
-.skills-category li {
-    background-color: var(--bg-light);
-    color: var(--text-primary);
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 0.95rem;
-    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+.skill-card h4 {
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.skill-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-card li {
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  display: inline-block;
+  margin-right: 10px;
+  white-space: nowrap;
 }
 
 /* === BACK TO TOP BUTTON === */
@@ -311,18 +345,79 @@ table tbody tr:hover {
   visibility: visible;
 }
 
-/* === NAVBAR ACTIVE LINK === */
-.navbar nav ul a.active {
-  color: var(--accent-hover);
-  font-weight: bold;
-}
+
 
 footer {
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 20px;
   font-size: 0.9rem;
   color: var(--text-secondary);
   border-top: 1px solid var(--border-color);
+  background-color: var(--bg-dark);
+}
+
+footer h3 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(88, 166, 255, 0.3);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--bg-dark);
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+footer p {
+  margin-top: 40px;
 }
 
 /* === EFECTO DE ACTUALIZACIÓN (FLASH) === */
@@ -379,17 +474,16 @@ footer {
 /* === ESTILOS PARA TABS === */
 .tab-container {
   margin-top: 30px;
-  background-color: var(--bg-card);
+  background-color: transparent;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  overflow: hidden; /* Para contener los bordes redondeados del content */
+  overflow: hidden;
 }
 
 .tabs {
   display: flex;
   justify-content: center;
   border-bottom: 1px solid var(--border-color);
-  background-color: #222; /* Un fondo ligeramente diferente para las pestañas */
+  background-color: transparent;
 }
 
 .tab-button {
@@ -400,12 +494,12 @@ footer {
   font-size: 1.1rem;
   color: var(--text-secondary);
   transition: all 0.3s ease;
-  border-bottom: 3px solid transparent; /* Para el indicador de pestaña activa */
+  border-bottom: 3px solid transparent;
+  position: relative;
 }
 
 .tab-button:hover {
   color: var(--text-primary);
-  background-color: #333;
 }
 
 .tab-button.active {
@@ -414,34 +508,41 @@ footer {
   font-weight: bold;
 }
 
+.tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.tab-button.active::after {
+  width: 100%;
+}
+
 .tab-content {
-  padding: 20px;
-  display: none; /* Ocultar por defecto */
+  padding: 40px 20px;
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .tab-content.active {
-  display: block; /* Mostrar contenido de la pestaña activa */
+  display: block;
 }
 
-/* Ajuste para los cards dentro de las pestañas */
-.tab-content .dashboard-card {
-  box-shadow: none; /* Quitamos la sombra del card dentro de la pestaña para evitar doble sombra */
-  border-radius: 0; /* Quitamos los bordes redondeados del card dentro de la pestaña */
-  padding: 0;
-  background-color: transparent; /* Fondo transparente para que el tab-container lo maneje */
-}
 
-.tab-content .dashboard-card h4,
-.tab-content .dashboard-card p {
-  padding: 15px 20px 0; /* Añadir padding para que el texto no se pegue al borde superior */
-}
-
-.tab-content .dashboard-container {
-    height: 70vh; /* Ajustar la altura del iframe dentro de las pestañas si es necesario */
-    margin: 15px 20px;
-    border-radius: 8px; /* Mantener bordes redondeados para el iframe */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra ligera para el iframe */
-}
 
 /* Remueve los estilos de grid anteriores que ya no se usan */
 .dashboards-grid {
