@@ -83,11 +83,39 @@ async function fetchCryptoData() {
         console.log('fetchCryptoData: Table updated with data.');
         if (statusDiv) statusDiv.textContent = `Última actualización: ${new Date().toLocaleTimeString()}`;
     } catch (error) {
-        console.error("fetchCryptoData: Error al cargar datos:", error);
-        if (cryptoTableBody.children.length === 0) { // Only show error if table is empty
-            cryptoTableBody.innerHTML = `<tr><td colspan="5" class="error">No se pudieron cargar los datos de criptomonedas. Error: ${error.message}</td></tr>`;
+        console.error("fetchCryptoData: Error al cargar datos, cargando fallback:", error);
+        if (cryptoTableBody.children.length === 0 || cryptoTableBody.querySelector('.loading') || cryptoTableBody.querySelector('.error')) {
+            cryptoTableBody.innerHTML = ''; // Limpiar mensaje de carga o error anterior
+            
+            const fallbackCoins = [
+                { name: 'Bitcoin', symbol: 'btc', current_price: 60000, price_change_percentage_24h: 1.5, market_cap: 1180000000000, image: 'https://assets.coingecko.com/coins/images/1/large/bitcoin.png' },
+                { name: 'Ethereum', symbol: 'eth', current_price: 3300, price_change_percentage_24h: -0.8, market_cap: 396000000000, image: 'https://assets.coingecko.com/coins/images/279/large/ethereum.png' },
+                { name: 'Tether', symbol: 'usdt', current_price: 1.0, price_change_percentage_24h: 0.01, market_cap: 112000000000, image: 'https://assets.coingecko.com/coins/images/325/large/Tether.png' },
+                { name: 'BNB', symbol: 'bnb', current_price: 550, price_change_percentage_24h: 2.1, market_cap: 81000000000, image: 'https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png' },
+                { name: 'Solana', symbol: 'sol', current_price: 140, price_change_percentage_24h: -2.3, market_cap: 65000000000, image: 'https://assets.coingecko.com/coins/images/4128/large/solana.png' }
+            ];
+            
+            const fragment = document.createDocumentFragment();
+            fallbackCoins.forEach((coin, index) => {
+                const row = document.createElement('tr');
+                row.dataset.symbol = coin.symbol;
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td class="coin-name">
+                        <img src="${coin.image}" alt="${coin.name} logo" onerror="this.style.display='none'">
+                        <span>${coin.name} <span class="symbol">${coin.symbol.toUpperCase()}</span> *</span>
+                    </td>
+                    <td>${formatCurrency(coin.current_price)}</td>
+                    <td class="${coin.price_change_percentage_24h >= 0 ? 'color-green' : 'color-red'}">${coin.price_change_percentage_24h.toFixed(2)}%</td>
+                    <td>${formatMarketCap(coin.market_cap)}</td>
+                `;
+                fragment.appendChild(row);
+            });
+            cryptoTableBody.appendChild(fragment);
+            if (statusDiv) statusDiv.textContent = 'Modo de referencia (offline/fallback)';
+        } else {
+            if (statusDiv) statusDiv.textContent = 'Error al actualizar. Mostrando datos anteriores.';
         }
-        if (statusDiv) statusDiv.textContent = 'Error al actualizar.';
     } finally {
         isFetching = false;
         console.log('fetchCryptoData: Fetching finished.');

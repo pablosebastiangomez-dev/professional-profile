@@ -217,9 +217,56 @@ async function fetchConverterData() {
 
         performConversion();
 
+        // Remove fallback note if it exists
+        const oldNote = document.getElementById('converter-note');
+        if (oldNote) oldNote.remove();
+
     } catch (error) {
-        console.error("Error loading converter data:", error);
-        document.getElementById('conversion-result').textContent = 'Error al cargar monedas.';
+        console.error("Error loading converter data, loading fallback data:", error);
+        
+        const fallbackCoins = [
+            { id: 'bitcoin', name: 'Bitcoin', symbol: 'btc', current_price: 60000 },
+            { id: 'ethereum', name: 'Ethereum', symbol: 'eth', current_price: 3300 },
+            { id: 'binancecoin', name: 'BNB', symbol: 'bnb', current_price: 550 },
+            { id: 'ripple', name: 'XRP', symbol: 'xrp', current_price: 0.5 },
+            { id: 'solana', name: 'Solana', symbol: 'sol', current_price: 140 },
+            { id: 'cardano', name: 'Cardano', symbol: 'ada', current_price: 0.38 },
+            { id: 'dogecoin', name: 'Dogecoin', symbol: 'doge', current_price: 0.12 },
+            { id: 'polkadot', name: 'Polkadot', symbol: 'dot', current_price: 6.0 },
+            { id: 'tron', name: 'TRON', symbol: 'trx', current_price: 0.12 },
+            { id: 'chainlink', name: 'Chainlink', symbol: 'link', current_price: 14.0 }
+        ];
+
+        allCryptoPrices['usd'] = 1;
+        
+        selectFrom.innerHTML = '<option value="usd">USD</option>';
+        selectTo.innerHTML = '<option value="usd">USD</option>';
+
+        fallbackCoins.forEach(coin => {
+            allCryptoPrices[coin.id] = coin.current_price;
+            const option = document.createElement('option');
+            option.value = coin.id;
+            option.textContent = `${coin.name} (${coin.symbol.toUpperCase()}) *`;
+            selectFrom.appendChild(option.cloneNode(true));
+            selectTo.appendChild(option);
+        });
+        
+        selectFrom.value = 'bitcoin';
+        selectTo.value = 'ethereum';
+
+        performConversion();
+        
+        // Show a small note that it's cached/fallback data
+        if (!document.getElementById('converter-note')) {
+            const note = document.createElement('p');
+            note.id = 'converter-note';
+            note.style.fontSize = '0.8em';
+            note.style.color = 'var(--text-secondary)';
+            note.style.textAlign = 'center';
+            note.style.marginTop = '15px';
+            note.textContent = '* Mostrando precios de referencia aproximados (modo offline/fallback).';
+            document.getElementById('converter').querySelector('.section-container').appendChild(note);
+        }
     }
 }
 
