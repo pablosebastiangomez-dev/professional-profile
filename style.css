@@ -937,6 +937,59 @@ section {
   background-color: var(--bg-card) !important;
   color: var(--text-primary) !important;
   font-family: var(--font-body);
+  padding: 10px !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-primary);
+}
+
+table th, table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+table thead th {
+  background-color: var(--bg-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--border-color);
+}
+
+table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.coin-name, .stock-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-name img {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.symbol {
+  color: var(--text-secondary);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  margin-left: 4px;
 }
 
 /* === RESPONSIVE LAYOUTS === */
