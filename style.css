@@ -115,10 +115,10 @@ a:hover {
 
 /* === PORTFOLIO Y DASHBOARDS === */
 #portfolio {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-light);
 }
 
-#portfolio h3, #educhain h3 {
+#portfolio h3, #e4c h3, #historic-projects h3, #skills h3, #about h3 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
@@ -244,76 +244,126 @@ table tbody tr:hover {
     font-size: 1.1rem;
 }
 
-/* === ABOUT ME & FOOTER === */
+/* === ABOUT ME & SECTIONS === */
 #about {
     background-color: var(--bg-light);
     text-align: center;
 }
 
-/* === SKILLS === */
+#e4c {
+    background-color: var(--bg-dark);
+}
+
+#historic-projects {
+    background-color: var(--bg-light);
+}
+
 #skills {
   background-color: var(--bg-dark);
   text-align: center;
 }
 
-#skills h3 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+#portfolio {
+  background-color: var(--bg-light);
 }
 
-.skills-grid {
+#indicators {
+  background-color: var(--bg-dark);
+}
+
+#converter {
+  background-color: var(--bg-light);
+}
+
+/* === E4C & HISTORIC PROJECTS === */
+.achievements-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  max-width: 900px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
 }
 
-.skill-card {
+.achievement-item {
+  background-color: var(--bg-light);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.achievement-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-color);
+}
+
+/* === SKILLS MATRIX STYLE === */
+.skills-table-container {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
-  padding: 30px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  max-width: 900px;
 }
 
-.skill-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+.skills-matrix {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.skill-icon {
-  font-size: 3rem;
+.skills-matrix th {
+  background-color: var(--bg-light);
   color: var(--accent-color);
-  margin-bottom: 20px;
+  font-size: 1.1rem;
+  padding: 20px;
+  border-bottom: 2px solid var(--border-color);
 }
 
-.skill-card h4 {
+.skills-matrix td {
+  padding: 20px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.skills-matrix tr:last-child td {
+  border-bottom: none;
+}
+
+.skills-matrix td .capa-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
   color: var(--text-primary);
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
-.skill-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.skills-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.skill-card li {
+.skill-tag {
   background-color: var(--bg-light);
   color: var(--text-primary);
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 0.95rem;
-  margin-bottom: 10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
   display: inline-block;
-  margin-right: 10px;
-  white-space: nowrap;
+}
+
+.skill-tag:hover {
+  border-color: var(--accent-color);
+  background-color: rgba(88, 166, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 /* === BACK TO TOP BUTTON === */
