@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CTO & Principal Web3 Architect | AI Products & High-Performance Data Infrastructure | Pablo Sebastián Gómez</title>
-  <meta name="description" content="Perfil profesional de Pablo Sebastián Gómez, CTO & Principal Web3 Architect. Especialista en arquitecturas descentralizadas (Stellar/Soroban), pipelines de datos empresariales y abstracción de complejidad Web3 para soluciones de escala masiva.">
+  <title>Pablo Sebastián Gómez | CTO & Principal Web3 Architect | AI & High-Availability Infrastructure</title>
+  <meta name="description" content="Perfil profesional de Pablo Sebastián Gómez, CTO & Principal Web3 Architect. Diseñador de infraestructura tecnológica de alta disponibilidad, contratos inteligentes (Soroban/Stellar) y pipelines de datos empresariales.">
   <meta name="author" content="Pablo Sebastián Gómez">
   
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
@@ -16,303 +16,375 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="navbar">
-    <nav>
-      <ul>
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#about">Sobre Mí</a></li>
-        <li><a href="#e4c">E4C</a></li>
-        <li><a href="#historic-projects">Historial</a></li>
-        <li><a href="#skills">Habilidades</a></li>
-        <li><a href="#portfolio">Dashboards</a></li>
-        <li><a href="#indicators">Indicadores</a></li>
-        <li><a href="#converter">Conversor</a></li>
-        <li><a href="#contact">Contacto</a></li>
-      </ul>
-    </nav>
+    <div class="navbar-container">
+      <div class="logo">
+        <a href="#hero">PSG <span class="logo-dot">.</span></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">Trayectoria</a></li>
+          <li><a href="#e4c">Hitos</a></li>
+          <li><a href="#skills">Competencias</a></li>
+          <li><a href="#portfolio">Laboratorio</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <section id="hero" class="hero">
-    <h1>Pablo Sebastián Gómez</h1>
-    <h2>CTO & Principal Web3 Architect</h2>
-    <h3>AI Products & High-Performance Data Infrastructure</h3>
-    <p>Especialista en arquitecturas descentralizadas (Stellar/Soroban), pipelines de datos empresariales y abstracción de complejidad Web3 para soluciones de escala masiva.</p>
-  </section>  <section id="about">
-      <h3>Sobre Mí / Resumen Ejecutivo</h3>
-      <p>Principal Software Engineer y CTO con más de 20 años de trayectoria diseñando infraestructura tecnológica de alta disponibilidad, sistemas de bases de datos relacionales robustas y soluciones Web3 de impacto real. Mi enfoque combina la rigurosidad técnica de los sistemas transaccionales tradicionales (SQL Server, ETL complejos) con la innovación de la tecnología de registros distribuidos.</p>
-      <p>Como fundador y CTO de E4C (Education For Culture), he diseñado y ejecutado la arquitectura Web3 y de Inteligencia Artificial que transforma variables de presentismo escolar en incentivos culturales líquidos utilizando la red Stellar. Mi experiencia abarca desde el despliegue de contratos inteligentes en Soroban hasta la integración de sistemas de pagos B2B automatizados (SDP), garantizando entornos corporativos estables y con cumplimiento normativo (compliance) para la protección de datos.</p>
-  </section>
-
-  <section id="e4c">
-    <h3>E4C (Education For Culture)</h3>
-    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px;">
-      Infraestructura descentralizada e inteligencia artificial aplicadas a la transformación social.
-    </p>
-    <div class="tab-container">
-      <div class="tabs">
-        <button class="tab-button active" data-tab="e4c-achievements">Logros de Arquitectura</button>
-        <button class="tab-button" data-tab="e4c-video">Video Institucional</button>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-content">
+      <div class="badge-cto">
+        <span class="pulse-dot"></span> CTO &amp; Principal Web3 Architect
       </div>
-
-      <div id="e4c-achievements" class="tab-content active">
-        <div class="educhain-card">
-          <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
-            <img src="img/Logo_EduChain.png" alt="E4C Logo" style="max-width: 100%; height: auto; max-height: 80px; display: block;">
-            <h4 style="margin: 0; text-align: left; font-size: 1.6rem; color: var(--text-primary);">E4C: Hitos de Arquitectura de Software y Tracción</h4>
-          </div>
-          <div class="achievements-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px;">
-            <div class="achievement-item" style="background-color: var(--bg-light); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 15px;">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fas fa-network-wired" style="font-size: 1.8rem; color: var(--accent-color);"></i>
-                <h5 style="margin: 0; font-size: 1.15rem; font-weight: bold; color: var(--text-primary);">Arquitectura Web3 sin Fricción</h5>
-              </div>
-              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0; text-align: justify;">
-                Diseñé e implementé el motor de liquidación automatizada B2B de E4C utilizando Stellar Disbursement Platform (SDP). Esta infraestructura procesa pagos instantáneos y programáticos en stablecoins (USDC) a partners comerciales (cines, librerías) en el momento exacto del canje. Integra abstracción de cuentas mediante Pollar SDK, permitiendo el onboarding seguro de menores a través de su Gmail escolar institucional, logrando fricción cripto cero y cumplimiento estricto de protección de datos digitales.
-              </p>
-            </div>
-            <div class="achievement-item" style="background-color: var(--bg-light); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 15px;">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fas fa-robot" style="font-size: 1.8rem; color: var(--accent-color);"></i>
-                <h5 style="margin: 0; font-size: 1.15rem; font-weight: bold; color: var(--text-primary);">Inteligencia Artificial en el Aula</h5>
-              </div>
-              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0; text-align: justify;">
-                Desarrollé un asistente de IA privacy-first orientado a la automatización pedagógica. El sistema procesa el dictado en lenguaje natural de los docentes de forma segura y estructurada, traduciendo registros orales en pipelines de datos limpios para alimentar las métricas de presentismo en la blockchain, eliminando la carga administrativa manual.
-              </p>
-            </div>
-            <div class="achievement-item" style="background-color: var(--bg-light); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 15px;">
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fas fa-award" style="font-size: 1.8rem; color: var(--accent-color);"></i>
-                <h5 style="margin: 0; font-size: 1.15rem; font-weight: bold; color: var(--text-primary);">Validación Institucional y de Ecosistema</h5>
-              </div>
-              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0; text-align: justify;">
-                Dirección técnica y defensa estratégica del protocolo ante aceleradoras internacionales, participando activamente en el programa Track Scale - Código Alebrije en la Ciudad de México. Impulsé la viabilidad del proyecto en el ámbito público, logrando la presentación de E4C ante legisladores de la Ciudad de Buenos Aires para su declaración de interés tecnológico y educativo.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="e4c-video" class="tab-content">
-        <div class="educhain-card">
-          <h4>Video Institucional de E4C</h4>
-          <div class="video-container" style="text-align: center;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/hQofpTYjoy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-          </div>
-        </div>
+      <h1>Pablo Sebastián Gómez</h1>
+      <h2>AI Products &amp; High-Performance Data Infrastructure</h2>
+      <p class="hero-subheadline">
+        Especialista en arquitecturas descentralizadas (Stellar/Soroban), pipelines de datos empresariales de alta disponibilidad y abstracción de complejidad Web3 para soluciones de impacto real y escala masiva.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar CV Senior</a>
+        <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> Conectar en LinkedIn</a>
       </div>
     </div>
   </section>
 
-  <section id="historic-projects">
-    <h3>Proyectos Históricos & Trazabilidad</h3>
-    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px;">
-      Trazabilidad inmutable de datos y diseño de arquitecturas descentralizadas previas a E4C.
-    </p>
-    <div class="historic-projects-container" style="max-width: 900px; margin: 0 auto;">
-      <div class="educhain-card">
-        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-          <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--accent-color);"></i>
-          <h4 style="margin: 0; text-align: left; font-size: 1.4rem; color: var(--text-primary);">NewsChain (Truth Tech Initiative)</h4>
-        </div>
-        <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 10px; text-align: justify;">
-          Creador de la arquitectura descentralizada para la trazabilidad y prueba de autenticidad en el periodismo digital. Implementación de capas de inmutabilidad para el registro de procedencia de la información.
+  <!-- TECH MARQUEE -->
+  <div class="marquee-wrapper">
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <span><i class="fab fa-ethereum"></i> STELLAR NETWORK</span>
+        <span><i class="fas fa-cube"></i> SOROBAN SMART CONTRACTS (RUST)</span>
+        <span><i class="fas fa-exchange-alt"></i> STELLAR DISBURSEMENT PLATFORM (SDP)</span>
+        <span><i class="fas fa-user-shield"></i> POLLAR SDK (ACCOUNT ABSTRACTION)</span>
+        <span><i class="fas fa-database"></i> MICROSOFT SQL SERVER</span>
+        <span><i class="fas fa-robot"></i> LLM &amp; AI INTEGRATION</span>
+        <span><i class="fas fa-random"></i> COMPLEX ETL PIPELINES</span>
+        <span><i class="fab fa-node-js"></i> NODE.JS &amp; TYPESCRIPT</span>
+        
+        <!-- Duplicado para loop infinito -->
+        <span><i class="fab fa-ethereum"></i> STELLAR NETWORK</span>
+        <span><i class="fas fa-cube"></i> SOROBAN SMART CONTRACTS (RUST)</span>
+        <span><i class="fas fa-exchange-alt"></i> STELLAR DISBURSEMENT PLATFORM (SDP)</span>
+        <span><i class="fas fa-user-shield"></i> POLLAR SDK (ACCOUNT ABSTRACTION)</span>
+        <span><i class="fas fa-database"></i> MICROSOFT SQL SERVER</span>
+        <span><i class="fas fa-robot"></i> LLM &amp; AI INTEGRATION</span>
+        <span><i class="fas fa-random"></i> COMPLEX ETL PIPELINES</span>
+        <span><i class="fab fa-node-js"></i> NODE.JS &amp; TYPESCRIPT</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="about" class="about-section">
+    <div class="container-narrow">
+      <div class="section-header">
+        <span class="section-tag">Trayectoria</span>
+        <h3>Resumen Ejecutivo</h3>
+      </div>
+      <div class="executive-summary">
+        <p>
+          <strong>Principal Software Engineer y CTO</strong> con más de 20 años de trayectoria diseñando infraestructura tecnológica de <strong>alta disponibilidad</strong>, sistemas de bases de datos relacionales robustas y soluciones Web3 de <strong>impacto real</strong>. Mi enfoque combina la rigurosidad técnica de los sistemas transaccionales tradicionales (<strong>SQL Server</strong>, ETL complejos) con la innovación de la tecnología de registros distribuidos.
+        </p>
+        <p>
+          Como fundador y CTO de <strong>E4C (Education For Culture)</strong>, he diseñado y ejecutado la arquitectura Web3 y de Inteligencia Artificial que transforma variables de presentismo escolar en <strong>incentivos culturales líquidos</strong> utilizando la red Stellar. Mi experiencia abarca desde el despliegue de contratos inteligentes en <strong>Soroban</strong> hasta la integración de sistemas de pagos B2B automatizados (<strong>SDP</strong>), garantizando entornos corporativos estables y con <strong>cumplimiento normativo (compliance)</strong> para la protección de datos de menores.
         </p>
       </div>
     </div>
   </section>
 
-  <section id="skills">
-    <h3>Matriz de Habilidades Técnicas</h3>
-    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
-      Organización de competencias por capas de solución para reflejar criterio de arquitectura e integración de sistemas.
-    </p>
-    <div class="skills-table-container">
-      <table class="skills-matrix">
-        <thead>
-          <tr>
-            <th>Capa de Solución</th>
-            <th>Tecnologías y Protocolos Core</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <span class="capa-titulo">
-                <i class="fas fa-link"></i> Web3 & Blockchain
-              </span>
-            </td>
-            <td>
-              <div class="skills-tags-container">
-                <span class="skill-tag">Stellar Network</span>
-                <span class="skill-tag">Soroban Smart Contracts (Rust)</span>
-                <span class="skill-tag">Stellar Disbursement Platform (SDP)</span>
-                <span class="skill-tag">Pollar SDK (Account Abstraction)</span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="capa-titulo">
-                <i class="fas fa-database"></i> Data Engineering & Enterprise
-              </span>
-            </td>
-            <td>
-              <div class="skills-tags-container">
-                <span class="skill-tag">Microsoft SQL Server (Principal)</span>
-                <span class="skill-tag">Optimización de Querys Complejas</span>
-                <span class="skill-tag">ETL Pipelines</span>
-                <span class="skill-tag">Trazabilidad de Datos Inmutables</span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="capa-titulo">
-                <i class="fas fa-brain"></i> AI & Backend
-              </span>
-            </td>
-            <td>
-              <div class="skills-tags-container">
-                <span class="skill-tag">Integración de Modelos LLM</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">Python (Pandas, NumPy)</span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="capa-titulo">
-                <i class="fas fa-project-diagram"></i> Metodologías & Liderazgo
-              </span>
-            </td>
-            <td>
-              <div class="skills-tags-container">
-                <span class="skill-tag">Dirección de Equipos de IT</span>
-                <span class="skill-tag">Arquitectura de Producto (PLG)</span>
-                <span class="skill-tag">Validación de Producto (Customer Discovery)</span>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="portfolio">
-    <h3>Dashboards de Datos</h3>
-    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px;">Explorá mis dashboards interactivos en diferentes áreas de análisis:</p>
-    
-    <div class="tab-container">
-      <div class="tabs">
-        <button class="tab-button active" data-tab="crypto">Dashboard de Criptomonedas</button>
-        <button class="tab-button" data-tab="data-analysis">Análisis de Datos y Visualización</button>
-        <button class="tab-button" data-tab="ml-projects">Proyectos de Machine Learning</button>
-      </div>
-
-      <div id="crypto" class="tab-content active">
-        <div class="dashboard-card">
-          <h4>Dashboard de Criptomonedas</h4>
-          <p>Seguimiento en tiempo real de las principales criptomonedas, ordenadas por capitalización de mercado.</p>
-          <div class="dashboard-container">
-            <iframe src="dashboard-crypto.html" class="dashboard-iframe" loading="lazy"></iframe>
-          </div>
-        </div>
+  <section id="e4c" class="e4c-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Impacto</span>
+        <h3>Hitos de Arquitectura</h3>
       </div>
       
-      <div id="data-analysis" class="tab-content">
-        <div class="dashboard-card">
-          <h4>Análisis de Datos y Visualización</h4>
-          <p>Exploración y visualización interactiva de conjuntos de datos. Aquí se mostrarán insights clave.</p>
-          <div class="dashboard-container">
-            <!-- Contenido del nuevo dashboard de análisis de datos -->
-            <iframe src="dashboard-data-analysis.html" class="dashboard-iframe" loading="lazy"></iframe>
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tab-button active" data-tab="e4c-achievements"><i class="fas fa-award"></i> Logros E4C &amp; Proyectos</button>
+          <button class="tab-button" data-tab="e4c-video"><i class="fas fa-play-circle"></i> Video Institucional</button>
+        </div>
+
+        <div id="e4c-achievements" class="tab-content active">
+          <div class="e4c-intro">
+            <img src="img/Logo_EduChain.png" alt="E4C Logo" class="e4c-logo-header">
+            <h4>E4C: Infraestructura Tecnológica de Triple Impacto</h4>
+          </div>
+          
+          <div class="achievements-grid">
+            <!-- Card 1 -->
+            <div class="achievement-item">
+              <div class="ach-header">
+                <div class="ach-icon"><i class="fas fa-network-wired"></i></div>
+                <h5>Arquitectura Web3 sin Fricción</h5>
+              </div>
+              <span class="ach-tech-focus">Foco: Pollar SDK &amp; SDP</span>
+              <ul class="ach-bullets">
+                <li>Diseñé e implementé el motor de liquidación automatizada B2B de E4C utilizando **Stellar Disbursement Platform (SDP)**.</li>
+                <li>Procesamiento programático instantáneo de pagos en stablecoins (**USDC**) a partners comerciales (cines, librerías) en el momento del canje.</li>
+                <li>Integración de abstracción de cuentas mediante **Pollar SDK**, permitiendo el onboarding seguro de menores a través de su Gmail escolar institucional.</li>
+                <li>Logro de fricción cripto cero y cumplimiento estricto de normativas de protección de datos digitales.</li>
+              </ul>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="achievement-item">
+              <div class="ach-header">
+                <div class="ach-icon"><i class="fas fa-microphone-alt"></i></div>
+                <h5>Inteligencia Artificial en el Aula</h5>
+              </div>
+              <span class="ach-tech-focus">Foco: Dictado de Voz a Datos</span>
+              <ul class="ach-bullets">
+                <li>Desarrollé un asistente de IA **privacy-first** orientado a la automatización pedagógica.</li>
+                <li>Procesamiento del dictado en lenguaje natural de los docentes de forma segura y estructurada.</li>
+                <li>Traducción de registros orales en pipelines de datos limpios para alimentar las métricas de presentismo en la blockchain.</li>
+                <li>Eliminación del 100% de la carga administrativa manual del docente para el registro del presentismo.</li>
+              </ul>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="achievement-item">
+              <div class="ach-header">
+                <div class="ach-icon"><i class="fas fa-university"></i></div>
+                <h5>Validación Institucional y Gubernamental</h5>
+              </div>
+              <span class="ach-tech-focus">Foco: CDMX &amp; CABA</span>
+              <ul class="ach-bullets">
+                <li>Dirección técnica y defensa estratégica del protocolo ante aceleradoras internacionales del ecosistema.</li>
+                <li>Participación activa en el programa **Track Scale - Código Alebrije** en la Ciudad de México.</li>
+                <li>Presentación e impulso de la viabilidad de la plataforma ante legisladores de la Ciudad de Buenos Aires.</li>
+                <li>Declaración del proyecto E4C de **interés tecnológico y educativo** por la legislatura.</li>
+              </ul>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="achievement-item">
+              <div class="ach-header">
+                <div class="ach-icon"><i class="fas fa-shield-alt"></i></div>
+                <h5>NewsChain (Truth Tech Initiative)</h5>
+              </div>
+              <span class="ach-tech-focus">Foco: Trazabilidad &amp; Autenticidad</span>
+              <ul class="ach-bullets">
+                <li>Creador de la arquitectura descentralizada para la trazabilidad y prueba de autenticidad en el periodismo digital.</li>
+                <li>Implementación de capas de inmutabilidad robustas para el registro de procedencia de la información.</li>
+                <li>Garantía de integridad de datos editoriales frente a la manipulación o alteración de registros históricos.</li>
+                <li>Arquitectura previa load-bearing que sirvió como base para los sistemas de inmutabilidad actuales de E4C.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="e4c-video" class="tab-content">
+          <div class="video-card">
+            <h4>Presentación Institucional E4C</h4>
+            <p>Demostración práctica del funcionamiento de la arquitectura Web3 y el impacto social del protocolo.</p>
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/hQofpTYjoy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div id="ml-projects" class="tab-content">
-        <div class="dashboard-card">
-          <h4>Proyectos de Machine Learning</h4>
-          <p>Demostraciones interactivas de modelos de Machine Learning y sus predicciones.</p>
-          <div class="dashboard-container">
-            <!-- Contenido del nuevo dashboard de proyectos ML -->
-            <iframe src="dashboard-ml-projects.html" class="dashboard-iframe" loading="lazy"></iframe>
+  <section id="skills" class="skills-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Competencias</span>
+        <h3>Matriz de Habilidades Técnicas</h3>
+      </div>
+      
+      <div class="skills-matrix-wrapper">
+        <div class="skills-matrix-grid">
+          <!-- Layer 1 -->
+          <div class="matrix-card">
+            <div class="matrix-card-header">
+              <i class="fas fa-link"></i>
+              <h4>Web3 &amp; Blockchain</h4>
+            </div>
+            <div class="matrix-tags">
+              <span class="skill-badge">Stellar Network</span>
+              <span class="skill-badge">Soroban Smart Contracts (Rust)</span>
+              <span class="skill-badge">Stellar Disbursement Platform (SDP)</span>
+              <span class="skill-badge">Pollar SDK (Account Abstraction)</span>
+            </div>
+          </div>
+          <!-- Layer 2 -->
+          <div class="matrix-card">
+            <div class="matrix-card-header">
+              <i class="fas fa-database"></i>
+              <h4>Data Engineering &amp; Enterprise</h4>
+            </div>
+            <div class="matrix-tags">
+              <span class="skill-badge">Microsoft SQL Server (Principal)</span>
+              <span class="skill-badge">Optimización de Querys Complejas</span>
+              <span class="skill-badge">ETL Pipelines</span>
+              <span class="skill-badge">Trazabilidad de Datos Inmutables</span>
+            </div>
+          </div>
+          <!-- Layer 3 -->
+          <div class="matrix-card">
+            <div class="matrix-card-header">
+              <i class="fas fa-brain"></i>
+              <h4>AI &amp; Backend</h4>
+            </div>
+            <div class="matrix-tags">
+              <span class="skill-badge">Integración de Modelos LLM</span>
+              <span class="skill-badge">Node.js</span>
+              <span class="skill-badge">TypeScript</span>
+              <span class="skill-badge">Python (Pandas, NumPy)</span>
+            </div>
+          </div>
+          <!-- Layer 4 -->
+          <div class="matrix-card">
+            <div class="matrix-card-header">
+              <i class="fas fa-project-diagram"></i>
+              <h4>Liderazgo &amp; Producto</h4>
+            </div>
+            <div class="matrix-tags">
+              <span class="skill-badge">Dirección de Equipos IT</span>
+              <span class="skill-badge">Arquitectura de Producto (PLG)</span>
+              <span class="skill-badge">Validación de Producto (Customer Discovery)</span>
+              <span class="skill-badge">Cumplimiento Normativo (Compliance)</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="indicators">
-    <div class="section-container" style="margin-top: 30px;">
-      <h2 style="margin-bottom: 20px; text-align: center;">Indicadores de Mercado</h2>
-      <div class="indicators-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
-        <div class="indicator-card" style="background-color: var(--bg-light); padding: 20px; border-radius: 10px; text-align: center;">
-          <h3>Índice de Miedo y Codicia (Fear & Greed Index)</h3>
-          <canvas id="fng-gauge" width="300" height="150" style="max-width: 100%; height: auto;"></canvas>
-          <p id="fng-value" style="font-size: 1.5em; font-weight: bold; margin-top: 10px;"></p>
-          <p id="fng-classification" style="font-size: 1.1em; color: var(--text-secondary);"></p>
-          <p style="font-size: 0.9em; color: var(--text-secondary);">Fuente: <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" style="color: var(--accent-color);">alternative.me</a></p>
+  <section id="portfolio" class="portfolio-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Sandbox</span>
+        <h3>Laboratorio de Datos &amp; Demos</h3>
+      </div>
+      
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tab-button active" data-tab="crypto"><i class="fas fa-chart-line"></i> Monitor Cripto</button>
+          <button class="tab-button" data-tab="data-analysis"><i class="fas fa-chart-pie"></i> Análisis Exploratorio</button>
+          <button class="tab-button" data-tab="ml-projects"><i class="fas fa-brain"></i> Simulador ML</button>
+          <button class="tab-button" data-tab="market-tools"><i class="fas fa-tools"></i> Herramientas de Mercado</button>
         </div>
-        <!-- Aquí se pueden agregar más indicadores en el futuro -->
+
+        <div id="crypto" class="tab-content active">
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h4>Dashboard de Criptomonedas</h4>
+              <p>Seguimiento en tiempo real de cotizaciones de mercado, consumiendo APIs públicas con contingencia automática.</p>
+            </div>
+            <div class="dashboard-container">
+              <iframe src="dashboard-crypto.html" class="dashboard-iframe" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+        
+        <div id="data-analysis" class="tab-content">
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h4>Análisis de Datos y Visualización</h4>
+              <p>Exploración y análisis de tendencias globales, cargando conjuntos de datos de mercados bursátiles y gaming.</p>
+            </div>
+            <div class="dashboard-container">
+              <iframe src="dashboard-data-analysis.html" class="dashboard-iframe" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div id="ml-projects" class="tab-content">
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <h4>Modelos Predictivos interactivos</h4>
+              <p>Simulador en tiempo real de algoritmos de Machine Learning (XGBoost/Random Forest) para retención de clientes.</p>
+            </div>
+            <div class="dashboard-container">
+              <iframe src="dashboard-ml-projects.html" class="dashboard-iframe" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div id="market-tools" class="tab-content">
+          <div class="market-tools-grid">
+            <!-- Fear & Greed -->
+            <div class="indicator-card">
+              <h3>Índice Fear &amp; Greed</h3>
+              <canvas id="fng-gauge" width="300" height="150"></canvas>
+              <p id="fng-value" class="fng-val">Valor: --</p>
+              <p id="fng-classification" class="fng-class">Clasificación: --</p>
+              <p class="src-note">Fuente: <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank">alternative.me</a></p>
+            </div>
+            <!-- Converter -->
+            <div class="converter-card" id="converter">
+              <h3>Conversor Multidivisa</h3>
+              <div class="converter-inputs">
+                <div class="input-box">
+                  <label for="convert-amount">Monto:</label>
+                  <input type="number" id="convert-amount" value="1" min="0.01" step="0.01">
+                </div>
+                <div class="input-box">
+                  <label for="convert-from">De:</label>
+                  <select id="convert-from"></select>
+                </div>
+                <div class="swap-icon"><i class="fas fa-exchange-alt"></i></div>
+                <div class="input-box">
+                  <label for="convert-to">A:</label>
+                  <select id="convert-to"></select>
+                </div>
+              </div>
+              <div class="result-box">
+                <p id="conversion-result">Calculando conversión...</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="converter">
-    <div class="section-container" style="margin-top: 30px;">
-      <h2 style="text-align: center;">Conversor de Criptomonedas</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: flex-end;">
-        <div>
-          <label for="convert-amount" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">Cantidad:</label>
-          <input type="number" id="convert-amount" value="1" min="0.01" step="0.01" style="width: 120px; padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);">
-        </div>
-        <div>
-          <label for="convert-from" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">De:</label>
-          <select id="convert-from" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-        </div>
-        <div style="font-size: 1.5em; color: var(--text-secondary); margin-bottom: 5px;">↔</div>
-        <div>
-          <label for="convert-to" style="display: block; margin-bottom: 5px; color: var(--text-secondary);">A:</label>
-          <select id="convert-to" style="padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--bg-light); color: var(--text-primary);"></select>
-        </div>
+  <footer id="contact" class="footer-section">
+    <div class="container-narrow">
+      <div class="section-header text-center">
+        <span class="section-tag">Conectar</span>
+        <h3>Contacto</h3>
+        <p>¿Interesado en colaborar, estructurar soluciones de infraestructura o explorar consultorías de arquitectura?</p>
       </div>
-      <div style="text-align: center; margin-top: 20px;">
-        <p id="conversion-result" style="font-size: 1.6em; font-weight: bold; color: var(--accent-color);">--</p>
+
+      <form action="https://formspree.io/f/xkgdqywl" method="POST" class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Nombre" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Mensaje" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enviar Mensaje de Negocios</button>
+      </form>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2026 - Pablo Sebastián Gómez. Todos los derechos reservados.</p>
+        <div class="footer-socials">
+          <a href="mailto:aspablogomez@gmail.com" title="Enviar Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/pablosebastiangomez-dev" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
       </div>
     </div>
-  </section>
-
-  <footer id="contact">
-    <h3>Contacto</h3>
-    <p>¿Interesado en colaborar? Enviame un mensaje.</p>
-    <form action="https://formspree.io/f/xkgdqywl" method="POST" class="contact-form">
-      <div class="form-group">
-        <input type="text" name="name" placeholder="Nombre" required>
-        <input type="email" name="email" placeholder="Email" required>
-      </div>
-      <div class="form-group">
-        <textarea name="message" placeholder="Mensaje" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-    </form>
-    <p>© 2026 - Pablo Sebastián Gómez</p>
-    <p>
-      <a href="mailto:aspablogomez@gmail.com">📧 Email</a> |
-      <a href="https://www.linkedin.com/in/pablo-sebastiangomez" target="_blank">🔗 LinkedIn</a>
-    </p>
   </footer>
 
   <script src="main.js"></script>
-
   <a href="#hero" id="back-to-top" class="back-to-top" aria-label="Volver arriba">↑</a>
 </body>
 </html>
