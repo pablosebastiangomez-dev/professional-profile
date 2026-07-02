@@ -95,6 +95,54 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+    // --- Carousel Logic ---
+    const carousels = document.querySelectorAll('.carousel-container');
+    carousels.forEach(carousel => {
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const dots = carousel.querySelectorAll('.carousel-dot');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        let currentIndex = 0;
+
+        const showSlide = (index) => {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            currentIndex = (index + slides.length) % slides.length;
+            slides[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+        };
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                showSlide(currentIndex - 1);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                showSlide(currentIndex + 1);
+            });
+        }
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                showSlide(idx);
+            });
+        });
+        
+        // Auto play (5 seconds)
+        let timer = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
+        
+        carousel.addEventListener('mouseenter', () => clearInterval(timer));
+        carousel.addEventListener('mouseleave', () => {
+            timer = setInterval(() => {
+                showSlide(currentIndex + 1);
+            }, 5000);
+        });
+    });
     
     // --- API Calls ---
     fetchFearAndGreedIndex();
