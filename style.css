@@ -743,9 +743,25 @@ section {
 .carousel-slide img {
   width: 100%;
   height: 400px;
-  object-fit: contain;
-  background-color: #07090e;
+  object-fit: cover;
   display: block;
+}
+
+/* Posicionamiento de encuadre personalizado para fotos de eventos */
+.img-slide-stellar {
+  object-position: center 15%; /* Alineación más alta para centrar el plano superior */
+}
+
+.img-slide-cdmx {
+  object-position: center center;
+}
+
+.img-slide-congreso {
+  object-position: center 25%; /* Encuadre ligeramente inferior para asegurar que la cabeza sea visible */
+}
+
+.img-slide-wip {
+  object-position: center center;
 }
 
 .carousel-caption {
