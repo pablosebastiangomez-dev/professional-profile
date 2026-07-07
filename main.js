@@ -95,8 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-    // --- Carousel Logic ---
+    // --- Carousel Logic & Lightbox ---
     const carousels = document.querySelectorAll('.carousel-container');
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+
     carousels.forEach(carousel => {
         const slides = carousel.querySelectorAll('.carousel-slide');
         const dots = carousel.querySelectorAll('.carousel-dot');
@@ -142,8 +147,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 showSlide(currentIndex + 1);
             }, 5000);
         });
+
+        // Lightbox interactions for each slide image
+        const slideImages = carousel.querySelectorAll('.carousel-slide img');
+        slideImages.forEach(img => {
+            img.addEventListener('click', () => {
+                if (lightboxModal && lightboxImg) {
+                    // Stop auto-play when lightbox is active
+                    clearInterval(timer);
+
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt || 'Presentación ampliada';
+                    
+                    // Fetch caption title and description
+                    const captionContainer = img.nextElementSibling;
+                    if (captionContainer && lightboxCaption) {
+                        const h5 = captionContainer.querySelector('h5');
+                        const p = captionContainer.querySelector('p');
+                        lightboxCaption.innerHTML = `
+                            <h5>${h5 ? h5.textContent : ''}</h5>
+                            <p>${p ? p.textContent : ''}</p>
+                        `;
+                    } else if (lightboxCaption) {
+                        lightboxCaption.innerHTML = '';
+                    }
+
+                    lightboxModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevents scrolling behind modal
+                }
+            });
+        });
     });
-    
+
+    // Close lightbox behavior
+    if (lightboxModal) {
+        const closeLightbox = () => {
+            lightboxModal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        };
+
+        if (lightboxCloseBtn) {
+            lightboxCloseBtn.addEventListener('click', closeLightbox);
+        }
+
+        // Close when clicking outside the content image
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+
+        // Close on ESC key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    }
+
     // --- API Calls ---
     fetchFearAndGreedIndex();
     setInterval(fetchFearAndGreedIndex, 3600000); // Update every hour
